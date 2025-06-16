@@ -369,7 +369,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                     <div className="price-top-part">
                       <img src={astro} alt="" width="40px" />
                       <h5 className="mb-0 font-weight-semibold color-theme-1 mb-2 mt-2 fst-italic" style={{ color: "#7c625a" }}>
-                        {t("TotalDROPS.1")}{" "}
+                        {t("TotalGRAINS.1")}{" "}
                       </h5>
                       <p className="text-large mb-2 text-white fst-italic">
                         <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}>{totalDrops}</span>
@@ -428,7 +428,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                 </div>
                 <p className="col-12 white mb-3 text-justify fst-italic text-white" style={{ fontSize: "20px" }}>
                   {" "}
-                  {t("TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash.1")}
+                  {t("TheShoreisTheHOURNetwork’ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoHOUR.1")}
                 </p>
                 <p className="col-12 white mb-3"></p>
                 <div>
@@ -489,7 +489,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                               {t("Price.1")}:
                               </p>
                               <p className="user-balance text-white fst-italic">
-                                {t("AVAX.1")}/{t("Splash.1")}
+                                {t("AVAX.1")}/{t("HOUR.1")}
                                 ≈
                                 {bnbDripPrice}
                               </p>
@@ -555,7 +555,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                           <div role="group" className="input-group">
                             <input
                               type="number"
-                              placeholder="DROPS"
+                              placeholder="GRAINS"
                               className="form-control"
                               id="__BVID__213"
                               ref={withdrawInput}
@@ -586,7 +586,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
               <div className="container col-10 text-center">
                 <h1>{t("Stats.1")}</h1>
                 <p className="text-white mb-4" style={{ fontSize: "20px" }}>
-                  {t("TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers.1")}...
+                  {t("TheShoreisTheHOURNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoHOUR.Herearethenumbers.1")}...
                 </p>
               </div>
               <div className="container col-6 col-xl-4 col-lg-4 col-md-4 text-center">
@@ -610,7 +610,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                   <p className="text-large mb-2 text-white fst-italic">
                     <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}>{loackedValue}</span>
                   </p>
-                  <p className="text-small fst-italic">{t("DROPS.1")}</p>
+                  <p className="text-small fst-italic">{t("GRAINS.1")}</p>
                 </div>
               </div>
               <div className="container col-6 col-xl-4 col-lg-4 col-md-4 text-center">
@@ -634,7 +634,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                   <p className="text-large mb-2 text-white">
                     <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}>{dividendPool}</span>
                   </p>
-                  <p className="text-small">{t("DROPS.1")} ({t("Splash.1")} / {t("LOCKED.1")})</p>
+                  <p className="text-small">{t("GRAINS.1")} ({t("HOUR.1")} / {t("LOCKED.1")})</p>
                 </div>
               </div>
               <div className="container col-6 col-xl-4 col-lg-4 col-md-4 mt-3 text-center">
@@ -646,7 +646,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                   <p className="text-large mb-2 text-white">
                     <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}> {contractBal} {t("AVAX.1")}</span>
                   </p>
-                  <p className="text-small">{t("DROPS.1")} ≈{t("USDT.1")}</p>
+                  <p className="text-small">{t("GRAINS.1")} ≈{t("USDT.1")}</p>
                 </div>
               </div>
               <div className="container col-6 col-xl-4 col-lg-4 col-md-4 mt-3 text-center">
