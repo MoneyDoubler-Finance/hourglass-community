@@ -69,7 +69,7 @@ const Facuet = ({ oneTokenPrice }) => {
   let [storeRefarl, setStoreRefral] = useState([])
 
   // run air drop
-  let [checkSplash, setCheckSplash] = useState("1")
+  let [checkHOUR, setCheckHOUR] = useState("1")
   let [checkDirects, setCheckDirects] = useState("0")
   let [checkCompaign, setCheckCompaign] = useState("0")
   let [showCompaign, setShowCompaign] = useState([]);
@@ -223,7 +223,7 @@ const Facuet = ({ oneTokenPrice }) => {
             toast.error("Incorrrect palyer's Address")
           }
         } else {
-          toast.error("Looks like you forgot to enter Splash Amount")
+          toast.error("Looks like you forgot to enter HOUR Amount")
         }
       }
 
@@ -575,7 +575,7 @@ const Facuet = ({ oneTokenPrice }) => {
                 mapReferral = await Promise.allSettled(mapReferral)
                 let filterReferral = mapReferral.filter((item) => {
                   return (web3.utils.fromWei(item.value.direct_bonus) >= checkDirects
-                    && web3.utils.fromWei(item.value.deposits) >= checkSplash)
+                    && web3.utils.fromWei(item.value.deposits) >= checkHOUR)
                     && item.value.upline !== "0x0000000000000000000000000000000000000000"
                 })
 
@@ -1007,7 +1007,7 @@ const Facuet = ({ oneTokenPrice }) => {
                       <p className="text-large mb-2 text-white fst-italic">
                         <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}>{clamied}</span>
                       </p>
-                      <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>{t("Splash.1")}</p>
+                      <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>{t("HOUR.1")}</p>
                     </div>
                   </div>
                   <div className="container col-6 col-xl-4 col-lg-4 col-md-4 text-center mt-md-4">
@@ -1033,7 +1033,7 @@ const Facuet = ({ oneTokenPrice }) => {
                       <p className="text-large mb-2 text-white fst-italic">
                         <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}>{maxPayout}</span>
                       </p>
-                      <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>{t("Splash.1")}</p>
+                      <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>{t("HOUR.1")}</p>
                     </div>
                   </div>
                   <div className="container col-6 col-xl-4 col-lg-4 col-md-4 text-center mt-md-4">
@@ -1054,7 +1054,7 @@ const Facuet = ({ oneTokenPrice }) => {
                 <p className="col-12 white mb-3 text-justify fst-italic text-white mt-md-3" style={{ fontSize: "20px" }}>
                   {" "}
                   {t(
-                    "Splassive’sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%..1"
+                    "Hourglass Finance’sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%..1"
                   )}
                 </p>
                 <p className="col-12 white mb-3 text-justify fst-italic text-white" style={{ fontSize: "20px" }}>
@@ -1069,7 +1069,7 @@ const Facuet = ({ oneTokenPrice }) => {
                   <div className="text-left col-lg-5 col-md-12">
                     <div className="priceDiv">
                       <span className="fst-italic" style={{ color: "#7c625a", fontSize: "19px" }}>
-                        {t("Price.1")} {oneTokenPrice} {t("AVAX.1")}/{t("Splash.1")}
+                        {t("Price.1")} {oneTokenPrice} {t("AVAX.1")}/{t("HOUR.1")}
                       </span>{" "}
                     </div>
                   </div>
@@ -1085,7 +1085,7 @@ const Facuet = ({ oneTokenPrice }) => {
                     <Link
                       style={{ color: "#7c625a", fontSize: "19px" }}
                       to="/swap" >
-                      {t("GetSplash.1")}
+                      {t("GetHOUR.1")}
                     </Link>
                     <a target="_blank" href="https://www.youtube.com/watch?v=TOJg308iREw" style={{ color: "#7c625a", fontSize: "19px" }}>
                       {" "}
@@ -1115,7 +1115,7 @@ const Facuet = ({ oneTokenPrice }) => {
                             <div className="col-6 text-right fst-italic">
                               {" "}
                               <p>
-                                {t("SplashBalance.1")}:
+                                {t("HOURBalance.1")}:
                                 <label className="user-balance text-white fst-italic">
                                   {userDripBalance}
                                 </label>
@@ -1126,7 +1126,7 @@ const Facuet = ({ oneTokenPrice }) => {
                             <input
                               ref={inputEl}
                               type="number"
-                              placeholder="Splash"
+                              placeholder="HOUR"
                               className="form-control"
                               id="__BVID__213"
                             />
@@ -1145,7 +1145,7 @@ const Facuet = ({ oneTokenPrice }) => {
                           </div>
                           <small className="form-text text-left fst-italic">
                             <p style={{ fontSize: "13px" }}>
-                              {t("Aminimumof1Splashrequiredfordeposits.1")}*
+                              {t("Aminimumof1HOURrequiredfordeposits.1")}*
                             </p>
                           </small>
                           <small className="form-text text-left">
@@ -1323,7 +1323,7 @@ const Facuet = ({ oneTokenPrice }) => {
                 </div>
               </div>
               <div className="container col-12 col-xl-6 col-lg-6 col-md-6 mb-4">
-                <h2>{t("CheckoutWhoSplashed.1")}</h2>
+                <h2>{t("CheckoutWhoHOURed.1")}</h2>
                 <div className="card text-white" style={{ backgroundColor: "#4e2e4b", color: "#dacc79", border: "2px solid #4e2e4b" }}>
                   <div className="card-body">
                     <p
@@ -1414,7 +1414,7 @@ const Facuet = ({ oneTokenPrice }) => {
                           className="fst-italic"
                           style={{ fontSize: "16px" }}
                         >
-                          {netDepppost} {t("Splash.1")}
+                          {netDepppost} {t("HOUR.1")}
                         </span>
                       </div>
                     </div>
@@ -1429,7 +1429,7 @@ const Facuet = ({ oneTokenPrice }) => {
                           className="fst-italic"
                           style={{ fontSize: "16px" }}
                         >
-                          {Airdropsent} {t("Splash.1")}
+                          {Airdropsent} {t("HOUR.1")}
                         </span>
                       </div>
                     </div>
@@ -1734,32 +1734,32 @@ const Facuet = ({ oneTokenPrice }) => {
                                     <div class="select-wrapper ">
                                       <select class="select form-control fst-italic"
                                         onChange={(e) => {
-                                          setCheckSplash(e.target.value)
+                                          setCheckHOUR(e.target.value)
                                         }}
                                       >
                                         <option value="1">
-                                          1+ {t("Splash.1")}
+                                          1+ {t("HOUR.1")}
                                         </option>
                                         <option value="25">
-                                          25+ {t("Splash.1")}
+                                          25+ {t("HOUR.1")}
                                         </option>
                                         <option value="50">
-                                          50+ {t("Splash.1")}
+                                          50+ {t("HOUR.1")}
                                         </option>
                                         <option value="100">
-                                          100+ {t("Splash.1")}
+                                          100+ {t("HOUR.1")}
                                         </option>
                                         <option value="250">
-                                          250+ {t("Splash.1")}
+                                          250+ {t("HOUR.1")}
                                         </option>
                                         <option value="500">
-                                          500+ {t("Splash.1")}
+                                          500+ {t("HOUR.1")}
                                         </option>
                                         <option value="1000">
-                                          1000+ {t("Splash.1")}
+                                          1000+ {t("HOUR.1")}
                                         </option>
                                         <option value="2000">
-                                          2000+ {t("Splash.1")}
+                                          2000+ {t("HOUR.1")}
                                         </option>
                                       </select>
                                     </div>
@@ -1812,7 +1812,7 @@ const Facuet = ({ oneTokenPrice }) => {
                                   >
                                     {t("Available.1")}:
                                     <label className="user-balance text-white fst-italic">
-                                      {userDripBalance} {t("Splash.1")}
+                                      {userDripBalance} {t("HOUR.1")}
                                     </label>
                                   </p>
                                   <p
@@ -1828,7 +1828,7 @@ const Facuet = ({ oneTokenPrice }) => {
                                     className="text-end"
                                     style={{ lineHeight: "30%" }}
                                   >
-                                    {t("EstimatedSplashperperson.1")}:
+                                    {t("EstimatedHOURperperson.1")}:
                                     <label className="user-balance text-white fst-italic">
                                       {estimatePerPerson}
                                     </label>
@@ -2060,7 +2060,7 @@ const Facuet = ({ oneTokenPrice }) => {
                                 >
                                   <input
                                     type="number"
-                                    placeholder="Splash"
+                                    placeholder="HOUR"
                                     ref={airAmount}
                                     className="form-control"
                                     id="__BVID__213"
@@ -2094,13 +2094,13 @@ const Facuet = ({ oneTokenPrice }) => {
                 <h2 className="text-white">{t("About.1")}</h2>
                 <p className="text-white fst-italic" style={{ fontSize: "20px" }}>
                   {t(
-                    "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser’sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage..1"
+                    "PlayerscanparticipatebypurchasingHOURfromtheplatform'sTheWellpage,joininganotheruser’sHOURteam(1HOURminimumrequirement)DepositingHOURtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirHOUR(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheHOURthathasbeenrewarded.HOURrewardscomefroma10%taxonallHOURtransactionsexcludingbuysfromtheplatform'sTheWellpage..1"
                   )}
                 </p>
                 <p id="referral" />
                 <p className="text-white fst-italic" style={{ fontSize: "20px" }}>
                   {t(
-                    "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofSplashDAOheldinyourwallet.1"
+                    "IfthereiseverasituationwherethetaxpoolisnotenoughtopayHOURrewardsnewHOURwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheHOURnetwork,theprobabilitythatthesystemwillneedtomintnewHOURtopayrewardsisextremelylow.SinceHOURdepositedintoTheTaparesenttoaburnaddressandHOURisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,HOURistheonlydeflationarydailyROIplatform.ThebeststrategyforHOURistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofHOURDAOheldinyourwallet.1"
                   )}
                   : 1-2, 2-3, 3-5, 4-8, 5-13, 6-21, 7-34, 8-55, 9-89, 10-144,
                   11-233, 12-377, 13-610, 14-987, 15-1597
