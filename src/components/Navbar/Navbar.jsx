@@ -114,7 +114,7 @@ connectWallet();
                   id="navbartext"
                   id="navbartext"
                 >
-                   {t('HOURDAO.1')}
+                   {t('SplashDAO.1')}
                 </Nav.Link>
                 <Nav.Link href="#Tutorial" id="navbartext">
                 {t('Tutorial.1')}

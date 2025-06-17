@@ -33,7 +33,7 @@ const Footer = () => {
         <div className="container copyright pt-5 pb-5">
           <div className="row justify-content-between">
             <div className="col-sm-12 col-md-6 mb-2" style={{color: "#dacc79", fontSize: "24px"}}>
-              2021 © {t("HOURNETWORK.1")}
+              2021 © {t("SplashNETWORK.1")}
             </div>
             <div className="social-icons col-sm-12 col-md-6 text-center d-flex justify-content-evenly">
               <p >

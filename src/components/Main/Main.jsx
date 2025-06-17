@@ -81,7 +81,7 @@ const Main = () => {
                     <div className="row">
                       <div className="col">
                         <span class="luck-title notranslate">
-                          <b> {t("HOURNETWORK.1")}</b>
+                          <b> {t("SplashNETWORK.1")}</b>
                         </span>
                       </div>
                     </div>
@@ -92,8 +92,8 @@ const Main = () => {
                 className="container col-12 col-xl-8 col-lg-8 col-md-8 text-white text1"
                 style={{ fontSize: "20px" }}
               >
-                {t("HOURNetworkisthelatestprojectdevelopedby.1")}{" "}
-                {t("Hourglass FinanceTeam.1")}.
+                {t("SplashNetworkisthelatestprojectdevelopedby.1")}{" "}
+                {t("SplassiveTeam.1")}.
                 {/* <a style={{ color: "#7c625a" }} href=""> */}
 
                 {/* </a> */}
@@ -108,7 +108,7 @@ const Main = () => {
                 style={{ fontSize: "20px" }}
               >
                 {t(
-                  "TheofficialtokenoftheHOURNetworkisHOUR(SPLASH)ontheAvalancheChain(AVAX)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain..1"
+                  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(AVAX)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain..1"
                 )}
               </div>
               <br />
@@ -117,7 +117,7 @@ const Main = () => {
                 style={{ fontSize: "20px" }}
               >
                 {t(
-                  "TherecommendedexchangefortradingHOURistheTheWellcontractwhichcanbefounddirectlyontheplatformswebsiteundertheTheWelltab,asitallowsustowaivetheinitial10%taxonbuysandprovidesthelowestpricesandhighestliquidity,resultinginlessslippageforlargertrades..1"
+                  "TherecommendedexchangefortradingSplashistheTheWellcontractwhichcanbefounddirectlyontheplatformswebsiteundertheTheWelltab,asitallowsustowaivetheinitial10%taxonbuysandprovidesthelowestpricesandhighestliquidity,resultinginlessslippageforlargertrades..1"
                 )}
               </div>
               <div className="raw mainrow">
@@ -192,7 +192,7 @@ const Main = () => {
                   style={{ fontSize: "20px" }}
                 >
                   {t(
-                    "TheHOURtokencapturestheentirevalueoftheHOURNetworkandmakesitavailabletotheentireAVAXCommunity.1"
+                    "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireAVAXCommunity.1"
                   )}
                   !
                 </p>
@@ -265,7 +265,7 @@ const Main = () => {
                       {dripTotalSupply}
                     </span>
                   </p>
-                  <p className="text-small">{t("HOUR.1")} ≈ 0</p>
+                  <p className="text-small">{t("Splash.1")} ≈ 0</p>
                 </div>
               </div>
               <div className="container col-6 col-xl-3 col-lg-3 col-md-3 text-center">
