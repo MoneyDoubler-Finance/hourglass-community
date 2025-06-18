@@ -405,22 +405,13 @@ a[data-v-15de93f6] {
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  /* background-image: url("./images/bg.jpg"); */
-  /* width: 100%;
-  height: 900vh; */
-  background-color: #86ad74;
-  /* background-size: cover; */
-  /* position: fixed; */
-  /* top: 0;
-  background-attachment: fixed; */
-  /* background-position: 200px; */
-  /* height: -webkit-fill-available;
+  background-image: url("./images/gape.png");
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; */
-  /* background-size: cover;  */
-  /* height: 200px; */
-  /* background: #020024;
-  background: linear-gradient(156deg, #020024, #090979 7%, #00d4ff); */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh; /* Use vh (viewport height) for full-screen coverage */
+  width: 100%;
 }
 
 a.nav-link {
@@ -16225,3 +16216,11 @@ span#logo-text {
 }
 
 /* collapse */
+
+.card,
+.card[data-v-2a7c1b9a],
+.card[data-v-782a8d4f],
+.card[data-v-d8e1ea5c] {
+  background-color: #20232a !important;
+  border: 1px solid #444;
+}
