@@ -2094,16 +2094,14 @@ const Facuet = ({ oneTokenPrice }) => {
                 <h2 className="text-white">{t("About.1")}</h2>
                 <p className="text-white fst-italic" style={{ fontSize: "20px" }}>
                   {t(
-                    "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser’sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage..1"
+                    "AboutParagraph1.1"
                   )}
                 </p>
                 <p id="referral" />
                 <p className="text-white fst-italic" style={{ fontSize: "20px" }}>
                   {t(
-                    "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofSplashDAOheldinyourwallet.1"
+                    "AboutParagraph2.1"
                   )}
-                  : 1-2, 2-3, 3-5, 4-8, 5-13, 6-21, 7-34, 8-55, 9-89, 10-144,
-                  11-233, 12-377, 13-610, 14-987, 15-1597
                 </p>
               </div>
             </div>
