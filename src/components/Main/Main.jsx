@@ -85,7 +85,7 @@ const Main = () => {
                 <div className="container">
                   <div className="row">
                     <div className="col">
-                      <WarpBox radius={200} strength={0.6}>
+                      <WarpBox radius={200} strength={0.08}>
                         <span className="luck-title notranslate">
                           <b>{t("SplashNETWORK.1")}</b>
                         </span>
