@@ -82,7 +82,7 @@ const Main = () => {
 
           {/* TITLE BUBBLE */}
           <div className="row mb-4 mt-2 justify-content-center">
-            <WarpBox radius={200} strength={0.08}>
+            <WarpBox radius={50} strength={-0.12}>
               <span className="luck-title notranslate">
                 <b>{t("SplashNETWORK.1")}</b>
               </span>
@@ -92,7 +92,7 @@ const Main = () => {
           {/* COMBINED BODY BUBBLE */}
           <div className="row justify-content-center mb-4 body-bubble">
             <div className="col-12 col-md-8 col-lg-6 d-flex justify-content-center">
-              <WarpBox radius={24} strength={0.04}>
+              <WarpBox radius={50} strength={-0.12}>
                 <p className="text-white body-paragraph">
                   {t("IntroParagraph1.1")}
                   <br />

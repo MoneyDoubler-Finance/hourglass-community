@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 .images {
   background-image: url("../../images/gape.png");
   background-size: cover;
@@ -9,7 +15,7 @@
 }
 
 .translate {
-  font-family: Aquino, cursive;
+  font-family: 'Inter', sans-serif;
   color: hsla(0, 0%, 100%, 0.96);
 }
 
@@ -60,7 +66,6 @@
   }
 }
 
-/* Constrain the body bubble’s width: */
 .body-paragraph {
   max-width: 600px;
   margin: 0 auto;
@@ -72,4 +77,11 @@
 
 .body-bubble .warp-box-content {
   padding: 0.75rem 1.5rem;
+}
+
+.luck-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: center;
 }
