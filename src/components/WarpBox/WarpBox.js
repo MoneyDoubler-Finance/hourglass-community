@@ -1,3 +1,4 @@
+// src/components/WarpBox/WarpBox.js
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import bgImg from '../../images/gape.png';
@@ -14,126 +15,112 @@ const vertexShader = `
 const fragmentShader = `
   varying vec2 vUv;
   uniform sampler2D u_background;
-  uniform vec2 u_bgRes;
-  uniform vec2 u_boxRes;
-  uniform vec2 u_boxOffset;
-  uniform float u_radius;
-  uniform float u_strength;
+  uniform vec2      u_boxRes;
+  uniform float     u_radius;
+  uniform float     u_strength;
 
   void main() {
+    // pixel coords inside the box
     vec2 pix = vUv * u_boxRes;
-    float normX = min(pix.x, u_boxRes.x - pix.x);
-    float normY = min(pix.y, u_boxRes.y - pix.y);
-    float norm = clamp(min(normX, normY) / u_radius, 0.0, 1.0);
+
+    // distance from nearest vertical/horizontal edge
+    float distX = min(pix.x, u_boxRes.x - pix.x);
+    float distY = min(pix.y, u_boxRes.y - pix.y);
+    float norm  = clamp(min(distX, distY) / u_radius, 0.0, 1.0);
+
+    // funnel factor
     float f = 1.0 + u_strength * pow(1.0 - norm, 2.0);
 
-    vec2 centerScreen = u_boxOffset + u_boxRes * 0.5;
-    vec2 fromCenter = gl_FragCoord.xy - centerScreen;
-    vec2 refracted = fromCenter * f;
-    vec2 src = (centerScreen + refracted) / u_bgRes;
-    gl_FragColor = texture2D(u_background, src);
+    // warp around center in UV space
+    vec2 centered   = vUv - 0.5;
+    vec2 warpedUv   = 0.5 + centered * f;
+
+    gl_FragColor = texture2D(u_background, warpedUv);
   }
 `;
 
-export default function WarpBox({ radius = 150, strength = 0.4, children }) {
-  const wrapper = useRef(null);
+export default function WarpBox({
+  radius   = 150,
+  strength = 0.4,
+  children
+}) {
+  const wrapper   = useRef(null);
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const container = wrapper.current;
-    const canvas = canvasRef.current;
+    const canvas    = canvasRef.current;
     if (!container || !canvas) return;
 
-    // Get initial dimensions of WarpBox
-    const width = container.clientWidth;
+    // offscreen canvas for drawing the correct bg slice
+    const width  = container.clientWidth;
     const height = container.clientHeight;
-
-    // Initialize Three.js renderer and camera
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-    renderer.setSize(width, height);
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const scene = new THREE.Scene();
-
-    // Create an offscreen canvas that will serve as a dynamic texture.
-    // (We use it to draw the static background image with a 'cover' style.)
     const offscreenCanvas = document.createElement('canvas');
-    offscreenCanvas.width = width;
+    offscreenCanvas.width  = width;
     offscreenCanvas.height = height;
     const offCtx = offscreenCanvas.getContext('2d');
 
-    // Load the background image.
+    // load bg image
     const image = new Image();
-    image.src = bgImg;
+    image.src   = bgImg;
 
-    // Create a Three.js texture from the offscreen canvas.
+    // three.js setup
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(width, height);
+    const camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+    const scene  = new THREE.Scene();
+
+    // dynamic texture from offscreen canvas
     const dynamicTexture = new THREE.Texture(offscreenCanvas);
     dynamicTexture.minFilter = THREE.LinearFilter;
     dynamicTexture.magFilter = THREE.LinearFilter;
 
-    // Define shader uniforms, using the dynamic texture.
+    // uniforms: note u_boxRes only
     const uniforms = {
       u_background: { value: dynamicTexture },
-      u_bgRes: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-      u_boxRes: { value: new THREE.Vector2(width, height) },
-      u_boxOffset: { value: new THREE.Vector2(0, 0) },
-      u_radius: { value: radius },
-      u_strength: { value: strength }
+      u_boxRes:     { value: new THREE.Vector2(width, height) },
+      u_radius:     { value: radius },
+      u_strength:   { value: strength }
     };
 
-    // Create the shader material and a quad mesh covering the clip space.
+    // quad + material
     const material = new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,
       uniforms,
       transparent: true
     });
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const quad = new THREE.Mesh(geometry, material);
+    const quad = new THREE.Mesh(new THREE.PlaneGeometry(2,2), material);
     scene.add(quad);
 
-    // Function to compute the WarpBox’s viewport position and update the offset uniform.
-    const updateOffset = () => {
-      const rect = container.getBoundingClientRect();
-      // Convert from DOM coordinates (origin at top-left) to WebGL (origin at bottom-left)
-      const y = window.innerHeight - (rect.top + rect.height);
-      uniforms.u_boxOffset.value.set(rect.left, y);
-      uniforms.u_boxOffset.needsUpdate = true;
-    };
-
-    window.addEventListener('scroll', updateOffset, { passive: true });
-    window.addEventListener('resize', updateOffset);
-
-    // The animation loop:
+    // animation loop
     let frameId;
     const animate = () => {
-      updateOffset();
-
       if (image.complete) {
-        // Assume the static background image is drawn with background-size: cover.
-        // Compute the scale needed for the image to cover the viewport.
-        const scale = Math.max(window.innerWidth / image.width, window.innerHeight / image.height);
-        const drawWidth = image.width * scale;
-        const drawHeight = image.height * scale;
-        // Calculate offsets to center the image in the viewport.
-        const offsetX = (drawWidth - window.innerWidth) / 2;
-        const offsetY = (drawHeight - window.innerHeight) / 2;
+        // compute CSS 'cover' draw parameters
+        const scale = Math.max(
+          window.innerWidth  / image.width,
+          window.innerHeight / image.height
+        );
+        const drawW = image.width  * scale;
+        const drawH = image.height * scale;
+        const offX  = (drawW - window.innerWidth) / 2;
+        const offY  = (drawH - window.innerHeight) / 2;
 
-        // Get the container's bounding rectangle.
+        // where does this box sit in the viewport?
         const rect = container.getBoundingClientRect();
 
-        // Clear the offscreen canvas.
+        // draw that exact slice into offscreen canvas
         offCtx.clearRect(0, 0, width, height);
-        // Draw the portion of the image that CSS would display under your WarpBox.
         offCtx.drawImage(
           image,
-          rect.left + offsetX, // source x: container's x in viewport plus centering offset
-          rect.top + offsetY,  // source y
-          width,               // source width (matches container width)
-          height,              // source height (matches container height)
-          0,                   // destination x on offscreen canvas
-          0,                   // destination y
-          width,               // destination width
-          height               // destination height
+          rect.left + offX,
+          rect.top  + offY,
+          width,
+          height,
+          0,0,
+          width,
+          height
         );
         dynamicTexture.needsUpdate = true;
       }
@@ -145,16 +132,17 @@ export default function WarpBox({ radius = 150, strength = 0.4, children }) {
 
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener('scroll', updateOffset);
-      window.removeEventListener('resize', updateOffset);
       renderer.dispose();
       material.dispose();
-      geometry.dispose();
     };
   }, [radius, strength]);
 
   return (
-    <div ref={wrapper} className="warp-box" style={{ '--warp-radius': `${radius}px` }}>
+    <div
+      ref={wrapper}
+      className="warp-box"
+      style={{ '--warp-radius': `${radius}px` }}
+    >
       <canvas ref={canvasRef} className="warp-box-canvas" />
       <div className="warp-box-content">{children}</div>
     </div>

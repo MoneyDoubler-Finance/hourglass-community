@@ -79,96 +79,81 @@ const Main = () => {
     <div className="images">
       <div className="router-view">
         <div className="container landing-page">
-          <div className="row mb-4 mt-2">
-            <div className="container col-xl-12">
-              <div className="home-text text-center row">
-                <div className="container">
-                  <div className="row">
-                    <div className="col">
-                      <WarpBox radius={200} strength={0.08}>
-                        <span className="luck-title notranslate">
-                          <b>{t("SplashNETWORK.1")}</b>
-                        </span>
-                      </WarpBox>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div
-              className="container col-12 col-xl-8 col-lg-8 col-md-8 text-white text1"
-              style={{ fontSize: "20px" }}
-            >
-              {t("IntroParagraph1.1")}
-            </div>
-            <div
-              className="container col-12 col-xl-8 col-lg-8 col-md-8 text-white text2"
-              style={{ fontSize: "20px" }}
-            >
-              {t("IntroParagraph2.1")}
-            </div>
-            <br />
-            <div
-              className="container col-12 col-xl-8 col-lg-8 col-md-8 text-white text3"
-              style={{ fontSize: "20px" }}
-            >
-              {/* Intentional blank for structure */}
-            </div>
+          {/* TITLE BUBBLE */}
+          <div className="row mb-4 mt-2 justify-content-center">
+            <WarpBox radius={200} strength={0.08}>
+              <span className="luck-title notranslate">
+                <b>{t("SplashNETWORK.1")}</b>
+              </span>
+            </WarpBox>
+          </div>
 
-            <div className="raw mainrow">
-              <div className="col-xl-6 col-lg-6 col-md-6 mb-4 pt-4">
-                <p className="col-11 white mb-3 text-justify" />
-                <p className="col-11 white text-center">
-                  <button
-                    style={{ color: "#7c625a", fontSize: "20px" }}
-                    className="btn btn-outline-light btn-block m-3"
-                    onClick={() => tradeNavigate("/swap")}
-                  >
-                    <b>{t("TRADE.1")}</b>
-                  </button>
-                  <button
-                    style={{
-                      color: "#7c625a",
-                      fontSize: "20px",
-                      textDecoration: "none",
-                    }}
-                    className="btn btn-outline-light btn-block m-3"
-                    onClick={() => stakeNavigate("/facuet")}
-                  >
-                    <b>{t("STAKE.1")}</b>
-                  </button>
-                  <button
-                    style={{
-                      color: "#7c625a",
-                      fontSize: "20px",
-                      textDecoration: "none",
-                    }}
-                    className="btn btn-outline-light btn-block m-3"
-                    onClick={() => farmNavigate("/reservoir")}
-                  >
-                    <b>{t("LIQUIDITYFARM.1")}</b>
-                  </button>
+          {/* COMBINED BODY BUBBLE */}
+          <div className="row justify-content-center mb-4 body-bubble">
+            <div className="col-12 col-md-8 col-lg-6 d-flex justify-content-center">
+              <WarpBox radius={24} strength={0.04}>
+                <p className="text-white body-paragraph">
+                  {t("IntroParagraph1.1")}
+                  <br />
+                  <br />
+                  {t("IntroParagraph2.1")}
                 </p>
-              </div>
-              <div className="col-xl-4 col-lg-4 col-md-4 mb-5 pt-4 mt-5">
-                <img src={I} className="mainimages" alt="Logo" />
-              </div>
+              </WarpBox>
             </div>
           </div>
 
+          {/* BUTTONS & LOGO */}
+          <div className="raw mainrow">
+            <div className="col-xl-6 col-lg-6 col-md-6 mb-4 pt-4">
+              <p className="col-11 white mb-3 text-justify" />
+              <p className="col-11 white text-center">
+                <button
+                  style={{ color: "#7c625a", fontSize: "20px" }}
+                  className="btn btn-outline-light btn-block m-3"
+                  onClick={() => tradeNavigate("/swap")}
+                >
+                  <b>{t("TRADE.1")}</b>
+                </button>
+                <button
+                  style={{
+                    color: "#7c625a",
+                    fontSize: "20px",
+                    textDecoration: "none",
+                  }}
+                  className="btn btn-outline-light btn-block m-3"
+                  onClick={() => stakeNavigate("/facuet")}
+                >
+                  <b>{t("STAKE.1")}</b>
+                </button>
+                <button
+                  style={{
+                    color: "#7c625a",
+                    fontSize: "20px",
+                    textDecoration: "none",
+                  }}
+                  className="btn btn-outline-light btn-block m-3"
+                  onClick={() => farmNavigate("/reservoir")}
+                >
+                  <b>{t("LIQUIDITYFARM.1")}</b>
+                </button>
+              </p>
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-4 mb-5 pt-4 mt-5">
+              <img src={I} className="mainimages" alt="Logo" />
+            </div>
+          </div>
+
+          {/* STATS SECTION */}
           <div className="row mb-4 mt-2">
             <div className="container col-12 text-center">
               <h1 id="mainh1">{t("STATS.1")}</h1>
-              <p
-                id="mainpp"
-                className="text-white"
-                style={{ fontSize: "20px" }}
-              >
+              <p id="mainpp" className="text-white">
                 {t("StatsParagraph1.1")}
               </p>
             </div>
 
+            {/* Players */}
             <div className="container col-6 col-xl-3 col-lg-3 col-md-3 text-center">
               <div className="price-top-part">
                 <img src={user} alt="" />
@@ -190,6 +175,7 @@ const Main = () => {
               </div>
             </div>
 
+            {/* Max Daily Return */}
             <div className="container col-6 col-xl-3 col-lg-3 col-md-3 text-center">
               <div className="price-top-part">
                 <img src={curve} alt="" width="60px" />
@@ -211,6 +197,7 @@ const Main = () => {
               </div>
             </div>
 
+            {/* Total Supply */}
             <div className="container col-6 col-xl-3 col-lg-3 col-md-3 text-center">
               <div className="price-top-part">
                 <img src={van} alt="" width="60px" />
@@ -232,6 +219,7 @@ const Main = () => {
               </div>
             </div>
 
+            {/* Transactions */}
             <div className="container col-6 col-xl-3 col-lg-3 col-md-3 text-center">
               <div className="price-top-part">
                 <img src={transfer} alt="" width="60px" />
@@ -254,7 +242,6 @@ const Main = () => {
             </div>
           </div>
 
-          {/* Activity & Waves Footer unchanged */}
         </div>
       </div>
     </div>
