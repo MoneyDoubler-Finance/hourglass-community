@@ -116,35 +116,41 @@ const Main = () => {
             <div className="col-xl-6 col-lg-6 col-md-6 mb-4 pt-4">
               <p className="col-11 white mb-3 text-justify" />
               <p className="col-11 white text-center">
-                <button
-                  style={{ color: "#7c625a", fontSize: "20px" }}
-                  className="btn btn-outline-light btn-block m-3"
-                  onClick={() => tradeNavigate("/swap")}
-                >
-                  <b>{t("TRADE.1")}</b>
-                </button>
-                <button
-                  style={{
-                    color: "#7c625a",
-                    fontSize: "20px",
-                    textDecoration: "none",
-                  }}
-                  className="btn btn-outline-light btn-block m-3"
-                  onClick={() => stakeNavigate("/facuet")}
-                >
-                  <b>{t("STAKE.1")}</b>
-                </button>
-                <button
-                  style={{
-                    color: "#7c625a",
-                    fontSize: "20px",
-                    textDecoration: "none",
-                  }}
-                  className="btn btn-outline-light btn-block m-3"
-                  onClick={() => farmNavigate("/reservoir")}
-                >
-                  <b>{t("LIQUIDITYFARM.1")}</b>
-                </button>
+                <WarpBox radius={50} strength={-0.12}>
+                  <button
+                    style={{ color: "#7c625a", fontSize: "20px" }}
+                    className="btn btn-outline-light btn-block m-3"
+                    onClick={() => tradeNavigate("/swap")}
+                  >
+                    <b>{t("TRADE.1")}</b>
+                  </button>
+                </WarpBox>
+                <WarpBox radius={50} strength={-0.12}>
+                  <button
+                    style={{
+                      color: "#7c625a",
+                      fontSize: "20px",
+                      textDecoration: "none",
+                    }}
+                    className="btn btn-outline-light btn-block m-3"
+                    onClick={() => stakeNavigate("/facuet")}
+                  >
+                    <b>{t("STAKE.1")}</b>
+                  </button>
+                </WarpBox>
+                <WarpBox radius={50} strength={-0.12}>
+                  <button
+                    style={{
+                      color: "#7c625a",
+                      fontSize: "20px",
+                      textDecoration: "none",
+                    }}
+                    className="btn btn-outline-light btn-block m-3"
+                    onClick={() => farmNavigate("/reservoir")}
+                  >
+                    <b>{t("LIQUIDITYFARM.1")}</b>
+                  </button>
+                </WarpBox>
               </p>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-4 mb-5 pt-4 mt-5">
@@ -155,7 +161,9 @@ const Main = () => {
           {/* STATS SECTION */}
           <div className="row mb-4 mt-2">
             <div className="container col-12 text-center">
-              <h1 id="mainh1">{t("STATS.1")}</h1>
+              <WarpBox radius={50} strength={-0.12}>
+                <h1 id="mainh1">{t("STATS.1")}</h1>
+              </WarpBox>
               <p id="mainpp" className="text-white">
                 {t("StatsParagraph1.1")}
               </p>
