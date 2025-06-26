@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'GhibliBold';
+  src: url('./fonts/ghibli-bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 .provider-errors {
   position: absolute;
@@ -442,10 +449,10 @@ a.nav-link {
 }
 
 .luck-title {
-  font-family: Aquino, cursive;
-  font-size: 7rem;
+  font-family: 'GhibliBold', serif;
+  font-size: 5rem;
   color: #f5f5f5;
-  color: hsla(0, 0%, 100%, 0.96);
+  color: hsla(0, 0%, 21%, 0.96);
   text-shadow: 0 0 80px rgba(192, 219, 255, 0.48),
     0 0 32px rgba(65, 120, 255, 0.24);
   margin: 80px 0;
@@ -453,7 +460,7 @@ a.nav-link {
 
 @media (max-width: 768px) {
   .luck-title {
-    font-size: 7rem;
+    font-size: 5rem;
   }
 }
 
@@ -12655,7 +12662,7 @@ button.bg-dark:hover {
 }
 
 .text-white {
-  color: #fff !important;
+  color: #FFFFFF !important;
 }
 
 .text-primary {

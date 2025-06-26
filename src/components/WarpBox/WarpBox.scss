@@ -1,11 +1,19 @@
+/* src/components/WarpBox/WarpBox.scss */
+
 .warp-box {
-  position: relative;
   display: inline-block;
+  width: fit-content;
+  vertical-align: top;
+
+  --warp-radius: 16px;
+  --warp-strength: 0.12;
+
+  position: relative;
   overflow: hidden;
   border-radius: var(--warp-radius);
-  border: 1px solid rgba(255,255,255,0.5);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .warp-box-canvas {
@@ -14,36 +22,64 @@
   width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .warp-box-content {
-  position: relative;
-  z-index: 2;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: top;
 
+  position: relative;
+  isolation: isolate;      /* ← create a new stacking context */
+  z-index: 0;              /* children will be layered above this */
+
+  /* 1) Frosted-glass blur layer */
   &::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
+
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
-    background: rgba(255,255,255,0.15);
+    -webkit-backdrop-filter: blur(8px);
+
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;            /* behind shine & text */
   }
 
+  /* 2) Top-shine gradient */
   &::after {
     content: "";
     position: absolute;
     top: 1px; left: 1px; right: 1px;
     height: 40%;
     border-radius: inherit;
+
     background: linear-gradient(
       145deg,
-      rgba(255,255,255,0.4),
-      rgba(255,255,255,0) 80%
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0) 80%
     );
     mix-blend-mode: overlay;
+
+    opacity: calc(var(--warp-strength) * 1.5);
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;            /* above blur, below text */
   }
+
+  /* 3) Force the actual content (your text) above everything */
+  & > * {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+/* Keep the body-paragraph bubble full-width */
+.body-bubble .warp-box-content {
+  display: block !important;
+  white-space: normal !important;
+  width: auto !important;
 }

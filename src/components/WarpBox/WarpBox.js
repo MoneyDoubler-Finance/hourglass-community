@@ -1,4 +1,3 @@
-// src/components/WarpBox/WarpBox.js
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import bgImg from '../../images/gape.png';
@@ -20,29 +19,21 @@ const fragmentShader = `
   uniform float     u_strength;
 
   void main() {
-    // 1) Get pixel coords inside this box
     vec2 pix = vUv * u_boxRes;
-
-    // 2) Compute distance to the nearest edge
-    float dx = min(pix.x, u_boxRes.x - pix.x);
-    float dy = min(pix.y, u_boxRes.y - pix.y);
+    float dx   = min(pix.x, u_boxRes.x - pix.x);
+    float dy   = min(pix.y, u_boxRes.y - pix.y);
     float norm = clamp(min(dx, dy) / u_radius, 0.0, 1.0);
-
-    // 3) Strength falloff
-    float f = 1.0 + u_strength * pow(1.0 - norm, 2.0);
-
-    // 4) Warp around the box-center in UV-space
+    float f    = 1.0 + u_strength * pow(1.0 - norm, 2.0);
     vec2 centered = vUv - 0.5;
     vec2 warpedUv = 0.5 + centered * f;
-
-    // 5) Sample the offscreen‐drawn background
     gl_FragColor = texture2D(u_background, warpedUv);
   }
 `;
 
 export default function WarpBox({
-  radius   = 150,    // controls how far into the box the warp extends
-  strength = -0.4,    // warp intensity; negative = pinch, positive = bulge
+  radius   = 150,     // how far the warp reaches
+  strength = -0.4,    // negative=pinch, positive=bulge
+  style    = {},      // accept incoming CSS vars
   children
 }) {
   const wrapper   = useRef(null);
@@ -53,30 +44,30 @@ export default function WarpBox({
     const canvas    = canvasRef.current;
     if (!container || !canvas) return;
 
-    // 1) Create offscreen canvas to capture the correct BG slice
     const width  = container.clientWidth;
     const height = container.clientHeight;
+
+    // Offscreen canvas for capturing the correct BG slice
     const offscreenCanvas = document.createElement('canvas');
     offscreenCanvas.width  = width;
     offscreenCanvas.height = height;
     const offCtx = offscreenCanvas.getContext('2d');
 
-    // 2) Load your static background image
     const image = new Image();
-    image.src   = bgImg;
+    image.src = bgImg;
 
-    // 3) Three.js initialization
+    // Three.js setup
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
     renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio || 1);
+
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const scene  = new THREE.Scene();
 
-    // 4) Create a dynamic texture from our offscreen canvas
     const dynamicTexture = new THREE.Texture(offscreenCanvas);
     dynamicTexture.minFilter = THREE.LinearFilter;
     dynamicTexture.magFilter = THREE.LinearFilter;
 
-    // 5) Shader uniforms
     const uniforms = {
       u_background: { value: dynamicTexture },
       u_boxRes:     { value: new THREE.Vector2(width, height) },
@@ -84,7 +75,6 @@ export default function WarpBox({
       u_strength:   { value: strength }
     };
 
-    // 6) Build the mesh
     const material = new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,
@@ -94,34 +84,28 @@ export default function WarpBox({
     const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
     scene.add(quad);
 
-    // 7) Animation loop
     let frameId;
     const animate = () => {
       if (image.complete) {
-        // Figure out how CSS 'cover' is drawing the BG
+        // mimic CSS 'cover' scaling
         const scale = Math.max(
           window.innerWidth  / image.width,
           window.innerHeight / image.height
         );
-        const drawW = image.width  * scale;
+        const drawW = image.width * scale;
         const drawH = image.height * scale;
         const offX  = (drawW - window.innerWidth) / 2;
         const offY  = (drawH - window.innerHeight) / 2;
-
-        // Grab the exact viewport rect of our box
         const rect = container.getBoundingClientRect();
 
-        // Draw that slice into the offscreen canvas
         offCtx.clearRect(0, 0, width, height);
         offCtx.drawImage(
           image,
           rect.left + offX,
           rect.top  + offY,
-          width,
-          height,
+          width, height,
           0, 0,
-          width,
-          height
+          width, height
         );
         dynamicTexture.needsUpdate = true;
       }
@@ -131,11 +115,12 @@ export default function WarpBox({
     };
     animate();
 
-    // 8) Clean up
     return () => {
       cancelAnimationFrame(frameId);
-      renderer.dispose();
+      scene.remove(quad);
+      quad.geometry.dispose();
       material.dispose();
+      renderer.dispose();
     };
   }, [radius, strength]);
 
@@ -143,7 +128,11 @@ export default function WarpBox({
     <div
       ref={wrapper}
       className="warp-box"
-      style={{ '--warp-radius': `${radius}px` }}
+      style={{
+        "--warp-radius":  `${radius}px`,
+        "--warp-strength": strength,
+        ...style
+      }}
     >
       <canvas ref={canvasRef} className="warp-box-canvas" />
       <div className="warp-box-content">{children}</div>
