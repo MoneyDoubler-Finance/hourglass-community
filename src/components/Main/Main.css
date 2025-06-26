@@ -42,6 +42,13 @@ body {
   font-weight: bold;
   font-family: 'Inter', sans-serif;
   color: #333333;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  line-height: 1;
+}
+
+.stats-warpbox {
+  margin: 1rem 0;
 }
 
 #mainpp {
