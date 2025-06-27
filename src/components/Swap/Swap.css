@@ -1,6 +1,15 @@
 #swapp20{
     line-height: 10%;
 }
+
+.swap-warpbox {
+  margin: 1rem 0;
+}
+
+.well-title {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
 #swapp21{
     line-height: 70%;
 }
