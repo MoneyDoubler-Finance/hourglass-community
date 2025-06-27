@@ -159,8 +159,10 @@ const Main = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 mb-5 pt-4 mt-5">
-              <img src={I} className="mainimages" alt="Logo" />
+            <div className="col-xl-4 col-lg-4 col-md-4 mb-5 pt-4 mt-5 d-flex justify-content-center">
+              <WarpBox radius={50} strength={-0.12}>
+                <img src={I} className="mainimages" alt="Logo" />
+              </WarpBox>
             </div>
           </div>
 
