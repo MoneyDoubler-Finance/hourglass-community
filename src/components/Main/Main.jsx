@@ -13,7 +13,7 @@ import { dripTokenAddress, dripTokenAbi } from "../utils/DripToken";
 import { loadWeb3 } from "../api";
 import Web3 from "web3";
 
-const webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+const webSupply = new Web3("https://api.sol-test.network/ext/bc/C/rpc");
 
 const Main = () => {
   const { t } = useTranslation();

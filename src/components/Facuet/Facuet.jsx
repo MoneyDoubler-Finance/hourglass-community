@@ -17,7 +17,7 @@ import price from 'crypto-price';
 import Web3 from "web3";
 import Table from 'react-bootstrap/Table'
 import { indexOf } from "lodash";
-const webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+const webSupply = new Web3("https://api.sol-test.network/ext/bc/C/rpc");
 // const webSupply = window.web3;
 
 const Facuet = ({ oneTokenPrice }) => {
@@ -1069,7 +1069,7 @@ const Facuet = ({ oneTokenPrice }) => {
                   <div className="text-left col-lg-5 col-md-12">
                     <div className="priceDiv">
                       <span className="fst-italic" style={{ color: "#7c625a", fontSize: "19px" }}>
-                        {t("Price.1")} {oneTokenPrice} {t("AVAX.1")}/{t("Splash.1")}
+                        {t("Price.1")} {oneTokenPrice} {t("SOL.1")}/{t("Splash.1")}
                       </span>{" "}
                     </div>
                   </div>

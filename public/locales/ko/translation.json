@@ -65,7 +65,7 @@
   "andteam.": {
     "1": "그리고 팀."
   },
-  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(AVAX)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
+  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
     "1": "HOURGLASS Network의 공식 토큰은 눈사태 Chain(튀김)의 HOUR(아백스)로, 희소성, 디플레이션, 검열 저항, 강력하고 진정으로 분산된 블록체인을 기반으로 구축되어 가치를 포착합니다."
   },
   "TherecommendedexchangefortradingSplashistheTheWellcontractwhichcanbefounddirectlyontheplatformswebsiteundertheTheWelltab,asitallowsustowaivetheinitial10%taxonbuysandprovidesthelowestpricesandhighestliquidity,resultinginlessslippageforlargertrades.": {
@@ -86,7 +86,7 @@
   "STATS": {
     "1": "통계"
   },
-  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireAVAXCommunity": {
+  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
     "1": "튀김 토큰은 튀김 네트워크의 전체 가치를 캡처하고 전체 아백스 커뮤니티에서 사용할 수 있도록 합니다."
   },
   "Players": {
@@ -125,16 +125,16 @@
   "Price": {
     "1": "가격"
   },
-  "AVAX/Splash": {
+  "SOL/Splash": {
     "1": "아백스/드립"
   },
-  "AVAXBalance": {
+  "SOLBalance": {
     "1": "아백스 잔액"
   },
   "USDT": {
     "1": "USDT"
   },
-  "AVAX": {
+  "SOL": {
     "1": "비앤비"
   },
   "SplashBalance": {

@@ -65,7 +65,7 @@
   "andteam.": {
     "1": "и команда."
   },
-  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(AVAX)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
+  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
     "1": "Официальным токеном HOURGLASS Network является HOUR (HOUR) в цепочке Лавина (АВАКС), который обладает ценностью, поскольку является дефицитным, дефляционным, устойчивым к цензуре и построен на надежной, действительно децентрализованной цепочке блоков."
   },
   "TherecommendedexchangefortradingSplashistheTheWellcontractwhichcanbefounddirectlyontheplatformswebsiteundertheTheWelltab,asitallowsustowaivetheinitial10%taxonbuysandprovidesthelowestpricesandhighestliquidity,resultinginlessslippageforlargertrades.": {
@@ -86,7 +86,7 @@
   "STATS": {
     "1": "СТАТИСТИКА"
   },
-  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireAVAXCommunity": {
+  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
     "1": "Токен Всплеск фиксирует всю ценность сети Всплеск и делает ее доступной для всего сообщества АВАКС."
   },
   "Players": {
@@ -125,16 +125,16 @@
   "Price": {
     "1": "Цена"
   },
-  "AVAX/Splash": {
+  "SOL/Splash": {
     "1": "АВАКС / ДРИП"
   },
-  "AVAXBalance": {
+  "SOLBalance": {
     "1": "Баланс АВАКС"
   },
   "USDT": {
     "1": "USDT"
   },
-  "AVAX": {
+  "SOL": {
     "1": "АВАКС"
   },
   "SplashBalance": {

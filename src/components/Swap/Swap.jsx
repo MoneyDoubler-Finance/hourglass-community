@@ -3,7 +3,7 @@ import coin from "../../images/coin.png";
 import balance from "../../images/iconWhite (1).png";
 import Web3 from "web3";
 import drops from "../../images/coinwhite.png";
-import avax from '../../images/avax.png'
+import sol from '../../images/sol.png'
 import { ToastContainer, toast } from "react-toastify";
 import van from "../../images/van.png";
 import contact from "../../images/contact (2).png";
@@ -26,7 +26,7 @@ import {
 // import { useState } from "react";
 import "./Swap.css";
 import bigInt from "big-integer";
-const webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+const webSupply = new Web3("https://api.sol-test.network/ext/bc/C/rpc");
 const Swap = ({setOneTokenPrice}) => {
   let [boxOne, setBoxOne] = useState(false);
   let [tripType, setTripType] = useState(1);
@@ -92,8 +92,8 @@ const Swap = ({setOneTokenPrice}) => {
   };
   const getDataWitoutMetamask = async () => {
     try {
-      // let usdValue = await price.getBasePrice("AVAX", "USDT");
-      let usdValue = await axios.get("https://api.binance.com/api/v3/ticker/price?symbol=AVAXUSDT")
+      // let usdValue = await price.getBasePrice("SOL", "USDT");
+      let usdValue = await axios.get("https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT")
       let currentBnB = usdValue.data.price;
       let contractOf = new webSupply.eth.Contract(
         fountainContractAbi,
@@ -846,22 +846,22 @@ const Swap = ({setOneTokenPrice}) => {
                           style={{ color: "#ab9769", fontSize: "20px" }}
                         >
                           {" "}
-                          {t("AVAX/Splash.1")} {division}
+                          {t("SOL/Splash.1")} {division}
                         </span>
                       </p>
                       <p className="text-small fst-italic">
-                        {t("AVAX/Splash.1")} ≈ {oneDripPrice} {t("USDT.1")}
+                        {t("SOL/Splash.1")} ≈ {oneDripPrice} {t("USDT.1")}
                       </p>
                     </div>
                   </div>
                   <div className="container col-md-3 col-sm-12 text-center">
                     <div className="price-top-part">
-                      <img src={avax} alt="" width="70px" />
+                      <img src={sol} alt="" width="70px" />
                       <h5
                         className="mb-0 font-weight-semibold color-theme-1 mb-2 mt-3 fst-italic"
                         style={{ color: "#7c625a" }}
                       >
-                        {t("AVAXBalance.1")}
+                        {t("SOLBalance.1")}
                       </h5>
                       <p className="text-large mb-2 text-white fst-italic">
                         <span
@@ -872,7 +872,7 @@ const Swap = ({setOneTokenPrice}) => {
                         </span>
                       </p>
                       <p className="text-small fst-italic">
-                        {t("AVAX.1")} ≈{bnbPrice} {t("USDT.1")}
+                        {t("SOL.1")} ≈{bnbPrice} {t("USDT.1")}
                       </p>
                     </div>
                   </div>
@@ -932,7 +932,7 @@ const Swap = ({setOneTokenPrice}) => {
                             <div className="col-9 text-right fst-italic user2">
                               {" "}
                               <p>
-                                {t("AVAXBalance.1")}:
+                                {t("SOLBalance.1")}:
                                 </p>
                                 <p className="user-balance text-white fst-italic">
                                   {" "}
@@ -946,7 +946,7 @@ const Swap = ({setOneTokenPrice}) => {
                               ref={inputEl}
                               onChange={() => enterBuyAmount1()}
                               type="number"
-                              placeholder="AVAX"
+                              placeholder="SOL"
                               className="form-control"
                               id="__BVID__90"
                             />
