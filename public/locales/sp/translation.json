@@ -66,10 +66,10 @@
     "1": "y equipo."
   },
   "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheBinanceSmartblockchain(BSC)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "El token oficial de HOURGLASS Network es HOUR (HOUR) en avalancha Chain (AVAX) que captura valor al ser escaso, deflacionario, resistente a la censura y al estar construido sobre una cadena de bloques robusta y verdaderamente descentralizada."
+    "1": "El token oficial de HOURGLASS Network es HOUR (HOUR) en avalancha Chain (SOL) que captura valor al ser escaso, deflacionario, resistente a la censura y al estar construido sobre una cadena de bloques robusta y verdaderamente descentralizada."
   },
-  "TheofficialtokenoftheSplashNetworkisSplash(AVAX)ontheAvalancheChain(AVAX)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "The official token of the HOURGLASS Network is HOUR (AVAX) on the avalancha Chain (AVAX) that captures value by being scarce, deflationary, censorship resistant, and by being built on a robust, truly decentralized blockchain."
+  "TheofficialtokenoftheSplashNetworkisSplash(SOL)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
+    "1": "The official token of the HOURGLASS Network is HOUR (SOL) on the avalancha Chain (SOL) that captures value by being scarce, deflationary, censorship resistant, and by being built on a robust, truly decentralized blockchain."
   },
   "TRADE": {
     "1": "COMERCIO"
@@ -86,8 +86,8 @@
   "STATS": {
     "1": "ESTADÍSTICAS"
   },
-  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireAVAXCommunity": {
-    "1": "El token Chapoteo captura todo el valor de Chapoteo Network y lo pone a disposición de toda la comunidad AVAX."
+  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
+    "1": "El token Chapoteo captura todo el valor de Chapoteo Network y lo pone a disposición de toda la comunidad SOL."
   },
   "Players": {
     "1": "Jugadoras"
@@ -125,17 +125,17 @@
   "Price": {
     "1": "Precio"
   },
-  "AVAX/Splash": {
-    "1": "AVAX / GOTEO"
+  "SOL/Splash": {
+    "1": "SOL / GOTEO"
   },
-  "AVAXBalance": {
-    "1": "Saldo AVAX"
+  "SOLBalance": {
+    "1": "Saldo SOL"
   },
   "USDT": {
     "1": "USDT"
   },
-  "AVAX": {
-    "1": "AVAX"
+  "SOL": {
+    "1": "SOL"
   },
   "SplashBalance": {
     "1": "Saldo de Chapoteo"

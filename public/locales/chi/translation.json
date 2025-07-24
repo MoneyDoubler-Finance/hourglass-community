@@ -65,8 +65,8 @@
   "andteam.": {
     "1": "和团队."
   },
-  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(AVAX)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "HOURGLASS Network 的官方代币是 雪崩 链 (溅) 上的 HOUR (AVAX)，它通过稀缺、通缩、抗审查以及建立在强大、真正去中心化的区块链上来获取价值。"
+  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
+    "1": "HOURGLASS Network 的官方代币是 雪崩 链 (溅) 上的 HOUR (SOL)，它通过稀缺、通缩、抗审查以及建立在强大、真正去中心化的区块链上来获取价值。"
   },
   "SelectRandomAddressess": {
     "1": "選擇隨機地址"
@@ -86,8 +86,8 @@
   "STATS": {
     "1": "统计数据"
   },
-  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireAVAXCommunity": {
-    "1": "溅 代币捕获了 溅 Network 的全部价值，并使其可供整个 AVAX 社区使用"
+  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
+    "1": "溅 代币捕获了 溅 Network 的全部价值，并使其可供整个 SOL 社区使用"
   },
   "Players": {
     "1": "球员"
@@ -125,17 +125,17 @@
   "Price": {
     "1": "价格"
   },
-  "AVAX/Splash": {
-    "1": "AVAX/溅溅"
+  "SOL/Splash": {
+    "1": "SOL/溅溅"
   },
-  "AVAXBalance": {
-    "1": "AVAX 余额"
+  "SOLBalance": {
+    "1": "SOL 余额"
   },
   "USDT": {
     "1": "USDT"
   },
-  "AVAX": {
-    "1": "AVAX"
+  "SOL": {
+    "1": "SOL"
   },
   "SplashBalance": {
     "1": "溅水平衡"

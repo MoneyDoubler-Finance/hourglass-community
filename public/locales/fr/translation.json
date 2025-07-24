@@ -65,8 +65,8 @@
   "andteam.": {
     "1": "et équipe."
   },
-  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(AVAX)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "Le jeton officiel du HOURGLASS Network est HOUR (HOUR) sur la chaîne avalanche (AVAX) qui capture de la valeur en étant rare, déflationniste, résistant à la censure et en étant construit sur une blockchain robuste et véritablement décentralisée."
+  "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
+    "1": "Le jeton officiel du HOURGLASS Network est HOUR (HOUR) sur la chaîne avalanche (SOL) qui capture de la valeur en étant rare, déflationniste, résistant à la censure et en étant construit sur une blockchain robuste et véritablement décentralisée."
   },
   "SelectRandomAddressess": {
     "1": "Sélectionnez des adresses aléatoires"
@@ -86,8 +86,8 @@
   "STATS": {
     "1": "STATISTIQUES"
   },
-  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireAVAXCommunity": {
-    "1": "Le jeton Éclaboussure capture toute la valeur du réseau Éclaboussure et le met à la disposition de l'ensemble de la communauté AVAX"
+  "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
+    "1": "Le jeton Éclaboussure capture toute la valeur du réseau Éclaboussure et le met à la disposition de l'ensemble de la communauté SOL"
   },
   "Players": {
     "1": "Joueuses"
@@ -125,17 +125,17 @@
   "Price": {
     "1": "Prix"
   },
-  "AVAX/Splash": {
-    "1": "AVAX/Éclaboussure"
+  "SOL/Splash": {
+    "1": "SOL/Éclaboussure"
   },
-  "AVAXBalance": {
-    "1": "Solde en AVAX"
+  "SOLBalance": {
+    "1": "Solde en SOL"
   },
   "USDT": {
     "1": "USDT"
   },
-  "AVAX": {
-    "1": "AVAX"
+  "SOL": {
+    "1": "SOL"
   },
   "SplashBalance": {
     "1": "Solde Éclaboussure à Éclaboussure"
