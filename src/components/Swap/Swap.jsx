@@ -93,7 +93,7 @@ const Swap = ({setOneTokenPrice}) => {
   const getDataWitoutMetamask = async () => {
     try {
       // let usdValue = await price.getBasePrice("SOL", "USDT");
-      let usdValue = await axios.get("https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT")
+      let usdValue = await axios.get("https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT")
       let currentBnB = usdValue.data.price;
       let contractOf = new webSupply.eth.Contract(
         fountainContractAbi,
@@ -946,7 +946,7 @@ const Swap = ({setOneTokenPrice}) => {
                               ref={inputEl}
                               onChange={() => enterBuyAmount1()}
                               type="number"
-                              placeholder="SOL"
+                              placeholder="BNB"
                               className="form-control"
                               id="__BVID__90"
                             />
@@ -1186,7 +1186,7 @@ const Swap = ({setOneTokenPrice}) => {
                             <input
                               ref={inputE2}
                               type="number"
-                              placeholder="Splash"
+                              placeholder="TIME"
                               className="form-control"
                               id="__BVID__99"
                               onChange={() => enterBuyAmount2()}
