@@ -499,7 +499,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                         <div role="group" className="input-group">
                           <input
                             type="number"
-                            placeholder="SOL"
+                            placeholder="BNB"
                             className="form-control"
                             id="__BVID__213"
                             ref={buyInput}
