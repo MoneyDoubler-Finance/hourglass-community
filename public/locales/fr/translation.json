@@ -3,16 +3,16 @@
     "1": "ÉCHANGER"
   },
   "THETAP": {
-    "1": "LE ROBINET"
+    "1": "MY HOURGLASS"
   },
   "THESHORE": {
-    "1": "Il y avait des bruits"
+    "1": "THE MOJAVE"
   },
   "Whitepaper": {
     "1": "Papier blanc"
   },
   "SplashDAO": {
-    "1": "Éclaboussure DAO"
+    "1": "Hourglass DAO"
   },
   "Tutorial": {
     "1": "Didacticiel"
@@ -51,13 +51,13 @@
     "1": "Approuver"
   },
   "SplashNETWORK": {
-    "1": "RÉSEAU Éclaboussure À Éclaboussure"
+    "1": "HOURGLASS NETWORK"
   },
   "SplashNetworkisthelatestprojectdevelopedby": {
-    "1": "Éclaboussure Network est le dernier projet développé par"
+    "1": "Hourglass Finance est le dernier projet développé par"
   },
   "SplassiveTeam": {
-    "1": "Équipe Hourglass Finance"
+    "1": "Hourglass Finance"
   },
   "BB": {
     "1": "BB"
@@ -66,13 +66,13 @@
     "1": "et équipe."
   },
   "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "Le jeton officiel du HOURGLASS Network est HOUR (HOUR) sur la chaîne avalanche (SOL) qui capture de la valeur en étant rare, déflationniste, résistant à la censure et en étant construit sur une blockchain robuste et véritablement décentralisée."
+    "1": "Le jeton officiel du HOURGLASS Network est TIME sur la BNB Chain (BNB) qui capture de la valeur en étant rare, déflationniste, résistant à la censure et en étant construit sur une blockchain robuste et véritablement décentralisée."
   },
   "SelectRandomAddressess": {
     "1": "Sélectionnez des adresses aléatoires"
   },
   "TherecommendedexchangefortradingSplashistheTheWellcontractwhichcanbefounddirectlyontheplatformswebsiteundertheTheWelltab,asitallowsustowaivetheinitial10%taxonbuysandprovidesthelowestpricesandhighestliquidity,resultinginlessslippageforlargertrades.": {
-    "1": "L'échange recommandé pour le trading de Éclaboussure est le contrat Le puits qui peut être trouvé directement sur le site Web des plateformes sous l'onglet KAIVO, car il nous permet de renoncer à la taxe initiale de 10 % sur les achats et fournit les prix les plus bas et la liquidité la plus élevée, ce qui entraîne moins de glissement pour les métiers plus importants."
+    "1": "L'échange recommandé pour le trading de TIME est le contrat Fountain qui peut être trouvé directement sur le site Web de la plateforme sous l'onglet swap, car il nous permet de renoncer à la taxe initiale de 10 % sur les achats et fournit les prix les plus bas et la liquidité la plus élevée, ce qui entraîne moins de glissement pour les métiers plus importants."
   },
   "TRADE": {
     "1": "COMMERCE"
@@ -87,7 +87,7 @@
     "1": "STATISTIQUES"
   },
   "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
-    "1": "Le jeton Éclaboussure capture toute la valeur du réseau Éclaboussure et le met à la disposition de l'ensemble de la communauté SOL"
+    "1": "Le jeton TIME capture toute la valeur du HOURGLASS Network et le met à la disposition de l'ensemble de la communauté BNB"
   },
   "Players": {
     "1": "Joueuses"
@@ -99,10 +99,10 @@
     "1": "Rendement journalier maximum"
   },
   "Totalsupply": {
-    "1": "Éclaboussure"
+    "1": "Offre totale"
   },
   "Splash": {
-    "1": "HOUR"
+    "1": "TIME"
   },
   "Transactions": {
     "1": "Transactions"
@@ -120,28 +120,28 @@
     "1": "Montante"
   },
   "TheWell": {
-    "1": "Le puits"
+    "1": "The Dunes"
   },
   "Price": {
     "1": "Prix"
   },
   "SOL/Splash": {
-    "1": "SOL/Éclaboussure"
+    "1": "BNB/TIME"
   },
   "SOLBalance": {
-    "1": "Solde en SOL"
+    "1": "Solde BNB"
   },
   "USDT": {
     "1": "USDT"
   },
   "SOL": {
-    "1": "SOL"
+    "1": "BNB"
   },
   "SplashBalance": {
-    "1": "Solde Éclaboussure à Éclaboussure"
+    "1": "Solde TIME"
   },
   "BuySplash": {
-    "1": "Acheter Éclaboussure"
+    "1": "Acheter TIME"
   },
   "Slippagetolerance": {
     "1": "Tolérance au glissement"
@@ -156,7 +156,7 @@
     "1": "Acheter"
   },
   "SELLSplash": {
-    "1": "VENDRE Éclaboussure"
+    "1": "VENDRE TIME"
   },
   "Max": {
     "1": "Max"
@@ -168,7 +168,7 @@
     "1": "Vendre"
   },
   "ApproveSplash": {
-    "1": "Approuver le Éclaboussure"
+    "1": "Approuver TIME"
   },
   "Chart": {
     "1": "Graphique"
@@ -177,7 +177,7 @@
     "1": "Statistiques"
   },
   "TheWellisthebestwaytoexchangevalueintheSplashNetwork!Herearethenumbers": {
-    "1": "La fontaine est le meilleur moyen d'échanger de la valeur dans le réseau Éclaboussure ! voici les chiffres"
+    "1": "The Dunes est le meilleur moyen d'échanger de la valeur dans le HOURGLASS Network ! voici les chiffres"
   },
   "Supply": {
     "1": "Fournir"
@@ -186,7 +186,7 @@
     "1": "Solde du contrat"
   },
   "DROPS": {
-    "1": "ÉclaboussureS"
+    "1": "GRAINS"
   },
   "LOCKED": {
     "1": "FERMÉ À CLÉ"
@@ -224,26 +224,26 @@
   "Total": {
     "1": "Le total"
   },
-  "Splassive’sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%.": {
-    "1": "Hourglass Finance's Le robinet est un contrat à faible risque et à haute récompense qui fonctionne de la même manière qu'un certificat de dépôt à haut rendement en versant un retour sur investissement quotidien de 2% jusqu'à 360%."
+  "Splassive'sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%.": {
+    "1": "My Hourglass de Hourglass Finance est un contrat à faible risque et à haute récompense qui fonctionne de la même manière qu'un certificat de dépôt à haut rendement en versant un retour sur investissement quotidien de 2% jusqu'à 360%."
   },
   "Playerscancompoundandextendtheirearningsthroughdeposits,hydrating(compounding)rewardsaswellasthroughteambasedreferrals.": {
-    "1": "Les joueurs peuvent composer et étendre leurs gains par le biais de dépôts, de récompenses hydratantes (composantes) ainsi que par le biais de références basées sur l'équipe."
+    "1": "Les joueurs peuvent composer et étendre leurs gains par le biais de dépôts, de récompenses REFILL (composantes) ainsi que par le biais de références basées sur l'équipe."
   },
   "CopyReferralLink": {
     "1": "Copier le lien de parrainage"
   },
   "GetSplash": {
-    "1": "Obtenez Éclaboussure"
+    "1": "Obtenez TIME"
   },
   "Aminimumof1Splashrequiredfordeposits": {
-    "1": "Un minimum de 1 HOUR requis pour les dépôts"
+    "1": "Un minimum de 1 TIME requis pour les dépôts"
   },
   "A10%taxischargedondeposits": {
     "1": "Une taxe de 10% est prélevée sur les acomptes"
   },
   "HYDRATE": {
-    "1": "HYDRATER"
+    "1": "REFILL"
   },
   "recompound": {
     "1": "recomposer"
@@ -252,10 +252,10 @@
     "1": "Réclamer"
   },
   "JoinTheWave": {
-    "1": "Rejoignez la vague"
+    "1": ""
   },
   "CurrentWaveStarter": {
-    "1": "Démarreur de vague actuelle"
+    "1": ""
   },
   "None": {
     "1": "Rien"
@@ -273,7 +273,7 @@
     "1": "Seuil d'inactivité"
   },
   "WaveStarter": {
-    "1": "Démarreur de vague"
+    "1": ""
   },
   "Update": {
     "1": "Copine"
@@ -282,7 +282,7 @@
     "1": "Soutenir le marketing et le développement"
   },
   "CheckoutWhoSplashed": {
-    "1": "Vérifier qui a éclaboussé"
+    "1": "Vérifier qui a déposé"
   },
   "PlayerLookup": {
     "1": "Recherche de joueur"
@@ -375,7 +375,7 @@
     "1": "Nombre de destinataires"
   },
   "EstimatedSplashperperson": {
-    "1": "Éclaboussure à Éclaboussure estimée par personne"
+    "1": "TIME estimé par personne"
   },
   "SEND": {
     "1": "ENVOYER"
@@ -398,20 +398,20 @@
   "About": {
     "1": "Sur"
   },
-  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser’sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage.": {
-    "1": "Les joueurs peuvent participer en achetant le Éclaboussure à partir de la page KAIVO de la plate-forme, en rejoignant 2'équipe Éclaboussure d'un autre utilisateur (exigence minimale de 1 Éclaboussure). Les joueurs peuvent également augmenter leurs gains grâce à des dépôts réguliers, des récompenses glissantes ainsi que des références basées sur l'équipe. Contrairement à de nombreuses autres plates-formes promettant un pourcentage de rendement quotidien constant, le contrat de Le robinet ne peut pas s'écouler et sera TOUJOURS en mesure de fournir le Éclaboussure qui a été récompensé. Les récompenses Éclaboussure proviennent d'une taxe de 10 % sur toutes les transactions Éclaboussure, à l'exclusion des achats effectués sur la page KAIVO de la plate-forme."
+  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser'sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage.": {
+    "1": "Les joueurs peuvent participer en achetant du TIME à partir de la page The Dunes de la plate-forme, en rejoignant l'équipe TIME d'un autre utilisateur (exigence minimale de 1 TIME). Déposer du TIME dans le contrat My Hourglass rapporte un rendement quotidien constant de 2% de leur TIME (paiement maximum de 365%) passivement. Les joueurs peuvent également augmenter leurs gains grâce à des dépôts réguliers, des récompenses glissantes ainsi que des références basées sur l'équipe. Contrairement à de nombreuses autres plates-formes promettant un pourcentage de rendement quotidien constant, le contrat de My Hourglass ne peut pas s'écouler et sera TOUJOURS en mesure de fournir le TIME qui a été récompensé. Les récompenses TIME proviennent d'une taxe de 10 % sur toutes les transactions TIME, à l'exclusion des achats effectués sur la page The Dunes de la plate-forme."
   },
   "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofSplashDAOheldinyourwallet": {
-    "1": "Si jamais il y a une situation où le pool fiscal n'est pas suffisant pour payer les récompenses du RRD, un nouveau RRD sera créé pour garantir le paiement des récompenses. Compte tenu de la théorie des jeux derrière le réseau Éclaboussure, la probabilité que le système ait besoin de créer un nouveau Éclaboussure pour payer les récompenses est extrêmement faible. Étant donné que les Éclaboussure déposés dans Le robinet sont envoyés à une adresse de brûlage et que les Éclaboussure sont constamment bloqués dans le pool de liquidités via le contrat de réservoir, Éclaboussure est la seule plate-forme déflationniste de retour sur investissement quotidien. La meilleure stratégie pour Éclaboussure est de se concentrer sur l'adoption dans le monde réel en construisant votre équipe grâce à des références directes, car vous recevrez des récompenses bonus des références sur leurs dépôts et des bonus de descendance des joueurs qu'ils réfèrent en fonction du montant de Éclaboussure DAO détenu dans votre portefeuille."
+    "1": "Si jamais il y a une situation où le pool fiscal n'est pas suffisant pour payer les récompenses TIME, un nouveau TIME sera créé pour garantir le paiement des récompenses. Compte tenu de la théorie des jeux derrière le HOURGLASS Network, la probabilité que le système ait besoin de créer un nouveau TIME pour payer les récompenses est extrêmement faible. Étant donné que les TIME déposés dans My Hourglass sont envoyés à une adresse de brûlage et que les TIME sont constamment bloqués dans le pool de liquidités via le contrat The Mojave, TIME est la seule plate-forme déflationniste de retour sur investissement quotidien. La meilleure stratégie pour TIME est de se concentrer sur l'adoption dans le monde réel en construisant votre équipe grâce à des références directes, car vous recevrez des récompenses bonus des références sur leurs dépôts et des bonus de descendance des joueurs qu'ils réfèrent en fonction du montant de Hourglass DAO détenu dans votre portefeuille."
   },
   "Rewards": {
     "1": "Récompenses"
   },
   "TotalDROPS": {
-    "1": "ÉclaboussureS totales"
+    "1": "GRAINS totaux"
   },
   "DROP": {
-    "1": "TOMBER"
+    "1": "GRAIN"
   },
   "Stake": {
     "1": "Pieu"
@@ -428,8 +428,8 @@
   "CompoundedTotal": {
     "1": "Total composé"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
-    "1": "The Shore est la solution de The Éclaboussure Network pour les joueurs qui souhaitent bénéficier d'une agriculture à rendement non inflationniste en ajoutant des liquidités à Éclaboussure"
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
+    "1": "The Mojave est la solution du HOURGLASS Network pour les joueurs qui souhaitent bénéficier d'une agriculture à rendement non inflationniste en ajoutant des liquidités à TIME"
   },
   "COMPOUND": {
     "1": "COMPOSÉE"
@@ -450,10 +450,10 @@
     "1": "Retirer"
   },
   "DropBalance": {
-    "1": "Baisser le solde"
+    "1": "Solde GRAIN"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
-    "1": "The Shore est la solution du réseau Éclaboussure pour les joueurs qui souhaitent bénéficier d'une agriculture à rendement non inflationniste en ajoutant des liquidités au Éclaboussure. voici les chiffres"
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
+    "1": "The Mojave est la solution du HOURGLASS Network pour les joueurs qui souhaitent bénéficier d'une agriculture à rendement non inflationniste en ajoutant des liquidités au TIME. voici les chiffres"
   },
   "UserCount": {
     "1": "Nombre d'utilisateurs"

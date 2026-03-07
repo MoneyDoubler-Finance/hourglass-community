@@ -3,16 +3,16 @@
     "1": "МЕНЯТЬ"
   },
   "THETAP": {
-    "1": "КРАН"
+    "1": "MY HOURGLASS"
   },
   "THESHORE": {
-    "1": "Были шумы"
+    "1": "THE MOJAVE"
   },
   "Whitepaper": {
     "1": "Белая бумага"
   },
   "SplashDAO": {
-    "1": "Всплеск DAO"
+    "1": "Hourglass DAO"
   },
   "Tutorial": {
     "1": "Руководство"
@@ -51,13 +51,13 @@
     "1": "Одобрить"
   },
   "SplashNETWORK": {
-    "1": "КАПЕЛЬНАЯ СЕТЬ"
+    "1": "HOURGLASS NETWORK"
   },
   "SplashNetworkisthelatestprojectdevelopedby": {
-    "1": "Всплеск Network - последний проект, разработанный"
+    "1": "Hourglass Finance - последний проект, разработанный"
   },
   "SplassiveTeam": {
-    "1": "Hourglass Finance Team"
+    "1": "Hourglass Finance"
   },
   "BB": {
     "1": "BB"
@@ -66,10 +66,10 @@
     "1": "и команда."
   },
   "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "Официальным токеном HOURGLASS Network является HOUR (HOUR) в цепочке Лавина (АВАКС), который обладает ценностью, поскольку является дефицитным, дефляционным, устойчивым к цензуре и построен на надежной, действительно децентрализованной цепочке блоков."
+    "1": "Официальным токеном HOURGLASS Network является TIME на BNB Chain (BNB), который обладает ценностью, поскольку является дефицитным, дефляционным, устойчивым к цензуре и построен на надежной, действительно децентрализованной цепочке блоков."
   },
   "TherecommendedexchangefortradingSplashistheTheWellcontractwhichcanbefounddirectlyontheplatformswebsiteundertheTheWelltab,asitallowsustowaivetheinitial10%taxonbuysandprovidesthelowestpricesandhighestliquidity,resultinginlessslippageforlargertrades.": {
-    "1": "Рекомендуемая биржа для торговли HOUR - это контракт Колодец, который можно найти прямо на веб-сайте платформы под вкладкой своп, поскольку он позволяет нам отказаться от начального 10% налога на покупки и обеспечивает самые низкие цены и максимальную ликвидность, что приводит к меньшему проскальзыванию. для более крупных сделок."
+    "1": "Рекомендуемая биржа для торговли TIME - это контракт Fountain, который можно найти прямо на веб-сайте платформы под вкладкой своп, поскольку он позволяет нам отказаться от начального 10% налога на покупки и обеспечивает самые низкие цены и максимальную ликвидность, что приводит к меньшему проскальзыванию для более крупных сделок."
   },
   "SelectRandomAddressess": {
     "1": "Выберите случайные адреса"
@@ -87,7 +87,7 @@
     "1": "СТАТИСТИКА"
   },
   "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
-    "1": "Токен Всплеск фиксирует всю ценность сети Всплеск и делает ее доступной для всего сообщества АВАКС."
+    "1": "Токен TIME фиксирует всю ценность HOURGLASS Network и делает ее доступной для всего сообщества BNB."
   },
   "Players": {
     "1": "Игроки"
@@ -102,7 +102,7 @@
     "1": "Общее предложение"
   },
   "Splash": {
-    "1": "Всплеск"
+    "1": "TIME"
   },
   "Transactions": {
     "1": "Сделки"
@@ -120,28 +120,28 @@
     "1": "Количество"
   },
   "TheWell": {
-    "1": "ХОРОШО"
+    "1": "The Dunes"
   },
   "Price": {
     "1": "Цена"
   },
   "SOL/Splash": {
-    "1": "АВАКС / ДРИП"
+    "1": "BNB/TIME"
   },
   "SOLBalance": {
-    "1": "Баланс АВАКС"
+    "1": "Баланс BNB"
   },
   "USDT": {
     "1": "USDT"
   },
   "SOL": {
-    "1": "АВАКС"
+    "1": "BNB"
   },
   "SplashBalance": {
-    "1": "Капельный баланс"
+    "1": "Баланс TIME"
   },
   "BuySplash": {
-    "1": "Купить Всплеск"
+    "1": "Купить TIME"
   },
   "Slippagetolerance": {
     "1": "Допуск по проскальзыванию"
@@ -156,7 +156,7 @@
     "1": "Купить"
   },
   "SELLSplash": {
-    "1": "ПРОДАТЬ КАПЕЛЬ"
+    "1": "ПРОДАТЬ TIME"
   },
   "Max": {
     "1": "Максимум"
@@ -168,7 +168,7 @@
     "1": "Продавать"
   },
   "ApproveSplash": {
-    "1": "Утвердить КАПЕЛЬ"
+    "1": "Утвердить TIME"
   },
   "Chart": {
     "1": "Диаграмма"
@@ -177,7 +177,7 @@
     "1": "Статистика"
   },
   "TheWellisthebestwaytoexchangevalueintheSplashNetwork!Herearethenumbers": {
-    "1": "Колодец - лучший способ обменять стоимость в сети Всплеск Network! Вот числа"
+    "1": "The Dunes - лучший способ обменять стоимость в HOURGLASS Network! Вот числа"
   },
   "Supply": {
     "1": "Поставка"
@@ -186,7 +186,7 @@
     "1": "Баланс контракта"
   },
   "DROPS": {
-    "1": "КАПЛИ"
+    "1": "GRAINS"
   },
   "LOCKED": {
     "1": "ЗАБЛОКИРОВАНО"
@@ -225,25 +225,25 @@
     "1": "Всего"
   },
   "TheSplashNetworksTheTapisalowriskhighrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout1%dailyreturnoninvestmentupto365%.": {
-    "1": "Кран сети Всплеск - это контракт с низким уровнем риска и высоким вознаграждением, который работает аналогично высокодоходному депозитному сертификату, выплачивая 1% ежедневной прибыли на инвестиции до 365%."
+    "1": "My Hourglass от Hourglass Finance - это контракт с низким уровнем риска и высоким вознаграждением, который работает аналогично высокодоходному депозитному сертификату, выплачивая 1% ежедневной прибыли на инвестиции до 365%."
   },
   "Playerscancompoundandextendtheirearningsthroughdeposits,hydrating(compounding)rewardsaswellasthroughteambasedreferrals": {
-    "1": "Игроки могут увеличивать и увеличивать свой заработок за счет депозитов, вознаграждений за счет накопления (начисления), а также за счет командных рефералов."
+    "1": "Игроки могут увеличивать и увеличивать свой заработок за счет депозитов, вознаграждений за счет REFILL (начисления), а также за счет командных рефералов."
   },
   "CopyReferralLink": {
     "1": "Копировать реферальную ссылку"
   },
   "GetSplash": {
-    "1": "Получить капельницу"
+    "1": "Получить TIME"
   },
   "Aminimumof1Splashrequiredfordeposits": {
-    "1": "Для внесения депозита требуется минимум 1 HOUR."
+    "1": "Для внесения депозита требуется минимум 1 TIME."
   },
   "A10%taxischargedondeposits": {
     "1": "С залога взимается 10% налог."
   },
   "HYDRATE": {
-    "1": "ГИДРАТ"
+    "1": "REFILL"
   },
   "recompound": {
     "1": "перекомпоновывать"
@@ -252,10 +252,10 @@
     "1": "Требовать"
   },
   "JoinTheWave": {
-    "1": "Присоединяйтесь к волне"
+    "1": ""
   },
   "CurrentWaveStarter": {
-    "1": "Текущий стартер волны"
+    "1": ""
   },
   "None": {
     "1": "Никто"
@@ -273,7 +273,7 @@
     "1": "Порог бездействия"
   },
   "WaveStarter": {
-    "1": "Волновой стартер"
+    "1": ""
   },
   "Update": {
     "1": "Обновлять"
@@ -282,7 +282,7 @@
     "1": "Поддержка маркетинга и развития"
   },
   "CheckoutWhoSplashed": {
-    "1": "Оформить заказ Кто плеснул"
+    "1": "Проверить кто внёс депозит"
   },
   "PlayerLookup": {
     "1": "Поиск игрока"
@@ -375,7 +375,7 @@
     "1": "Количество получателей"
   },
   "EstimatedSplashperperson": {
-    "1": "Расчетная капля на человека"
+    "1": "Расчетный TIME на человека"
   },
   "SEND": {
     "1": "ОТПРАВИТЬ"
@@ -398,20 +398,20 @@
   "About": {
     "1": "О"
   },
-  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTHEWELLpage,joininganotheruser’sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTHEWELLpage.": {
-    "1": "Игроки могут участвовать, купив Всплеск на странице ХОРОШО платформы, присоединившись к команде Всплеск другого пользователя (минимальное требование 1 Всплеск). Внесение Всплеск в контракт на сборщик дает стабильный ежедневный доход в размере 2% от их Всплеск (максимальная выплата 365%) пассивно. Игроки также могут увеличивать свой доход за счет регулярных депозитов, скользящих вознаграждений, а также командных рефералов. В отличие от многих других платформ, обещающих постоянную ежедневную процентную доходность, контракт Кран не может истощать и ВСЕГДА будет иметь возможность предоставить Всплеск, который был вознагражден. Вознаграждения Всплеск образуются из 10% налога на все транзакции Всплеск, за исключением покупок со страницы ХОРОШО платформы."
+  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTHEWELLpage,joininganotheruser'sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTHEWELLpage.": {
+    "1": "Игроки могут участвовать, купив TIME на странице The Dunes платформы, присоединившись к команде TIME другого пользователя (минимальное требование 1 TIME). Внесение TIME в контракт My Hourglass дает стабильный ежедневный доход в размере 2% от их TIME (максимальная выплата 365%) пассивно. Игроки также могут увеличивать свой доход за счет регулярных депозитов, скользящих вознаграждений, а также командных рефералов. В отличие от многих других платформ, обещающих постоянную ежедневную процентную доходность, контракт My Hourglass не может истощать и ВСЕГДА будет иметь возможность предоставить TIME, который был вознагражден. Вознаграждения TIME образуются из 10% налога на все транзакции TIME, за исключением покупок со страницы The Dunes платформы."
   },
   "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofSplashDAOheldinyourwallet": {
-    "1": "Если когда-либо возникнет ситуация, когда налогового пула будет недостаточно для выплаты вознаграждений Всплеск, будет создан новый Всплеск для обеспечения выплаты вознаграждений. Учитывая теорию игр, лежащую в основе сети Всплеск, вероятность того, что системе потребуется чеканить новый Всплеск для выплаты вознаграждений, чрезвычайно мала. Поскольку Всплеск, депонированные в Кран, отправляются на адрес записи, а Всплеск постоянно блокируется в пуле ликвидности через контракт на резервуар, Всплеск является единственной дефляционной платформой для ежедневного возврата инвестиций. Лучшая стратегия для Всплеск - сосредоточиться на внедрении в реальном мире, создавая свою команду за счет прямых рефералов, поскольку вы будете получать бонусные вознаграждения от рефералов на их депозиты и бонусы нижестоящих от игроков, которых они рекомендуют, в зависимости от суммы Всплеск DAO, хранящейся в вашем кошельке."
+    "1": "Если когда-либо возникнет ситуация, когда налогового пула будет недостаточно для выплаты вознаграждений TIME, будет создан новый TIME для обеспечения выплаты вознаграждений. Учитывая теорию игр, лежащую в основе HOURGLASS Network, вероятность того, что системе потребуется чеканить новый TIME для выплаты вознаграждений, чрезвычайно мала. Поскольку TIME, депонированные в My Hourglass, отправляются на адрес записи, а TIME постоянно блокируется в пуле ликвидности через контракт The Mojave, TIME является единственной дефляционной платформой для ежедневного возврата инвестиций. Лучшая стратегия для TIME - сосредоточиться на внедрении в реальном мире, создавая свою команду за счет прямых рефералов, поскольку вы будете получать бонусные вознаграждения от рефералов на их депозиты и бонусы нижестоящих от игроков, которых они рекомендуют, в зависимости от суммы Hourglass DAO, хранящейся в вашем кошельке."
   },
   "Rewards": {
     "1": "Награды"
   },
   "TotalDROPS": {
-    "1": "Всего ДРОПОВ"
+    "1": "Всего GRAINS"
   },
   "DROP": {
-    "1": "УРОНИТЬ"
+    "1": "GRAIN"
   },
   "Stake": {
     "1": "Ставка"
@@ -428,8 +428,8 @@
   "CompoundedTotal": {
     "1": "Сложный итог"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
-    "1": "Резервуар - это решение Всплеск Network для игроков, которые хотят получить выгоду от неинфляционного выращивания урожая за счет добавления ликвидности к Всплеск."
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
+    "1": "The Mojave - это решение HOURGLASS Network для игроков, которые хотят получить выгоду от неинфляционного выращивания урожая за счет добавления ликвидности к TIME."
   },
   "COMPOUND": {
     "1": "СЛОЖНЫЙ"
@@ -450,10 +450,10 @@
     "1": "Изымать"
   },
   "DropBalance": {
-    "1": "Уронить Остаток средств"
+    "1": "Баланс GRAIN"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
-    "1": "Резервуар - это решение Всплеск Network для игроков, которые хотят получить выгоду от неинфляционного выращивания урожая за счет добавления ликвидности к Всплеск. Вот числа"
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
+    "1": "The Mojave - это решение HOURGLASS Network для игроков, которые хотят получить выгоду от неинфляционного выращивания урожая за счет добавления ликвидности к TIME. Вот числа"
   },
   "UserCount": {
     "1": "Количество пользователей"

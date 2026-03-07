@@ -3,16 +3,16 @@
     "1": "INTERCAMBIO"
   },
   "THETAP": {
-    "1": "EL GRIFO"
+    "1": "MY HOURGLASS"
   },
   "THESHORE": {
-    "1": "hubo ruidos"
+    "1": "THE MOJAVE"
   },
   "Whitepaper": {
     "1": "Papel blanco"
   },
   "SplashDAO": {
-    "1": "HOUR DAO"
+    "1": "Hourglass DAO"
   },
   "Tutorial": {
     "1": "Tutorial"
@@ -51,13 +51,13 @@
     "1": "Aprobar"
   },
   "SplashNETWORK": {
-    "1": "RED DE GOTEO"
+    "1": "HOURGLASS NETWORK"
   },
   "SplashNetworkisthelatestprojectdevelopedby": {
-    "1": "Chapoteo Network es el último proyecto desarrollado por"
+    "1": "Hourglass Finance es el último proyecto desarrollado por"
   },
   "SplassiveTeam": {
-    "1": "Equipo de Hourglass Finance"
+    "1": "Hourglass Finance"
   },
   "BB": {
     "1": "cama y desayuno"
@@ -66,10 +66,10 @@
     "1": "y equipo."
   },
   "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheBinanceSmartblockchain(BSC)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "El token oficial de HOURGLASS Network es HOUR (HOUR) en avalancha Chain (SOL) que captura valor al ser escaso, deflacionario, resistente a la censura y al estar construido sobre una cadena de bloques robusta y verdaderamente descentralizada."
+    "1": "El token oficial de HOURGLASS Network es TIME en BNB Chain (BNB) que captura valor al ser escaso, deflacionario, resistente a la censura y al estar construido sobre una cadena de bloques robusta y verdaderamente descentralizada."
   },
   "TheofficialtokenoftheSplashNetworkisSplash(SOL)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "The official token of the HOURGLASS Network is HOUR (SOL) on the avalancha Chain (SOL) that captures value by being scarce, deflationary, censorship resistant, and by being built on a robust, truly decentralized blockchain."
+    "1": "The official token of the HOURGLASS Network is TIME on the BNB Chain (BNB) that captures value by being scarce, deflationary, censorship resistant, and by being built on a robust, truly decentralized blockchain."
   },
   "TRADE": {
     "1": "COMERCIO"
@@ -87,7 +87,7 @@
     "1": "ESTADÍSTICAS"
   },
   "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
-    "1": "El token Chapoteo captura todo el valor de Chapoteo Network y lo pone a disposición de toda la comunidad SOL."
+    "1": "El token TIME captura todo el valor de HOURGLASS Network y lo pone a disposición de toda la comunidad BNB."
   },
   "Players": {
     "1": "Jugadoras"
@@ -102,7 +102,7 @@
     "1": "Suministro total"
   },
   "Splash": {
-    "1": "Chapoteo"
+    "1": "TIME"
   },
   "Transactions": {
     "1": "Actas"
@@ -120,28 +120,28 @@
     "1": "Monto"
   },
   "TheWell": {
-    "1": "La pozo"
+    "1": "The Dunes"
   },
   "Price": {
     "1": "Precio"
   },
   "SOL/Splash": {
-    "1": "SOL / GOTEO"
+    "1": "BNB/TIME"
   },
   "SOLBalance": {
-    "1": "Saldo SOL"
+    "1": "Saldo BNB"
   },
   "USDT": {
     "1": "USDT"
   },
   "SOL": {
-    "1": "SOL"
+    "1": "BNB"
   },
   "SplashBalance": {
-    "1": "Saldo de Chapoteo"
+    "1": "Saldo TIME"
   },
   "BuySplash": {
-    "1": "Comprar Chapoteo"
+    "1": "Comprar TIME"
   },
   "Slippagetolerance": {
     "1": "Tolerancia al deslizamiento"
@@ -156,7 +156,7 @@
     "1": "Comprar"
   },
   "SELLSplash": {
-    "1": "VENDER GOTEO"
+    "1": "VENDER TIME"
   },
   "Max": {
     "1": "Max"
@@ -168,7 +168,7 @@
     "1": "Vender"
   },
   "ApproveSplash": {
-    "1": "Aprobar Chapoteo"
+    "1": "Aprobar TIME"
   },
   "Chart": {
     "1": "Gráfico"
@@ -177,7 +177,7 @@
     "1": "Estadisticas"
   },
   "TheWellisthebestwaytoexchangevalueintheSplashNetwork!Herearethenumbers": {
-    "1": "El pozo es la mejor manera de cambiar valor en Chapoteo Network! Aquí están los números"
+    "1": "The Dunes es la mejor manera de cambiar valor en HOURGLASS Network! Aquí están los números"
   },
   "Supply": {
     "1": "Suministro"
@@ -186,7 +186,7 @@
     "1": "Saldo del contrato"
   },
   "DROPS": {
-    "1": "GOTAS"
+    "1": "GRAINS"
   },
   "LOCKED": {
     "1": "BLOQUEADA"
@@ -224,26 +224,26 @@
   "Total": {
     "1": "Total"
   },
-  "Splassive’sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%.": {
-    "1": "Hourglass Finance's El grifo es un contrato de alta recompensa y bajo riesgo que funciona de manera similar a un certificado de depósito de alto rendimiento al pagar un 2% de retorno diario de la inversión hasta un 360%."
+  "Splassive'sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%.": {
+    "1": "My Hourglass de Hourglass Finance es un contrato de alta recompensa y bajo riesgo que funciona de manera similar a un certificado de depósito de alto rendimiento al pagar un 2% de retorno diario de la inversión hasta un 360%."
   },
   "Playerscancompoundandextendtheirearningsthroughdeposits,hydrating(compounding)rewardsaswellasthroughteambasedreferrals.": {
-    "1": "Los jugadores pueden acumular y extender sus ganancias a través de depósitos, recompensas de hidratación (capitalización), así como a través de referencias basadas en equipos."
+    "1": "Los jugadores pueden acumular y extender sus ganancias a través de depósitos, recompensas de REFILL (capitalización), así como a través de referencias basadas en equipos."
   },
   "CopyReferralLink": {
     "1": "Copiar enlace de referencia"
   },
   "GetSplash": {
-    "1": "Obtener Chapoteo"
+    "1": "Obtener TIME"
   },
   "Aminimumof1Splashrequiredfordeposits": {
-    "1": "Se requiere un mínimo de 1 HOUR para depósitos."
+    "1": "Se requiere un mínimo de 1 TIME para depósitos."
   },
   "A10%taxischargedondeposits": {
     "1": "Se cobra un impuesto del 10% sobre los depósitos."
   },
   "HYDRATE": {
-    "1": "HIDRATAR"
+    "1": "REFILL"
   },
   "recompound": {
     "1": "recomponer"
@@ -252,10 +252,10 @@
     "1": "Afirmar"
   },
   "JoinTheWave": {
-    "1": "Únete a la ola"
+    "1": ""
   },
   "CurrentWaveStarter": {
-    "1": "Arrancador de onda actual"
+    "1": ""
   },
   "None": {
     "1": "Ninguna"
@@ -273,7 +273,7 @@
     "1": "Umbral de inactividad"
   },
   "WaveStarter": {
-    "1": "Arrancador de olas"
+    "1": ""
   },
   "Update": {
     "1": "Actualizar"
@@ -282,7 +282,7 @@
     "1": "Apoyar el marketing y el desarrollo"
   },
   "CheckoutWhoSplashed": {
-    "1": "Comprobar quién salpicó"
+    "1": "Comprobar quién depositó"
   },
   "PlayerLookup": {
     "1": "Búsqueda de jugador"
@@ -375,7 +375,7 @@
     "1": "Número de destinatarias"
   },
   "EstimatedSplashperperson": {
-    "1": "Goteo estimado por persona"
+    "1": "TIME estimado por persona"
   },
   "SEND": {
     "1": "ENVIAR"
@@ -398,20 +398,20 @@
   "About": {
     "1": "Estado"
   },
-  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser’sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent1%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage.": {
-    "1": "Los jugadores pueden participar comprando Chapoteo desde la página EL POZO de la plataforma, uniéndose al equipo de Chapoteo de otro usuario (requisito mínimo de 1 Chapoteo) Al depositar Chapoteo en el contrato de El grifo, se obtiene un retorno diario constante del 2% de su Chapoteo (pago máximo del 365%) de forma pasiva. Los jugadores también pueden acumular sus ganancias a través de depósitos regulares, recompensas continuas y referencias basadas en equipos. A diferencia de muchas otras plataformas que prometen un% de retorno diario constante, el contrato de El grifo no se puede agotar y SIEMPRE podrá proporcionar el Chapoteo que ha sido recompensado. Las recompensas de Chapoteo provienen de un impuesto del 10% en todas las transacciones de Chapoteo, excluidas las compras de la página EL POZO de la plataforma."
+  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser'sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent1%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage.": {
+    "1": "Los jugadores pueden participar comprando TIME desde la página The Dunes de la plataforma, uniéndose al equipo de TIME de otro usuario (requisito mínimo de 1 TIME) Al depositar TIME en el contrato de My Hourglass, se obtiene un retorno diario constante del 2% de su TIME (pago máximo del 365%) de forma pasiva. Los jugadores también pueden acumular sus ganancias a través de depósitos regulares, recompensas continuas y referencias basadas en equipos. A diferencia de muchas otras plataformas que prometen un% de retorno diario constante, el contrato de My Hourglass no se puede agotar y SIEMPRE podrá proporcionar el TIME que ha sido recompensado. Las recompensas de TIME provienen de un impuesto del 10% en todas las transacciones de TIME, excluidas las compras de la página The Dunes de la plataforma."
   },
   "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofSplashDAOheldinyourwallet": {
-    "1": "Si alguna vez hay una situación en la que el fondo de impuestos no es suficiente para pagar las recompensas de Chapoteo, se acuñará un nuevo Chapoteo para garantizar que se paguen las recompensas. Dada la teoría del juego detrás de la red Chapoteo, la probabilidad de que el sistema necesite acuñar un nuevo Chapoteo para pagar recompensas es extremadamente baja. Dado que los Chapoteo depositados en El grifo se envían a una dirección de grabación y Chapoteo se bloquea constantemente en el fondo de liquidez a través del contrato de depósito, Chapoteo es la única plataforma de ROI diaria deflacionaria. La mejor estrategia para Chapoteo es enfocarse en la adopción del mundo real mediante la construcción de su equipo a través de referencias directas, ya que recibirá recompensas de bonificación de las referencias en sus depósitos y bonificaciones de línea descendente de los jugadores que refieren según la cantidad de salpicadura dao que tiene en su billetera."
+    "1": "Si alguna vez hay una situación en la que el fondo de impuestos no es suficiente para pagar las recompensas de TIME, se acuñará un nuevo TIME para garantizar que se paguen las recompensas. Dada la teoría del juego detrás de la HOURGLASS Network, la probabilidad de que el sistema necesite acuñar un nuevo TIME para pagar recompensas es extremadamente baja. Dado que los TIME depositados en My Hourglass se envían a una dirección de grabación y TIME se bloquea constantemente en el fondo de liquidez a través del contrato de The Mojave, TIME es la única plataforma de ROI diaria deflacionaria. La mejor estrategia para TIME es enfocarse en la adopción del mundo real mediante la construcción de su equipo a través de referencias directas, ya que recibirá recompensas de bonificación de las referencias en sus depósitos y bonificaciones de línea descendente de los jugadores que refieren según la cantidad de Hourglass DAO que tiene en su billetera."
   },
   "Rewards": {
     "1": "Recompensas"
   },
   "TotalDROPS": {
-    "1": "GOTAS totales"
+    "1": "GRAINS totales"
   },
   "DROP": {
-    "1": "SOLTAR"
+    "1": "GRAIN"
   },
   "Stake": {
     "1": "Apostar"
@@ -428,8 +428,8 @@
   "CompoundedTotal": {
     "1": "Total compuesto"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
-    "1": "The Shore es la solución de la red Chapoteo para los jugadores que desean beneficiarse de la agricultura de rendimiento no inflacionario mediante la adición de liquidez a Chapoteo"
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
+    "1": "The Mojave es la solución de la HOURGLASS Network para los jugadores que desean beneficiarse de la agricultura de rendimiento no inflacionario mediante la adición de liquidez a TIME"
   },
   "COMPOUND": {
     "1": "COMPUESTA"
@@ -450,10 +450,10 @@
     "1": "Retirar"
   },
   "DropBalance": {
-    "1": "Saldo de caída"
+    "1": "Saldo GRAIN"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
-    "1": "The Shore es la solución de la red Chapoteo para los jugadores que desean beneficiarse de la agricultura de rendimiento no inflacionario mediante la adición de liquidez a Chapoteo. Aquí están los números"
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
+    "1": "The Mojave es la solución de la HOURGLASS Network para los jugadores que desean beneficiarse de la agricultura de rendimiento no inflacionario mediante la adición de liquidez a TIME. Aquí están los números"
   },
   "UserCount": {
     "1": "Recuento de usuarios"
