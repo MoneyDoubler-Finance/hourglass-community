@@ -112,7 +112,6 @@ connectWallet();
                   eventKey={5}
                   href="#memes"
                   id="navbartext"
-                  id="navbartext"
                 >
                    {t('SplashDAO.1')}
                 </Nav.Link>
