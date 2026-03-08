@@ -10,56 +10,44 @@ import { faucetContractAddress, faucetContractAbi, faucetTokenAddress, faucetTok
 import { buddySystemAddress, buddySystemAbi } from "../utils/BuddySystem"
 import "./Facuet.css";
 import { useTranslation } from "react-i18next";
-import { loadWeb3 } from "../api";
 import { useNavigate, Link } from "react-router";
 import axios from 'axios'
-import Web3 from "web3";
 import Table from 'react-bootstrap/Table'
-import { indexOf } from "lodash";
-const webSupply = new Web3("https://api.sol-test.network/ext/bc/C/rpc");
-// const webSupply = window.web3;
+import { useAccount, useReadContract, useWriteContract, useBalance } from 'wagmi'
+import { readContract } from '@wagmi/core'
+import { formatEther, parseEther } from 'viem'
+import { config } from '../../config/wagmi'
+
+const faucetConfig = {
+  address: faucetContractAddress,
+  abi: faucetContractAbi,
+};
+
+const tokenConfig = {
+  address: faucetTokenAddress,
+  abi: faucetTokenAbi,
+};
+
+const buddyConfig = {
+  address: buddySystemAddress,
+  abi: buddySystemAbi,
+};
 
 const Facuet = ({ oneTokenPrice }) => {
   let navigate = useNavigate();
   let buddySearch = useRef()
   let [isChange, setIschange] = useState("Viewer");
-  let [availabe, setAvailable] = useState(0);
-  let [myDeposited, setMyDeposited] = useState(0);
-  let [maxPayout, setMaxPayout] = useState(0);
-  let [clamied, setClaimed] = useState(0);
-  let [team, setTeam] = useState(0);
-  let [rewarded, setRewarded] = useState(0);
-  let [directs, setDirects] = useState(0);
-  let [inDirects, setInDirects] = useState(0)
   // player
   let [direct, setdirect] = useState(0);
   let [netDepppost, setnetDeposit] = useState(0);
   let [Airdropsent, setAirdropsent] = useState(0);
   let [AirdropLastSent, setAirdroplastsent] = useState(0);
   let [playerTeam, setPlayerteam] = useState(0);
-  let [showPlayer, setShowPlayer] = useState(0)
-  let [showTotalUser, setShowTotalUser] = useState(0)
   let airDropPlayerAddress = useRef()
 
-  let [avalibleUSDT, setAvaliableUSDT] = useState(0)
-  let [depositUSDT, setDepositUSDT] = useState(0)
-
-  // users balance
-
-  let [userDripBalance, setuserDripBalance] = useState(0);
-  let [usersBalance, setUsersBalance] = useState(0);
-  let [myCal, setMycal] = useState(0);
-
   // for direct air drop
-
   let airAddress = useRef();
   let airAmount = useRef();
-  //for Current Wave Starter 
-  let [currentWaveStarter, setCurrentWaveSarter] = useState(0);
-  let [manager, setManger] = useState(0);
-  let [benificiary, setBenificiary] = useState(0);
-  let [lastCheckin, setLastCheckin] = useState(0);
-  let [inActiveThreshols, setInactivethreshold] = useState(0);
 
   const { t, i18n } = useTranslation();
   const inputEl = useRef();
@@ -80,150 +68,211 @@ const Facuet = ({ oneTokenPrice }) => {
   let [sendAddress, setSendAddress] = useState([]);
   let [showTeamData, setShowTeamData] = useState([])
   let [showTeamStatus, setShowTeamStatus] = useState([])
-  const getData = async () => {
 
-    let acc = await loadWeb3();
-    if (acc == "No Wallet") {
-      try {
+  const { address, isConnected } = useAccount();
+  const { writeContract } = useWriteContract();
 
-        // let contractOf = new webSupply.eth.Contract(faucetContractAbi, faucetContractAddress);
-        // let tokenContractOf = new webSupply.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-        // let contractInfo = await contractOf.methods.contractInfo().call();
-        // let myTeam = contractInfo._total_users;
-        // setTeam(myTeam);
+  // ── Declarative contract reads (wagmi hooks) ──
 
-      } catch (e) {
-        console.log("Error while getting data with out meta mask in faucet");
-      }
+  // contractInfo — total_users
+  const { data: contractInfoData } = useReadContract({
+    ...faucetConfig,
+    functionName: 'contractInfo',
+    query: { refetchInterval: 10000 },
+  });
 
-    } else {
-      try {
+  const team = contractInfoData ? contractInfoData[0].toString() : '0';
 
-        const web3 = window.web3;
-        let contractOf = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-        let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-        
-        let contractInfo = await contractOf.methods.contractInfo().call();
-        let myTeam = contractInfo._total_users;
-        setTeam(myTeam);
-        let userInfoTotal = await contractOf.methods.userInfoTotals(acc).call();
-        let totalDeposits = userInfoTotal.total_deposits;
-        let team = userInfoTotal.referrals
-        if(team > 0){
-          let totalUsers = await contractOf.methods.total_users().call()
-          setShowTotalUser(totalUsers)
-        }
-        let Uinfo = await contractOf.methods.userInfo(acc).call();
-        let totalclaimed = Uinfo.payouts;
-        let payOutOf = await contractOf.methods.payoutOf(acc).call();
+  // userInfoTotals
+  const { data: userInfoTotalData } = useReadContract({
+    ...faucetConfig,
+    functionName: 'userInfoTotals',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-        let myclaimsAvailable = await contractOf.methods.claimsAvailable(acc).call();
-        myclaimsAvailable = web3.utils.fromWei(myclaimsAvailable);
-        myclaimsAvailable = parseFloat(myclaimsAvailable).toFixed(3);
-        let netPay = payOutOf.net_payout;
-        let maxPay = payOutOf.max_payout;
-        let dripBalance = await tokenContractOf.methods.balanceOf(acc).call();
-        dripBalance = web3.utils.fromWei(dripBalance);
-        dripBalance = parseFloat(dripBalance).toFixed(3);
+  const rawTotalDeposits = userInfoTotalData ? userInfoTotalData[1] : BigInt(0);
+  const userReferrals = userInfoTotalData ? userInfoTotalData[0].toString() : '0';
 
-        let balance = await web3.eth.getBalance(acc);
-        balance = web3.utils.fromWei(balance);
-        balance = parseFloat(balance).toFixed(3);
+  // total_users (for showing total when user has referrals)
+  const { data: rawTotalUsers } = useReadContract({
+    ...faucetConfig,
+    functionName: 'total_users',
+    query: { enabled: !!address && Number(userReferrals) > 0, refetchInterval: 10000 },
+  });
 
-        let calculated = balance / dripBalance;
-        calculated = parseFloat(calculated).toFixed(6);
+  const showTotalUser = rawTotalUsers ? rawTotalUsers.toString() : '0';
 
+  // userInfo
+  const { data: userInfoData } = useReadContract({
+    ...faucetConfig,
+    functionName: 'userInfo',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-        // set directs and indirects
+  const totalclaimed = userInfoData
+    ? parseFloat(formatEther(userInfoData[3])).toFixed(3)
+    : '0';
 
-        let users = await contractOf.methods.users(acc).call();
-        let dir = users.direct_bonus
-        dir = web3.utils.fromWei(dir);
-        dir = parseFloat(dir).toFixed(1);
-        setDirects(dir)
+  // payoutOf
+  const { data: payoutOfData } = useReadContract({
+    ...faucetConfig,
+    functionName: 'payoutOf',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-        let inDir = users.match_bonus;
-        inDir = web3.utils.fromWei(inDir);
-        inDir = parseFloat(inDir).toFixed(3);
-        setInDirects(inDir);
+  const maxPayout = payoutOfData
+    ? parseFloat(formatEther(payoutOfData[1])).toFixed(3)
+    : '0';
 
-        setUsersBalance(balance);
-        setuserDripBalance(dripBalance);
-        setMycal(calculated);
+  // claimsAvailable
+  const { data: rawClaimsAvailable } = useReadContract({
+    ...faucetConfig,
+    functionName: 'claimsAvailable',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-        totalclaimed = web3.utils.fromWei(totalclaimed);
-        totalclaimed = parseFloat(totalclaimed).toFixed(3);
-        totalDeposits = web3.utils.fromWei(totalDeposits);
-        totalDeposits = parseFloat(totalDeposits).toFixed(3);
-        maxPay = web3.utils.fromWei(maxPay);
-        maxPay = parseFloat(maxPay).toFixed(3);
-        let AvmaxPay = maxPay - totalclaimed;
-        netPay = web3.utils.fromWei(netPay);
-        netPay = parseFloat(netPay).toFixed(6)
-        setShowPlayer(team)
-        setMyDeposited(totalDeposits);
-        let depoUsdt = totalDeposits * oneTokenPrice;
-        depoUsdt = parseFloat(depoUsdt).toFixed(3)
-        setDepositUSDT(depoUsdt)
-        setMaxPayout(maxPay);
-        setAvailable(myclaimsAvailable);
-        let avalUsdt = myclaimsAvailable * oneTokenPrice;
+  const availabe = rawClaimsAvailable
+    ? parseFloat(formatEther(rawClaimsAvailable)).toFixed(3)
+    : '0';
 
-        avalUsdt = parseFloat(avalUsdt).toFixed(3)
+  // token balance (TIME)
+  const { data: rawDripBalance } = useReadContract({
+    ...tokenConfig,
+    functionName: 'balanceOf',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-        setAvaliableUSDT(avalUsdt)
-        setClaimed(totalclaimed);
-      } catch (e) {
-        console.log("error while getting data in faucet", e);
-      }
-    }
-  }
+  const userDripBalance = rawDripBalance
+    ? parseFloat(formatEther(rawDripBalance)).toFixed(3)
+    : '0';
+
+  // native balance (BNB)
+  const { data: nativeBalanceData } = useBalance({
+    address: address,
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
+
+  const usersBalance = nativeBalanceData
+    ? parseFloat(formatEther(nativeBalanceData.value)).toFixed(3)
+    : '0';
+
+  // users (direct_bonus, match_bonus)
+  const { data: usersData } = useReadContract({
+    ...faucetConfig,
+    functionName: 'users',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
+
+  const directs = usersData
+    ? parseFloat(formatEther(usersData[3])).toFixed(1)
+    : '0';
+  const inDirects = usersData
+    ? parseFloat(formatEther(usersData[4])).toFixed(3)
+    : '0';
+
+  // custody
+  const { data: custodyData } = useReadContract({
+    ...faucetConfig,
+    functionName: 'custody',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
+
+  const manager = custodyData ? custodyData[0] : '0';
+  const benificiary = custodyData ? custodyData[1] : '0';
+  const lastCheckin = custodyData ? custodyData[3].toString() : '0';
+
+  // buddyOf
+  const { data: buddyOfData } = useReadContract({
+    ...buddyConfig,
+    functionName: 'buddyOf',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
+
+  const currentWaveStarter = buddyOfData || '0';
+
+  // ── Derived values ──
+  const myDeposited = rawTotalDeposits
+    ? parseFloat(formatEther(rawTotalDeposits)).toFixed(3)
+    : '0';
+
+  const myCal = usersBalance > 0 && userDripBalance > 0
+    ? parseFloat(usersBalance / userDripBalance).toFixed(6)
+    : '0';
+
+  const showPlayer = userReferrals;
+
+  const avalibleUSDT = availabe
+    ? parseFloat(availabe * oneTokenPrice).toFixed(3)
+    : '0';
+
+  const depositUSDT = myDeposited
+    ? parseFloat(myDeposited * oneTokenPrice).toFixed(3)
+    : '0';
 
   //Direct AirDrop
   const directAirDrop = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
+        return;
       }
-      else {
 
-        let enteredAirVal = airAmount.current.value;
-        let enteredAddrs = airAddress.current.value;
-        if (parseFloat(enteredAirVal) > 0) {
-          if (enteredAddrs.length > 10) {
-            if (parseFloat(userDripBalance) > parseFloat(enteredAirVal)) {
-              const web3 = window.web3;
-              let contractOf = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-              let usersinf = await contractOf.methods.users(enteredAddrs).call();
-              let uplineAddress = usersinf.upline;
-              let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-              let ownwerAddrss = await contractOf.methods.dripVaultAddress().call();
-              enteredAirVal = web3.utils.toWei(enteredAirVal);
-              if (uplineAddress == "0x0000000000000000000000000000000000000000") {
-                toast.error("No Refferral ")
-              } else {
-
-
-                await tokenContractOf.methods.approve(faucetContractAddress, enteredAirVal).send({
-                  from: acc
-                });
-                toast.success("Transaction confirmed")
-
-                await contractOf.methods.airdrop(enteredAddrs, enteredAirVal).send({
-                  from: acc
-                })
-                toast.success("Transaction confirmed")
-              }
+      let enteredAirVal = airAmount.current.value;
+      let enteredAddrs = airAddress.current.value;
+      if (parseFloat(enteredAirVal) > 0) {
+        if (enteredAddrs.length > 10) {
+          if (parseFloat(userDripBalance) > parseFloat(enteredAirVal)) {
+            let usersinf = await readContract(config, {
+              ...faucetConfig,
+              functionName: 'users',
+              args: [enteredAddrs],
+            });
+            let uplineAddress = usersinf[0]; // upline
+            let weiAmount = parseEther(enteredAirVal);
+            if (uplineAddress == "0x0000000000000000000000000000000000000000") {
+              toast.error("No Refferral ")
             } else {
-              toast.error("Insufficient Balance Please Recharge!")
+              writeContract({
+                ...tokenConfig,
+                functionName: 'approve',
+                args: [faucetContractAddress, weiAmount],
+              }, {
+                onSuccess: () => {
+                  toast.success("Transaction confirmed")
+                  writeContract({
+                    ...faucetConfig,
+                    functionName: 'airdrop',
+                    args: [enteredAddrs, weiAmount],
+                  }, {
+                    onSuccess: () => {
+                      toast.success("Transaction confirmed")
+                    },
+                    onError: () => {
+                      toast.error("Transaction Failed")
+                    }
+                  })
+                },
+                onError: () => {
+                  toast.error("Transaction Failed")
+                }
+              })
             }
           } else {
-            toast.error("Incorrrect palyer's Address")
+            toast.error("Insufficient Balance Please Recharge!")
           }
         } else {
-          toast.error("Looks like you forgot to enter TIME Amount")
+          toast.error("Incorrrect palyer's Address")
         }
+      } else {
+        toast.error("Looks like you forgot to enter TIME Amount")
       }
 
     } catch (e) {
@@ -231,36 +280,6 @@ const Facuet = ({ oneTokenPrice }) => {
       console.log("Error :", e)
     }
   }
-  // Custody
-
-  const custody = async () => {
-    let acc = await loadWeb3();
-    if (acc == "No Wallet") {
-      console.log("Not Connected")
-    }
-    else {
-      try {
-        let web3 = window.web3;
-        let contractOf = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-        let myCustody = await contractOf.methods.custody(acc).call();
-        let myManager = myCustody.manager;
-        let myBenificiary = myCustody.beneficiary;
-        let myLastCheckIn = myCustody.last_checkin;
-
-        let contractOfBuddy = new web3.eth.Contract(buddySystemAbi, buddySystemAddress);
-        let referral = await contractOfBuddy.methods.buddyOf(acc).call();
-        setLastCheckin(myLastCheckIn);
-        setManger(myManager);
-        setBenificiary(myBenificiary);
-        setCurrentWaveSarter(referral);
-
-      } catch (e) {
-        console.log("Error while getting custody data")
-      }
-    }
-
-  }
-
 
   //Player Info
   const goPlayerinfo = async () => {
@@ -271,28 +290,36 @@ const Facuet = ({ oneTokenPrice }) => {
         referee: enteredAddress
       }
       let res = await axios.post("https://splash-test-app.herokuapp.com/api/users/getTreeRef", data);
-      let contractOf = new webSupply.eth.Contract(faucetContractAbi, faucetContractAddress);
-      let userInfoTotal = await contractOf.methods.userInfoTotals(enteredAddress).call();
-      let playeruserInfo = await contractOf.methods.userInfo(enteredAddress).call();
-      let totalUsers = await contractOf.methods.total_users().call()
-      let myDirect = playeruserInfo.direct_bonus
-      myDirect = webSupply.utils.fromWei(myDirect);
+
+      let userInfoTotal = await readContract(config, {
+        ...faucetConfig,
+        functionName: 'userInfoTotals',
+        args: [enteredAddress],
+      });
+      let playeruserInfo = await readContract(config, {
+        ...faucetConfig,
+        functionName: 'userInfo',
+        args: [enteredAddress],
+      });
+
+      let myDirect = playeruserInfo[4]; // direct_bonus
+      myDirect = formatEther(myDirect);
       myDirect = parseFloat(myDirect).toFixed(3)
-      let nedeposit = userInfoTotal.total_deposits;
-      let myrefferals = userInfoTotal.referrals;
-      nedeposit = webSupply.utils.fromWei(nedeposit);
+      let nedeposit = userInfoTotal[1]; // total_deposits
+      let myrefferals = userInfoTotal[0]; // referrals
+      nedeposit = formatEther(nedeposit);
       nedeposit = parseFloat(nedeposit).toFixed(3)
-      let aidropsent = userInfoTotal.airdrops_received;
-      aidropsent = webSupply.utils.fromWei(aidropsent);
+      let aidropsent = userInfoTotal[5]; // airdrops_received
+      aidropsent = formatEther(aidropsent);
       aidropsent = parseFloat(aidropsent).toFixed(3);
-      let airlstdrp = userInfoTotal.airdrops_total;
-      airlstdrp = webSupply.utils.fromWei(airlstdrp);
+      let airlstdrp = userInfoTotal[4]; // airdrops_total
+      airlstdrp = formatEther(airlstdrp);
       airlstdrp = parseFloat(airlstdrp).toFixed(3);
       setnetDeposit(nedeposit);
       setAirdropsent(aidropsent);
       setAirdroplastsent(airlstdrp);
       setPlayerteam(res.data.length);
-      setdirect(myrefferals);
+      setdirect(myrefferals.toString());
     } catch (e) {
       toast.error("Can't Fetch User's Information at the moment please try again later.")
       console.log("error", e)
@@ -300,41 +327,43 @@ const Facuet = ({ oneTokenPrice }) => {
   }
   const approveAmount = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No wallet connected")
-      } else {
-        let acc = await loadWeb3();
-        const web3 = window.web3;
-        let enteredVal = inputEl.current.value;
+        return;
+      }
 
-        if (enteredVal >= 1) {
-          if (parseFloat(userDripBalance) >= parseFloat(enteredVal)) {
+      let enteredVal = inputEl.current.value;
 
-            let contractOfBuddy = new web3.eth.Contract(buddySystemAbi, buddySystemAddress);
-            let referral = await contractOfBuddy.methods.buddyOf(acc).call();
-            let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-            let isWhiteList = await tokenContractOf.methods.whitelist(acc).call()
-            let isExcluded = await tokenContractOf.methods.isExcluded(acc).call()
-            if (referral.length > 15) {
+      if (enteredVal >= 1) {
+        if (parseFloat(userDripBalance) >= parseFloat(enteredVal)) {
 
-              let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-              await tokenContractOf.methods.approve(faucetContractAddress, web3.utils.toWei(enteredVal))
-                .send({
-                  from: acc
-                })
-              toast.success("Transaction confirmed")
+          let referral = await readContract(config, {
+            ...buddyConfig,
+            functionName: 'buddyOf',
+            args: [address],
+          });
 
-            } else {
-              toast.error("You have no Buddy.");
-
-            }
+          if (referral && referral.length > 15) {
+            writeContract({
+              ...tokenConfig,
+              functionName: 'approve',
+              args: [faucetContractAddress, parseEther(enteredVal)],
+            }, {
+              onSuccess: () => {
+                toast.success("Transaction confirmed")
+              },
+              onError: () => {
+                toast.error("Transaction failed")
+              }
+            })
           } else {
-            toast.error("Entered value is greater than your balance")
+            toast.error("You have no Buddy.");
           }
         } else {
-          toast.error("Deposit amount should be greater than 1")
+          toast.error("Entered value is greater than your balance")
         }
+      } else {
+        toast.error("Deposit amount should be greater than 1")
       }
     } catch (e) {
       toast.error("Transaction failed")
@@ -343,53 +372,61 @@ const Facuet = ({ oneTokenPrice }) => {
   }
   const depositAmount = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet connected")
-      } else {
-        const web3 = window.web3;
-        let enteredVal = inputEl.current.value;
-        if (enteredVal >= 1) {
-          if (parseFloat(userDripBalance) > parseFloat(enteredVal)) {
-            let contractOfBuddy = new web3.eth.Contract(buddySystemAbi, buddySystemAddress);
-            let referral = await contractOfBuddy.methods.buddyOf(acc).call();
-            let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
+        return;
+      }
 
-            if (referral != "0x0000000000000000000000000000000000000000") {
-              let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-              let contractOf = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
+      let enteredVal = inputEl.current.value;
+      if (enteredVal >= 1) {
+        if (parseFloat(userDripBalance) > parseFloat(enteredVal)) {
+          let referral = await readContract(config, {
+            ...buddyConfig,
+            functionName: 'buddyOf',
+            args: [address],
+          });
 
-              let trHash = ""
-              let allowance = await tokenContractOf.methods.allowance(acc, faucetContractAddress).call();
-              console.log("allowance", allowance);
-              if (allowance >= parseFloat(web3.utils.toWei(enteredVal))) {
-                await contractOf.methods.deposit(referral, web3.utils.toWei(enteredVal)).send({
-                  from: acc
-                }).on("transactionHash", async (hash) => {
+          if (referral != "0x0000000000000000000000000000000000000000") {
+            let allowance = await readContract(config, {
+              ...tokenConfig,
+              functionName: 'allowance',
+              args: [address, faucetContractAddress],
+            });
+            console.log("allowance", allowance);
+            if (allowance >= parseEther(enteredVal)) {
+              writeContract({
+                ...faucetConfig,
+                functionName: 'deposit',
+                args: [referral, parseEther(enteredVal)],
+              }, {
+                onSuccess: async (hash) => {
                   let data = {
                     hash: hash,
                     toAddress: faucetContractAddress,
-                    fromAddress: acc,
-                    id: acc,
+                    fromAddress: address,
+                    id: address,
                     amount: enteredVal
                   }
                   await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents", data);
-                })
-                toast.success("Transaction confirmed");
-              } else {
-                toast.error("Entered value is greater than your approval amount ")
-              }
-
+                  toast.success("Transaction confirmed");
+                },
+                onError: () => {
+                  toast.error("Transaction Failed ")
+                }
+              })
             } else {
-              toast.error("You have no Buddy.");
-
+              toast.error("Entered value is greater than your approval amount ")
             }
+
           } else {
-            toast.error("Entered value is greater than your balance")
+            toast.error("You have no Buddy.");
+
           }
         } else {
-          toast.error("Deposit amount should be greater than 1 ")
+          toast.error("Entered value is greater than your balance")
         }
+      } else {
+        toast.error("Deposit amount should be greater than 1 ")
       }
     } catch (e) {
       toast.error("Transaction Failed ")
@@ -399,37 +436,45 @@ const Facuet = ({ oneTokenPrice }) => {
 
   const updatemyBuddy = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected");
-      } else {
+        return;
+      }
 
-        if (buddy.current.value <= 0) {
-          toast.error("Please enter buddy refral")
+      if (buddy.current.value <= 0) {
+        toast.error("Please enter buddy refral")
+      } else {
+        let enteredVal = buddy.current.value;
+        let userInfoTotal = await readContract(config, {
+          ...faucetConfig,
+          functionName: 'userInfoTotals',
+          args: [enteredVal],
+        });
+        let nedeposit = userInfoTotal[1]; // total_deposits
+        nedeposit = formatEther(nedeposit);
+        nedeposit = parseFloat(nedeposit)
+        if (nedeposit <= 0) {
+          toast.error("No Directs avaliable")
         } else {
-          const web3 = window.web3;
-          let enteredVal = buddy.current.value;
-          let contractOf = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-          let userInfoTotal = await contractOf.methods.userInfoTotals(enteredVal).call();
-          let nedeposit = userInfoTotal.total_deposits;
-          nedeposit = webSupply.utils.fromWei(nedeposit);
-          nedeposit = parseFloat(nedeposit)
-          if (nedeposit <= 0) {
-            toast.error("No Directs avaliable")
+          if (enteredVal == address) {
+            toast.error("Same address not accepted")
           } else {
-            if (enteredVal == acc) {
-              toast.error("Same address not accepted")
-            } else {
-              let contractOfBuddy = new web3.eth.Contract(buddySystemAbi, buddySystemAddress);
-              await contractOfBuddy.methods.updateBuddy(enteredVal).send({
-                from: acc
-              })
-              let data = {
-                referee: acc
+            writeContract({
+              ...buddyConfig,
+              functionName: 'updateBuddy',
+              args: [enteredVal],
+            }, {
+              onSuccess: async () => {
+                let data = {
+                  referee: address
+                }
+                await axios.post("https://splash-test-app.herokuapp.com/api/users/treeReferral", data);
+                toast.success("Buddy updated")
+              },
+              onError: () => {
+                toast.error("Buddy rejected")
               }
-              await axios.post("https://splash-test-app.herokuapp.com/api/users/treeReferral", data);
-              toast.success("Buddy updated")
-            }
+            })
           }
         }
       }
@@ -441,31 +486,33 @@ const Facuet = ({ oneTokenPrice }) => {
   const myClaim = async () => {
 
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected!")
-      } else {
-        if (availabe > 0) {
-          const web3 = window.web3;
-          let trHash = ""
-          let contractOf = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-          await contractOf.methods.claim().send({
-            from: acc
-          }).on("transactionHash", async (hash) => {
+        return;
+      }
+
+      if (parseFloat(availabe) > 0) {
+        writeContract({
+          ...faucetConfig,
+          functionName: 'claim',
+        }, {
+          onSuccess: async (hash) => {
             let data = {
               hash: hash,
-              toAddress: acc,
+              toAddress: address,
               fromAddress: faucetContractAddress,
-              id: acc,
+              id: address,
               amount: availabe
             }
             await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents", data);
-          })
-
-          toast.success("Transaction confirmed")
-        } else {
-          toast.error("No Claims Available")
-        }
+            toast.success("Transaction confirmed")
+          },
+          onError: () => {
+            toast.error("Transaction Failed")
+          }
+        })
+      } else {
+        toast.error("No Claims Available")
       }
 
     } catch (e) {
@@ -475,8 +522,10 @@ const Facuet = ({ oneTokenPrice }) => {
   }
   const getOwnerReferral = async () => {
     try {
-      let contractOf = new webSupply.eth.Contract(faucetContractAbi, faucetContractAddress);
-      let ownwerAddrss = await contractOf.methods.dripVaultAddress().call();
+      let ownwerAddrss = await readContract(config, {
+        ...faucetConfig,
+        functionName: 'dripVaultAddress',
+      });
       buddy.current.value = ownwerAddrss;
     } catch (e) {
       console.log("Error :", e)
@@ -486,21 +535,25 @@ const Facuet = ({ oneTokenPrice }) => {
 
   const hydarated = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected");
+        return;
       }
-      else {
-        if (availabe > 0) {
-          const web3 = window.web3;
-          const contractOf = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-          await contractOf.methods.roll().send({
-            from: acc
-          })
-          toast.success("Transaction confirmed")
-        } else {
-          toast.error("No Availabe Claims you need to deposit first")
-        }
+
+      if (parseFloat(availabe) > 0) {
+        writeContract({
+          ...faucetConfig,
+          functionName: 'roll',
+        }, {
+          onSuccess: () => {
+            toast.success("Transaction confirmed")
+          },
+          onError: () => {
+            toast.error("Transaction Failed")
+          }
+        })
+      } else {
+        toast.error("No Availabe Claims you need to deposit first")
       }
 
     } catch (e) {
@@ -511,31 +564,30 @@ const Facuet = ({ oneTokenPrice }) => {
   }
   const getMaxBal = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No wallet Connected")
-      } else {
-        const web3 = window.web3;
-        let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-        let bal = await tokenContractOf.methods.balanceOf(acc).call();
-        bal = await web3.utils.fromWei(bal);
-        // bal = parseFloat(bal).toFixed(3)
-        inputEl.current.value = bal;
-
+        return;
       }
+
+      let bal = await readContract(config, {
+        ...tokenConfig,
+        functionName: 'balanceOf',
+        args: [address],
+      });
+      bal = formatEther(bal);
+      inputEl.current.value = bal;
+
     } catch (e) {
       console.log("error while get max balance", e);
     }
   }
   const getUserAirDropAddress = async () => {
-    // airDropPlayerAddress
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected");
-      } else {
-        airDropPlayerAddress.current.value = acc;
+        return;
       }
+      airDropPlayerAddress.current.value = address;
 
     } catch (e) {
       console.log("error while get user address", e);
@@ -550,273 +602,164 @@ const Facuet = ({ oneTokenPrice }) => {
     setShowCompaign([])
     setShowTeamStatus([])
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
-      } else {
-        if (airDropPlayerAddress.current.value > 0) {
-          if (budgetRef.current.value > 0) {
-            if (parseFloat(userDripBalance) >= parseFloat(budgetRef.current.value)) {
-              let data = {
-                referee: airDropPlayerAddress.current.value
-              }
-              let checkReferal = [];
-              let referralData = await axios.post("https://splash-test-app.herokuapp.com/api/users/getTreeRef", data)
-              if (referralData.data.length) {
-                checkReferal = referralData.data
-                const web3 = window.web3;
-                const faucetContract = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
+        return;
+      }
 
-                let mapReferral = checkReferal.map(async (item) => {
-                  return await faucetContract.methods.users(item).call();
-                })
+      if (airDropPlayerAddress.current.value > 0) {
+        if (budgetRef.current.value > 0) {
+          if (parseFloat(userDripBalance) >= parseFloat(budgetRef.current.value)) {
+            let data = {
+              referee: airDropPlayerAddress.current.value
+            }
+            let checkReferal = [];
+            let referralData = await axios.post("https://splash-test-app.herokuapp.com/api/users/getTreeRef", data)
+            if (referralData.data.length) {
+              checkReferal = referralData.data
 
-                mapReferral = await Promise.allSettled(mapReferral)
-                let filterReferral = mapReferral.filter((item) => {
-                  return (web3.utils.fromWei(item.value.direct_bonus) >= checkDirects
-                    && web3.utils.fromWei(item.value.deposits) >= checkSplash)
-                    && item.value.upline !== "0x0000000000000000000000000000000000000000"
-                })
+              let mapReferral = checkReferal.map(async (item) => {
+                return await readContract(config, {
+                  ...faucetConfig,
+                  functionName: 'users',
+                  args: [item],
+                });
+              })
 
-                if (filterReferral.length) {
-                  if (checkCompaign == 0) {
-                    setNumberOfReciept(filterReferral.length)
-                    let dataAdd = []
-                    let sAdd = []
-                    let amount = budgetRef.current.value / filterReferral.length;
-                    setEstimatePerPerson(parseFloat(amount).toFixed(2))
-                    setSendEstimateAmount(amount)
-                    let checkStatus = filterReferral.map(async (item) => {
-                      return await faucetContract.methods.isNetPositive(item.value.entered_address).call();
+              mapReferral = await Promise.allSettled(mapReferral)
+              let filterReferral = mapReferral.filter((item) => {
+                // item.value is a tuple: [upline, referrals, total_structure, direct_bonus, match_bonus, deposits, deposit_time, payouts, rolls, ref_claim_pos, entered_address]
+                return (formatEther(item.value[3]) >= checkDirects
+                  && formatEther(item.value[5]) >= checkSplash)
+                  && item.value[0] !== "0x0000000000000000000000000000000000000000"
+              })
+
+              if (filterReferral.length) {
+                const processSlice = async (slice, totalAmount) => {
+                  let dataAdd = []
+                  let sAdd = []
+                  let amount = totalAmount / slice.length;
+                  setEstimatePerPerson(parseFloat(amount).toFixed(2))
+                  setSendEstimateAmount(amount)
+                  let checkStatus = slice.map(async (item) => {
+                    return await readContract(config, {
+                      ...faucetConfig,
+                      functionName: 'isNetPositive',
+                      args: [item.value[10]], // entered_address
+                    });
+                  })
+                  checkStatus = await Promise.allSettled(checkStatus)
+                  setShowTeamStatus(checkStatus)
+
+                  slice.forEach((item) => {
+                    let deposit = formatEther(item.value[5]); // deposits
+                    deposit = parseFloat(deposit).toFixed(2)
+                    sAdd.push(item.value[10]) // entered_address
+                    dataAdd.push({
+                      address: item.value[10], // entered_address
+                      directs: item.value[1].toString(), // referrals
+                      deposits: deposit,
+                      amount: amount
                     })
-                    checkStatus = await Promise.allSettled(checkStatus)
-                    setShowTeamStatus(checkStatus)
+                  })
 
-                    filterReferral.slice(0, filterReferral.length).forEach((item) => {
-                      let deposit = window.web3.utils.fromWei(item.value.deposits);
-                      deposit = parseFloat(deposit).toFixed(2)
-                      sAdd.push(item.value.entered_address)
-                      dataAdd.push({
-
-                        address: item.value.entered_address,
-                        directs: item.value.referrals,
-                        deposits: deposit,
-                        amount: amount
-                      })
-                    })
-
-
-                    setSendAddress(sAdd)
-                    setShowCompaign(dataAdd)
-                  } else if (checkCompaign == 1) {
-                    let dataAdd = []
-                    let sAdd = []
-                    let amount = budgetRef.current.value;
-                    setEstimatePerPerson(parseFloat(amount).toFixed(2))
-                    setSendEstimateAmount(amount)
-                    let checkStatus = filterReferral.slice(0, 1).map(async (item) => {
-                      return await faucetContract.methods.isNetPositive(item.value.entered_address).call();
-                    })
-                    checkStatus = await Promise.allSettled(checkStatus)
-                    setShowTeamStatus(checkStatus)
-                    filterReferral.slice(0, 1).forEach((item) => {
-                      let deposit = window.web3.utils.fromWei(item.value.deposits);
-                      deposit = parseFloat(deposit).toFixed(2)
-                      sAdd.push(item.value.entered_address)
-                      dataAdd.push({
-
-                        address: item.value.entered_address,
-                        directs: item.value.referrals,
-                        deposits: deposit,
-                        amount: amount
-                      })
-                    })
-                    setNumberOfReciept(sAdd.length)
-                    setSendAddress(sAdd)
-                    setShowCompaign(dataAdd)
-                  } else if (checkCompaign == 5) {
-                    if (filterReferral.length < 5) {
-                      toast.error("Your Referrals are less than the selected compaign")
-                    } else {
-                      let dataAdd = []
-                      let sAdd = []
-                      let amount = budgetRef.current.value / 5;
-                      setEstimatePerPerson(parseFloat(amount).toFixed(2))
-                      setSendEstimateAmount(amount)
-                      let checkStatus = filterReferral.slice(0, 5).map(async (item) => {
-                        return await faucetContract.methods.isNetPositive(item.value.entered_address).call();
-                      })
-                      checkStatus = await Promise.allSettled(checkStatus)
-                      setShowTeamStatus(checkStatus)
-
-                      filterReferral.slice(0, 5).forEach((item) => {
-                        let deposit = window.web3.utils.fromWei(item.value.deposits);
-                        deposit = parseFloat(deposit).toFixed(2)
-                        sAdd.push(item.value.entered_address)
-                        dataAdd.push({
-
-                          address: item.value.entered_address,
-                          directs: item.value.referrals,
-                          deposits: deposit,
-                          amount: amount
-                        })
-                      })
-                      setNumberOfReciept(sAdd.length)
-                      setSendAddress(sAdd)
-                      setShowCompaign(dataAdd)
-                    }
-                  } else if (checkCompaign == 20) {
-                    if (filterReferral.length < 20) {
-                      toast.error("Your Referrals are less than the selected compaign")
-                    } else {
-                      let dataAdd = []
-                      let sAdd = []
-                      let amount = budgetRef.current.value / 20;
-                      setEstimatePerPerson(parseFloat(amount).toFixed(2))
-                      setSendEstimateAmount(amount)
-                      let checkStatus = filterReferral.slice(0, 20).map(async (item) => {
-                        return await faucetContract.methods.isNetPositive(item.value.entered_address).call();
-                      })
-                      checkStatus = await Promise.allSettled(checkStatus)
-                      setShowTeamStatus(checkStatus)
-
-                      filterReferral.slice(0, 20).forEach((item) => {
-                        let deposit = window.web3.utils.fromWei(item.value.deposits);
-                        deposit = parseFloat(deposit).toFixed(2)
-                        sAdd.push(item.value.entered_address)
-                        dataAdd.push({
-
-                          address: item.value.entered_address,
-                          directs: item.value.referrals,
-                          deposits: deposit,
-                          amount: amount
-                        })
-                      })
-                      setNumberOfReciept(sAdd.length)
-                      setSendAddress(sAdd)
-                      setShowCompaign(dataAdd)
-                    }
-                  } else if (checkCompaign == 50) {
-                    if (filterReferral.length < 50) {
-                      toast.error("Your Referrals are less than the selected compaign")
-                    } else {
-                      let dataAdd = []
-                      let sAdd = []
-                      let amount = budgetRef.current.value / 50;
-                      setEstimatePerPerson(parseFloat(amount).toFixed(2))
-                      setSendEstimateAmount(amount)
-                      let checkStatus = filterReferral.slice(0, 50).map(async (item) => {
-                        return await faucetContract.methods.isNetPositive(item.value.entered_address).call();
-                      })
-                      checkStatus = await Promise.allSettled(checkStatus)
-                      setShowTeamStatus(checkStatus)
-
-                      filterReferral.slice(0, 50).forEach((item) => {
-                        let deposit = window.web3.utils.fromWei(item.value.deposits);
-                        deposit = parseFloat(deposit).toFixed(2)
-                        sAdd.push(item.value.entered_address)
-                        dataAdd.push({
-
-                          address: item.value.entered_address,
-                          directs: item.value.referrals,
-                          deposits: deposit,
-                          amount: amount
-                        })
-                      })
-                      setNumberOfReciept(sAdd.length)
-                      setSendAddress(sAdd)
-                      setShowCompaign(dataAdd)
-                    }
-                  } else {
-                    if (filterReferral.length < 100) {
-                      toast.error("Your Referrals are less than the selected compaign")
-                    } else {
-                      let dataAdd = []
-                      let sAdd = []
-                      let amount = budgetRef.current.value / 100;
-                      setEstimatePerPerson(parseFloat(amount).toFixed(2))
-                      setSendEstimateAmount(amount)
-                      let checkStatus = filterReferral.slice(0, 100).map(async (item) => {
-                        return await faucetContract.methods.isNetPositive(item.value.entered_address).call();
-                      })
-                      checkStatus = await Promise.allSettled(checkStatus)
-                      setShowTeamStatus(checkStatus)
-                      filterReferral.slice(0, 100).forEach((item) => {
-                        let deposit = window.web3.utils.fromWei(item.value.deposits);
-                        deposit = parseFloat(deposit).toFixed(2)
-                        sAdd.push(item.value.entered_address)
-                        dataAdd.push({
-
-                          address: item.value.entered_address,
-                          directs: item.value.referrals,
-                          deposits: deposit,
-                          amount: amount
-                        })
-                      })
-                      setNumberOfReciept(sAdd.length)
-                      setSendAddress(sAdd)
-                      setShowCompaign(dataAdd)
-                    }
-
-                  }
-                } else {
-                  setNumberOfReciept(0)
-                  setEstimatePerPerson(0)
-                  setSendEstimateAmount(0)
-                  setSendAddress([])
-                  setShowCompaign([])
-                  setShowTeamStatus([])
-                  toast.error("No users found")
+                  setNumberOfReciept(sAdd.length)
+                  setSendAddress(sAdd)
+                  setShowCompaign(dataAdd)
                 }
 
+                if (checkCompaign == 0) {
+                  setNumberOfReciept(filterReferral.length)
+                  await processSlice(filterReferral, parseFloat(budgetRef.current.value))
+                } else if (checkCompaign == 1) {
+                  await processSlice(filterReferral.slice(0, 1), parseFloat(budgetRef.current.value))
+                } else if (checkCompaign == 5) {
+                  if (filterReferral.length < 5) {
+                    toast.error("Your Referrals are less than the selected compaign")
+                  } else {
+                    await processSlice(filterReferral.slice(0, 5), parseFloat(budgetRef.current.value))
+                  }
+                } else if (checkCompaign == 20) {
+                  if (filterReferral.length < 20) {
+                    toast.error("Your Referrals are less than the selected compaign")
+                  } else {
+                    await processSlice(filterReferral.slice(0, 20), parseFloat(budgetRef.current.value))
+                  }
+                } else if (checkCompaign == 50) {
+                  if (filterReferral.length < 50) {
+                    toast.error("Your Referrals are less than the selected compaign")
+                  } else {
+                    await processSlice(filterReferral.slice(0, 50), parseFloat(budgetRef.current.value))
+                  }
+                } else {
+                  if (filterReferral.length < 100) {
+                    toast.error("Your Referrals are less than the selected compaign")
+                  } else {
+                    await processSlice(filterReferral.slice(0, 100), parseFloat(budgetRef.current.value))
+                  }
+                }
               } else {
-                toast.error("You have not got any referral")
+                setNumberOfReciept(0)
+                setEstimatePerPerson(0)
+                setSendEstimateAmount(0)
+                setSendAddress([])
+                setShowCompaign([])
+                setShowTeamStatus([])
+                toast.error("No users found")
               }
 
-
             } else {
-              toast.error("Oops insufficient Spash balance")
+              toast.error("You have not got any referral")
             }
-          } else {
-            toast.error("Looks like you forgot to enter Budget amount")
-          }
 
+
+          } else {
+            toast.error("Oops insufficient Spash balance")
+          }
         } else {
-          toast.error("Please enter address or click use my address")
+          toast.error("Looks like you forgot to enter Budget amount")
         }
+
+      } else {
+        toast.error("Please enter address or click use my address")
       }
     } catch (e) {
       console.log("error while run team drop", e);
     }
   }
-  // console.log("item", showTeamStatus[0].value);
   const aproveafterRunAmount = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
-      } else {
-        if (budgetRef.current.value > 0) {
-          if (parseFloat(userDripBalance) >= parseFloat(budgetRef.current.value)) {
+        return;
+      }
 
-
-            if (sendAddress.length) {
-              const web3 = window.web3;
-              let splashContract = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-              let value = web3.utils.toWei(budgetRef.current.value)
-              await splashContract.methods.approve(faucetContractAddress, value).send({ from: acc })
-              toast.success("Transaction confirmed")
-            } else {
-              toast.error("No recipient found")
-            }
+      if (budgetRef.current.value > 0) {
+        if (parseFloat(userDripBalance) >= parseFloat(budgetRef.current.value)) {
+          if (sendAddress.length) {
+            let value = parseEther(budgetRef.current.value)
+            writeContract({
+              ...tokenConfig,
+              functionName: 'approve',
+              args: [faucetContractAddress, value],
+            }, {
+              onSuccess: () => {
+                toast.success("Transaction confirmed")
+              },
+              onError: () => {
+                toast.error("Transaction failed")
+              }
+            })
           } else {
-            toast.error("Entered amount is greater than your balance")
+            toast.error("No recipient found")
           }
         } else {
-          toast.error("Looks like you forgot to enter amount")
+          toast.error("Entered amount is greater than your balance")
         }
-
+      } else {
+        toast.error("Looks like you forgot to enter amount")
       }
+
     } catch (e) {
       toast.error("Transaction failed")
       console.log("error while aprove amount to addresses");
@@ -831,7 +774,7 @@ const Facuet = ({ oneTokenPrice }) => {
           bug = parseFloat(bug).toFixed(3)
           setEstimatePerPerson(bug);
           setNumberOfReciept(val)
-       
+
       }else{
         setEstimatePerPerson(0);
         setNumberOfReciept(0)
@@ -842,26 +785,29 @@ const Facuet = ({ oneTokenPrice }) => {
   }
   const sendAmount = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
-      } else {
-        if (parseFloat(budgetRef.current.value) > 0) {
-          if (sendAddress.length) {
-              const web3 = window.web3
-            let splashContract = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
-            let allowance = await splashContract.methods.allowance(acc, faucetContractAddress).call();
+        return;
+      }
 
-            let all = web3.utils.fromWei(allowance);
+      if (parseFloat(budgetRef.current.value) > 0) {
+        if (sendAddress.length) {
+          let allowance = await readContract(config, {
+            ...tokenConfig,
+            functionName: 'allowance',
+            args: [address, faucetContractAddress],
+          });
 
-            if (parseFloat(budgetRef.current.value) <= parseFloat(all)) {
+          let all = formatEther(allowance);
+
+          if (parseFloat(budgetRef.current.value) <= parseFloat(all)) {
             let budgetVal = dividBudgetRef.current.value
             if( budgetVal > 0){
               if(budgetVal <= sendAddress.length){
                 setNumberOfReciept(budgetVal)
               let oldArr =[]
                oldArr = [...sendAddress];
-              let newArr = [];              
+              let newArr = [];
               for(let i = 0; i < budgetVal; i++){
                 let arr = oldArr[Math.floor(Math.random() * oldArr.length)];
                 let arrIndex = oldArr.indexOf(arr)
@@ -869,27 +815,34 @@ const Facuet = ({ oneTokenPrice }) => {
                 newArr=[...newArr, arr];
               }
               let amount =budgetRef.current.value/ newArr.length;
-              let facutContract = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-              let tosendEstimateAmount = amount.toString()
+              let tosendEstimateAmount = parseEther(amount.toString())
 
-              tosendEstimateAmount = web3.utils.toWei(amount.toString())
-              await facutContract.methods.MultiSendairdrop(newArr, tosendEstimateAmount).send({ from: acc })
-              toast.success("Transaction confirmed")
+              writeContract({
+                ...faucetConfig,
+                functionName: 'MultiSendairdrop',
+                args: [newArr, tosendEstimateAmount],
+              }, {
+                onSuccess: () => {
+                  toast.success("Transaction confirmed")
+                },
+                onError: () => {
+                  toast.error("Transaction failed")
+                }
+              })
         }else{
           toast.error("Enterd value is larger than compagin viewer")
-        }    
+        }
         }else{
               toast.error("Oops you forgot to enter recipient numbers")
             }
-            } else {
-              toast.error("The entered amount is greater than your approval amount")
-            }
           } else {
-            toast.error("No recipient found")
+            toast.error("The entered amount is greater than your approval amount")
           }
         } else {
-          toast.error("Looks like you forgot to enter the fields")
+          toast.error("No recipient found")
         }
+      } else {
+        toast.error("Looks like you forgot to enter the fields")
       }
     } catch (e) {
       toast.error("Transaction failed")
@@ -898,12 +851,11 @@ const Facuet = ({ oneTokenPrice }) => {
   }
   const getUserAddress = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected");
-      } else {
-        buddySearch.current.value = acc;
+        return;
       }
+      buddySearch.current.value = address;
     } catch (e) {
       console.log("error while get user address", e);
     }
@@ -943,10 +895,6 @@ const Facuet = ({ oneTokenPrice }) => {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    setInterval(() => {
-      getData();
-      custody();
-    }, 1000);
   }, []);
   return (
     <div className="images">
@@ -1004,7 +952,7 @@ const Facuet = ({ oneTokenPrice }) => {
                         {t("Claimed.1")}{" "}
                       </h5>
                       <p className="text-large mb-2 text-white fst-italic">
-                        <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}>{clamied}</span>
+                        <span className="notranslate" style={{ color: "#ab9769", fontSize: "20px" }}>{totalclaimed}</span>
                       </p>
                       <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>{t("Splash.1")}</p>
                     </div>
@@ -1053,7 +1001,7 @@ const Facuet = ({ oneTokenPrice }) => {
                 <p className="col-12 white mb-3 text-justify fst-italic text-white mt-md-3" style={{ fontSize: "20px" }}>
                   {" "}
                   {t(
-                    "Splassive’sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%..1"
+                    "Splassive'sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%..1"
                   )}
                 </p>
                 <p className="col-12 white mb-3 text-justify fst-italic text-white" style={{ fontSize: "20px" }}>
@@ -1806,7 +1754,7 @@ const Facuet = ({ oneTokenPrice }) => {
                                         id="__BVID__216__BV_label_"
                                       >
                                         <p style={{ lineHeight: "40%" }}>
-                                          
+
                                           {t("SelectRandomAddressess.1")}
                                         </p>
                                       </legend>
