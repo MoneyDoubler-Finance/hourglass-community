@@ -15,8 +15,6 @@ import Button from "react-bootstrap/Button";
 import Chart from "./Chart";
 import WarpBox from "../WarpBox/WarpBox";
 import axios from "axios";
-import price from "crypto-price";
-import Unit from "cryptocurrency-unit-convert"
 import { loadWeb3 } from "../api";
 import { faucetTokenAddress, faucetTokenAbi } from "../utils/Faucet";
 import {

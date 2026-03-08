@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import { loadWeb3 } from "../api";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios'
-import price from 'crypto-price';
 import Web3 from "web3";
 import Table from 'react-bootstrap/Table'
 import { indexOf } from "lodash";

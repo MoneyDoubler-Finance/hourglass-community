@@ -13,7 +13,6 @@ import Swap from "./components/Swap/Swap";
 import Facuet from "./components/Facuet/Facuet";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Reservoir from "./components/Reservoir/Reservoir";
-import WaterWave from "react-water-wave";
 import bg1 from "./images/bg1.jpg";
 import Home from "./Home";
 import { useTranslation } from "react-i18next";

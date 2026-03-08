@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { Suspense } from "react";
 import './i18next';
 ReactDOM.render(
@@ -10,8 +9,6 @@ ReactDOM.render(
     <App />
   </Suspense>
   ,
-  
+
   document.getElementById("root")
 );
-
-reportWebVitals();
