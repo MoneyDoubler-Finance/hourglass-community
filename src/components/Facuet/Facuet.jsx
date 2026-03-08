@@ -11,7 +11,6 @@ import { buddySystemAddress, buddySystemAbi } from "../utils/BuddySystem"
 import "./Facuet.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router";
-import axios from 'axios'
 import Table from 'react-bootstrap/Table'
 import { useAccount, useReadContract, useWriteContract, useBalance } from 'wagmi'
 import { readContract } from '@wagmi/core'
@@ -289,8 +288,6 @@ const Facuet = ({ oneTokenPrice }) => {
       let data = {
         referee: enteredAddress
       }
-      let res = await axios.post("https://splash-test-app.herokuapp.com/api/users/getTreeRef", data);
-
       let userInfoTotal = await readContract(config, {
         ...faucetConfig,
         functionName: 'userInfoTotals',
@@ -318,7 +315,7 @@ const Facuet = ({ oneTokenPrice }) => {
       setnetDeposit(nedeposit);
       setAirdropsent(aidropsent);
       setAirdroplastsent(airlstdrp);
-      setPlayerteam(res.data.length);
+      setPlayerteam(0);
       setdirect(myrefferals.toString());
     } catch (e) {
       toast.error("Can't Fetch User's Information at the moment please try again later.")
@@ -399,15 +396,7 @@ const Facuet = ({ oneTokenPrice }) => {
                 functionName: 'deposit',
                 args: [referral, parseEther(enteredVal)],
               }, {
-                onSuccess: async (hash) => {
-                  let data = {
-                    hash: hash,
-                    toAddress: faucetContractAddress,
-                    fromAddress: address,
-                    id: address,
-                    amount: enteredVal
-                  }
-                  await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents", data);
+                onSuccess: () => {
                   toast.success("Transaction confirmed");
                 },
                 onError: () => {
@@ -464,11 +453,7 @@ const Facuet = ({ oneTokenPrice }) => {
               functionName: 'updateBuddy',
               args: [enteredVal],
             }, {
-              onSuccess: async () => {
-                let data = {
-                  referee: address
-                }
-                await axios.post("https://splash-test-app.herokuapp.com/api/users/treeReferral", data);
+              onSuccess: () => {
                 toast.success("Buddy updated")
               },
               onError: () => {
@@ -496,15 +481,7 @@ const Facuet = ({ oneTokenPrice }) => {
           ...faucetConfig,
           functionName: 'claim',
         }, {
-          onSuccess: async (hash) => {
-            let data = {
-              hash: hash,
-              toAddress: address,
-              fromAddress: faucetContractAddress,
-              id: address,
-              amount: availabe
-            }
-            await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents", data);
+          onSuccess: () => {
             toast.success("Transaction confirmed")
           },
           onError: () => {
@@ -610,109 +587,9 @@ const Facuet = ({ oneTokenPrice }) => {
       if (airDropPlayerAddress.current.value > 0) {
         if (budgetRef.current.value > 0) {
           if (parseFloat(userDripBalance) >= parseFloat(budgetRef.current.value)) {
-            let data = {
-              referee: airDropPlayerAddress.current.value
-            }
-            let checkReferal = [];
-            let referralData = await axios.post("https://splash-test-app.herokuapp.com/api/users/getTreeRef", data)
-            if (referralData.data.length) {
-              checkReferal = referralData.data
-
-              let mapReferral = checkReferal.map(async (item) => {
-                return await readContract(config, {
-                  ...faucetConfig,
-                  functionName: 'users',
-                  args: [item],
-                });
-              })
-
-              mapReferral = await Promise.allSettled(mapReferral)
-              let filterReferral = mapReferral.filter((item) => {
-                // item.value is a tuple: [upline, referrals, total_structure, direct_bonus, match_bonus, deposits, deposit_time, payouts, rolls, ref_claim_pos, entered_address]
-                return (formatEther(item.value[3]) >= checkDirects
-                  && formatEther(item.value[5]) >= checkSplash)
-                  && item.value[0] !== "0x0000000000000000000000000000000000000000"
-              })
-
-              if (filterReferral.length) {
-                const processSlice = async (slice, totalAmount) => {
-                  let dataAdd = []
-                  let sAdd = []
-                  let amount = totalAmount / slice.length;
-                  setEstimatePerPerson(parseFloat(amount).toFixed(2))
-                  setSendEstimateAmount(amount)
-                  let checkStatus = slice.map(async (item) => {
-                    return await readContract(config, {
-                      ...faucetConfig,
-                      functionName: 'isNetPositive',
-                      args: [item.value[10]], // entered_address
-                    });
-                  })
-                  checkStatus = await Promise.allSettled(checkStatus)
-                  setShowTeamStatus(checkStatus)
-
-                  slice.forEach((item) => {
-                    let deposit = formatEther(item.value[5]); // deposits
-                    deposit = parseFloat(deposit).toFixed(2)
-                    sAdd.push(item.value[10]) // entered_address
-                    dataAdd.push({
-                      address: item.value[10], // entered_address
-                      directs: item.value[1].toString(), // referrals
-                      deposits: deposit,
-                      amount: amount
-                    })
-                  })
-
-                  setNumberOfReciept(sAdd.length)
-                  setSendAddress(sAdd)
-                  setShowCompaign(dataAdd)
-                }
-
-                if (checkCompaign == 0) {
-                  setNumberOfReciept(filterReferral.length)
-                  await processSlice(filterReferral, parseFloat(budgetRef.current.value))
-                } else if (checkCompaign == 1) {
-                  await processSlice(filterReferral.slice(0, 1), parseFloat(budgetRef.current.value))
-                } else if (checkCompaign == 5) {
-                  if (filterReferral.length < 5) {
-                    toast.error("Your Referrals are less than the selected compaign")
-                  } else {
-                    await processSlice(filterReferral.slice(0, 5), parseFloat(budgetRef.current.value))
-                  }
-                } else if (checkCompaign == 20) {
-                  if (filterReferral.length < 20) {
-                    toast.error("Your Referrals are less than the selected compaign")
-                  } else {
-                    await processSlice(filterReferral.slice(0, 20), parseFloat(budgetRef.current.value))
-                  }
-                } else if (checkCompaign == 50) {
-                  if (filterReferral.length < 50) {
-                    toast.error("Your Referrals are less than the selected compaign")
-                  } else {
-                    await processSlice(filterReferral.slice(0, 50), parseFloat(budgetRef.current.value))
-                  }
-                } else {
-                  if (filterReferral.length < 100) {
-                    toast.error("Your Referrals are less than the selected compaign")
-                  } else {
-                    await processSlice(filterReferral.slice(0, 100), parseFloat(budgetRef.current.value))
-                  }
-                }
-              } else {
-                setNumberOfReciept(0)
-                setEstimatePerPerson(0)
-                setSendEstimateAmount(0)
-                setSendAddress([])
-                setShowCompaign([])
-                setShowTeamStatus([])
-                toast.error("No users found")
-              }
-
-            } else {
-              toast.error("You have not got any referral")
-            }
-
-
+            // TODO: replace with Hourglass backend
+            toast.error("Team airdrop feature is currently unavailable")
+            return;
           } else {
             toast.error("Oops insufficient Spash balance")
           }
@@ -868,16 +745,9 @@ const Facuet = ({ oneTokenPrice }) => {
         toast.error("Enter Referral Address")
         setStoreRefral([])
       } else {
-        let data = {
-          referee: buddySearch.current.value
-        }
-        let res = await axios.post("https://splash-test-app.herokuapp.com/api/users/getTreeRef", data);
-        if (res.data.length) {
-          setStoreRefral(res.data);
-        } else {
-          setStoreRefral([])
-          toast.error("No Referral Found")
-        }
+        // TODO: replace with Hourglass backend
+        toast.error("Referral lookup is currently unavailable")
+        return;
       }
     } catch (e) {
       console.log("error while get refrals", e);

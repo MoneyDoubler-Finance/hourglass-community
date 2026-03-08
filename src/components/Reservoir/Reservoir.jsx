@@ -11,7 +11,6 @@ import dummy from "../../images/dollar.png";
 import transfer from "../../images/transfer.png";
 import { useTranslation } from "react-i18next";
 import { toast } from 'react-toastify';
-import axios from "axios";
 import { useAccount, useReadContract, useWriteContract, useBalance } from 'wagmi'
 import { readContract } from '@wagmi/core'
 import { formatEther, parseEther } from 'viem'
@@ -230,15 +229,7 @@ function Reservoir() {
         functionName: 'buy',
         value: parseEther(userValue),
       }, {
-        onSuccess: async (hash) => {
-          let data = {
-            hash: hash,
-            toAddress: reservoirAddress,
-            fromAddress: address,
-            id: address,
-            amount: userValue,
-          }
-          await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents", data);
+        onSuccess: () => {
           toast.success("Transaction confirmed")
         },
         onError: () => {
@@ -344,15 +335,7 @@ function Reservoir() {
           functionName: 'sell',
           args: [val],
         }, {
-          onSuccess: async (hash) => {
-            let data = {
-              hash: hash,
-              toAddress: reservoirAddress,
-              fromAddress: address,
-              id: address,
-              amount: withdrawInput.current.value,
-            }
-            await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents", data);
+          onSuccess: () => {
             toast.success("Withdraw confirmed")
           },
           onError: () => {
