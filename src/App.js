@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import $ from "jquery";
+import jQuery from "jquery";
+window.jQuery = window.$ = jQuery;
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { render } from "react-dom";
@@ -22,13 +23,13 @@ function App() {
 
   useEffect(() => {
 
-    $(document).ready(function () {
-    $(".full-landing-image").ripples({
+    jQuery(document).ready(function () {
+    jQuery(".full-landing-image").ripples({
       resolution: 200,
       perturbance: 0.01,
     });
   })
-  }, [$]);
+  }, [jQuery]);
   return (
     <div >
       <ToastContainer />
