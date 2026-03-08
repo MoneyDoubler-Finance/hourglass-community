@@ -16,6 +16,11 @@ import Reservoir from "./components/Reservoir/Reservoir";
 import bg1 from "./images/bg1.jpg";
 import Home from "./Home";
 import { useTranslation } from "react-i18next";
+import { WagmiProvider } from 'wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { config } from './config/wagmi'
+
+const queryClient = new QueryClient()
 function App() {
   const { t, i18n } = useTranslation();
   let [oneTokenPrice, setOneTokenPrice]=useState(0);
@@ -30,23 +35,27 @@ function App() {
   })
   }, [jQuery]);
   return (
-    <div >
-      <ToastContainer />
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Main />} />
-          <Route exact path="/swap" element={<Swap 
-          setOneTokenPrice={setOneTokenPrice}
-          />} />
-          <Route exact path="/facuet" element={<Facuet
-          oneTokenPrice={oneTokenPrice}
-          />} />
-          <Route exact path="/reservoir" element={<Reservoir />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <div >
+          <ToastContainer />
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route exact path="/" element={<Main />} />
+              <Route exact path="/swap" element={<Swap
+              setOneTokenPrice={setOneTokenPrice}
+              />} />
+              <Route exact path="/facuet" element={<Facuet
+              oneTokenPrice={oneTokenPrice}
+              />} />
+              <Route exact path="/reservoir" element={<Reservoir />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </div>
+      </QueryClientProvider>
+    </WagmiProvider>
   );
 }
 
