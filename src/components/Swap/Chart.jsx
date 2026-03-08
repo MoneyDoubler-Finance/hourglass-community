@@ -8,7 +8,7 @@ import {
   AreaSeries,
   Title,
   Legend,
-} from "@devexpress/dx-react-chart-material-ui";
+} from "@devexpress/dx-react-chart-bootstrap4";
 import { ArgumentScale, Animation } from "@devexpress/dx-react-chart";
 import { curveCatmullRom, area } from "d3-shape";
 import { scalePoint } from "d3-scale";
