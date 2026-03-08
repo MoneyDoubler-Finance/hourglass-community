@@ -33,14 +33,14 @@ const Footer = () => {
         <div className="container copyright pt-5 pb-5">
           <div className="row justify-content-between">
             <div className="col-sm-12 col-md-6 mb-2" style={{color: "#dacc79", fontSize: "24px"}}>
-              2021 © {t("SplashNETWORK.1")}
+              2026 © {t("SplashNETWORK.1")}
             </div>
             <div className="social-icons col-sm-12 col-md-6 text-center d-flex justify-content-evenly">
               <p >
                 <a
                 style={{color: "#dacc79", fontSize: "20px"}}
                   target="_blank"
-                  href="https://t.me/+V_o9E0Mms0s3YWQx"
+                  href="https://t.me/hourglass_finance"
                   className="footer-link"
                 >
                   <FaTelegramPlane size={30}/>
@@ -52,7 +52,7 @@ const Footer = () => {
                 <a
                 style={{color: "#dacc79", fontSize: "20px"}}
                   target="_blank"
-                  href="https://twitter.com/splassive_com"
+                  href="https://x.com/hourglass_finance"
                   className="footer-link"
                 >
                   

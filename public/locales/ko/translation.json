@@ -3,16 +3,16 @@
     "1": "교환"
   },
   "THETAP": {
-    "1": "탭"
+    "1": "My Hourglass"
   },
   "THESHORE": {
-    "1": "소음이 있었다"
+    "1": "The Mojave"
   },
   "Whitepaper": {
     "1": "백지"
   },
   "SplashDAO": {
-    "1": "스플래쉬 DAO"
+    "1": "Hourglass DAO"
   },
   "Tutorial": {
     "1": "지도 시간"
@@ -51,13 +51,13 @@
     "1": "승인하다"
   },
   "SplashNETWORK": {
-    "1": "드립 네트워크"
+    "1": "HOURGLASS NETWORK"
   },
   "SplashNetworkisthelatestprojectdevelopedby": {
-    "1": "튀김 Network는 에서 개발한 최신 프로젝트입니다."
+    "1": "Hourglass Finance는 에서 개발한 최신 프로젝트입니다."
   },
   "SplassiveTeam": {
-    "1": "스플래시브 팀"
+    "1": "Hourglass Finance"
   },
   "BB": {
     "1": "비비"
@@ -66,10 +66,10 @@
     "1": "그리고 팀."
   },
   "TheofficialtokenoftheSplashNetworkisSplash(SPLASH)ontheAvalancheChain(SOL)thatcapturesvaluebybeingscarce,deflationary,censorshipresistant,andbybeingbuiltonarobust,trulydecentralizedblockchain.": {
-    "1": "HOURGLASS Network의 공식 토큰은 눈사태 Chain(튀김)의 HOUR(아백스)로, 희소성, 디플레이션, 검열 저항, 강력하고 진정으로 분산된 블록체인을 기반으로 구축되어 가치를 포착합니다."
+    "1": "HOURGLASS Network의 공식 토큰은 BNB Chain(BNB)의 TIME으로, 희소성, 디플레이션, 검열 저항, 강력하고 진정으로 분산된 블록체인을 기반으로 구축되어 가치를 포착합니다."
   },
   "TherecommendedexchangefortradingSplashistheTheWellcontractwhichcanbefounddirectlyontheplatformswebsiteundertheTheWelltab,asitallowsustowaivetheinitial10%taxonbuysandprovidesthelowestpricesandhighestliquidity,resultinginlessslippageforlargertrades.": {
-    "1": "튀김 거래에 권장되는 거래소는 플랫폼 웹사이트의 스왑 탭에서 직접 찾을 수 있는 우물 계약입니다. 구매 시 초기 10% 세금을 면제하고 가장 낮은 가격과 가장 높은 유동성을 제공하여 미끄러짐을 줄일 수 있기 때문입니다. 더 큰 거래를 위해."
+    "1": "TIME 거래에 권장되는 거래소는 플랫폼 웹사이트의 스왑 탭에서 직접 찾을 수 있는 Fountain 계약입니다. 구매 시 초기 10% 세금을 면제하고 가장 낮은 가격과 가장 높은 유동성을 제공하여 더 큰 거래를 위한 미끄러짐을 줄일 수 있기 때문입니다."
   },
   "SelectRandomAddressess": {
     "1": "임의 주소 선택"
@@ -87,7 +87,7 @@
     "1": "통계"
   },
   "TheSplashtokencapturestheentirevalueoftheSplashNetworkandmakesitavailabletotheentireSOLCommunity": {
-    "1": "튀김 토큰은 튀김 네트워크의 전체 가치를 캡처하고 전체 아백스 커뮤니티에서 사용할 수 있도록 합니다."
+    "1": "TIME 토큰은 HOURGLASS Network의 전체 가치를 캡처하고 전체 BNB 커뮤니티에서 사용할 수 있도록 합니다."
   },
   "Players": {
     "1": "선수"
@@ -102,7 +102,7 @@
     "1": "총 공급"
   },
   "Splash": {
-    "1": "튀김"
+    "1": "TIME"
   },
   "Transactions": {
     "1": "업무"
@@ -120,28 +120,28 @@
     "1": "양"
   },
   "TheWell": {
-    "1": "더 웰"
+    "1": "The Dunes"
   },
   "Price": {
     "1": "가격"
   },
   "SOL/Splash": {
-    "1": "아백스/드립"
+    "1": "BNB/TIME"
   },
   "SOLBalance": {
-    "1": "아백스 잔액"
+    "1": "BNB 잔액"
   },
   "USDT": {
     "1": "USDT"
   },
   "SOL": {
-    "1": "비앤비"
+    "1": "BNB"
   },
   "SplashBalance": {
-    "1": "드립 잔액"
+    "1": "TIME 잔액"
   },
   "BuySplash": {
-    "1": "드립 구매"
+    "1": "TIME 구매"
   },
   "Slippagetolerance": {
     "1": "미끄럼 공차"
@@ -156,7 +156,7 @@
     "1": "구입"
   },
   "SELLSplash": {
-    "1": "드립 판매"
+    "1": "TIME 판매"
   },
   "Max": {
     "1": "최대"
@@ -168,7 +168,7 @@
     "1": "팔다"
   },
   "ApproveSplash": {
-    "1": "드립 승인"
+    "1": "TIME 승인"
   },
   "Chart": {
     "1": "차트"
@@ -177,7 +177,7 @@
     "1": "통계"
   },
   "TheWellisthebestwaytoexchangevalueintheSplashNetwork!Herearethenumbers": {
-    "1": "우물은 튀김 Network에서 가치를 교환하는 가장 좋은 방법입니다! 다음은 숫자입니다."
+    "1": "The Dunes는 HOURGLASS Network에서 가치를 교환하는 가장 좋은 방법입니다! 다음은 숫자입니다."
   },
   "Supply": {
     "1": "공급"
@@ -186,7 +186,7 @@
     "1": "계약 잔액"
   },
   "DROPS": {
-    "1": "액"
+    "1": "GRAINS"
   },
   "LOCKED": {
     "1": "LOCKED"
@@ -224,26 +224,26 @@
   "Total": {
     "1": "총"
   },
-  "Splassive’sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%.": {
-    "1": "Hourglass Finance의 탭은 2%의 일일 투자 수익률을 최대 360%까지 지급함으로써 고수익 예금 증명서와 유사하게 작동하는 저위험 고 보상 계약입니다."
+  "Splassive'sTheTapisalowrisk,highrewardcontractthatoperatessimilarlytoahighyieldcertificateofdepositbypayingout2%dailyreturnoninvestmentupto360%.": {
+    "1": "Hourglass Finance의 My Hourglass는 2%의 일일 투자 수익률을 최대 360%까지 지급함으로써 고수익 예금 증명서와 유사하게 작동하는 저위험 고 보상 계약입니다."
   },
   "Playerscancompoundandextendtheirearningsthroughdeposits,hydrating(compounding)rewardsaswellasthroughteambasedreferrals.": {
-    "1": "플레이어는 예금, 수화(복합) 보상 및 팀 기반 추천을 통해 수입을 복합 및 확장할 수 있습니다."
+    "1": "플레이어는 예금, REFILL(복합) 보상 및 팀 기반 추천을 통해 수입을 복합 및 확장할 수 있습니다."
   },
   "CopyReferralLink": {
     "1": "추천 링크 복사"
   },
   "GetSplash": {
-    "1": "드립 받기"
+    "1": "TIME 받기"
   },
   "Aminimumof1Splashrequiredfordeposits": {
-    "1": "예금을 위해 최소 1개의 스플래시가 필요합니다."
+    "1": "예금을 위해 최소 1개의 TIME이 필요합니다."
   },
   "A10%taxischargedondeposits": {
     "1": "보증금에 10%의 세금이 부과됩니다."
   },
   "HYDRATE": {
-    "1": "수화 시키다"
+    "1": "REFILL"
   },
   "recompound": {
     "1": "다시 합성하다"
@@ -252,10 +252,10 @@
     "1": "주장하다"
   },
   "JoinTheWave": {
-    "1": "웨이브에 합류"
+    "1": ""
   },
   "CurrentWaveStarter": {
-    "1": "현재 웨이브 스타터"
+    "1": ""
   },
   "None": {
     "1": "없음"
@@ -273,7 +273,7 @@
     "1": "비활성 임계값"
   },
   "WaveStarter": {
-    "1": "웨이브 스타터"
+    "1": ""
   },
   "Update": {
     "1": "업데이트"
@@ -282,7 +282,7 @@
     "1": "마케팅 및 개발 지원"
   },
   "CheckoutWhoSplashed": {
-    "1": "누가 스플래쉬를 했는지 체크아웃"
+    "1": "누가 예치했는지 확인"
   },
   "PlayerLookup": {
     "1": "플레이어 조회"
@@ -375,7 +375,7 @@
     "1": "수신자 수"
   },
   "EstimatedSplashperperson": {
-    "1": "1인당 예상 드립"
+    "1": "1인당 예상 TIME"
   },
   "SEND": {
     "1": "보내다"
@@ -398,20 +398,20 @@
   "About": {
     "1": "에 대한"
   },
-  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser’sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage.": {
-    "1": "플레이어는 플랫폼의 우물 페이지에서 튀김을 구매하고 다른 사용자의 튀김 팀에 합류하여 참여할 수 있습니다(1 튀김 최소 요구 사항). 탭 계약에 튀김을 예치하면 튀김의 2% 일일 수익(최대 지불금 최대 365%)을 소극적으로 얻을 수 있습니다. 플레이어는 또한 정기적인 예금, 롤링 보상 및 팀 기반 추천을 통해 수입을 복합할 수 있습니다. 일관된 일일 수익률을 약속하는 다른 많은 플랫폼과 달리 탭의 계약은 소진될 수 없으며 항상 보상을 받은 튀김을 제공할 수 있습니다. 튀김 보상은 플랫폼의 우물 페이지에서 구매를 제외한 모든 튀김 거래에 대한 10% 세금에서 나옵니다."
+  "PlayerscanparticipatebypurchasingSplashfromtheplatform'sTheWellpage,joininganotheruser'sSplashteam(1Splashminimumrequirement)DepositingSplashtotheTheTapcontractearnsaconsistent2%dailyreturnoftheirSplash(365%maximumpayout)passively.Playerscanalsocompoundtheirearningsthroughregulardeposits,rollingrewardsaswellasteambasedreferrals.Unlikemanyotherplatformspromisingaconsistentdaily%return,TheTap'scontractcannotdrainandwillALWAYSbeabletoprovidetheSplashthathasbeenrewarded.Splashrewardscomefroma10%taxonallSplashtransactionsexcludingbuysfromtheplatform'sTheWellpage.": {
+    "1": "플레이어는 플랫폼의 The Dunes 페이지에서 TIME을 구매하고 다른 사용자의 TIME 팀에 합류하여 참여할 수 있습니다(1 TIME 최소 요구 사항). My Hourglass 계약에 TIME을 예치하면 TIME의 2% 일일 수익(최대 지불금 최대 365%)을 소극적으로 얻을 수 있습니다. 플레이어는 또한 정기적인 예금, 롤링 보상 및 팀 기반 추천을 통해 수입을 복합할 수 있습니다. 일관된 일일 수익률을 약속하는 다른 많은 플랫폼과 달리 My Hourglass의 계약은 소진될 수 없으며 항상 보상을 받은 TIME을 제공할 수 있습니다. TIME 보상은 플랫폼의 The Dunes 페이지에서 구매를 제외한 모든 TIME 거래에 대한 10% 세금에서 나옵니다."
   },
   "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofSplashDAOheldinyourwallet": {
-    "1": "세금 풀이 HOUR 보상을 지불하기에 충분하지 않은 상황이 발생하면 보상이 지급되도록 새로운 HOUR가 발행됩니다. HOUR 네트워크 이면의 게임 이론을 감안할 때 시스템이 보상을 지불하기 위해 새로운 HOUR를 발행해야 할 확률은 매우 낮습니다. The Tap에 예치된 HOUR는 소각 주소로 전송되고 HOUR는 저수지 계약을 통해 유동성 풀에 지속적으로 잠겨 있기 때문에 HOUR는 유일한 디플레이션 일일 ROI 플랫폼입니다. HOUR에 대한 최고의 전략은 직접 추천을 통해 팀을 구축하여 실제 채택에 집중하는 것입니다. 귀하는 지갑에 있는 HOUR DAO의 양에 따라 추천하는 플레이어로부터 예금에 대한 추천과 다운라인 보너스를 통해 보너스 보상을 받을 수 있기 때문입니다."
+    "1": "세금 풀이 TIME 보상을 지불하기에 충분하지 않은 상황이 발생하면 보상이 지급되도록 새로운 TIME이 발행됩니다. HOURGLASS Network 이면의 게임 이론을 감안할 때 시스템이 보상을 지불하기 위해 새로운 TIME을 발행해야 할 확률은 매우 낮습니다. My Hourglass에 예치된 TIME은 소각 주소로 전송되고 TIME은 The Mojave 계약을 통해 유동성 풀에 지속적으로 잠겨 있기 때문에 TIME은 유일한 디플레이션 일일 ROI 플랫폼입니다. TIME에 대한 최고의 전략은 직접 추천을 통해 팀을 구축하여 실제 채택에 집중하는 것입니다. 귀하는 지갑에 있는 Hourglass DAO의 양에 따라 추천하는 플레이어로부터 예금에 대한 추천과 다운라인 보너스를 통해 보너스 보상을 받을 수 있기 때문입니다."
   },
   "Rewards": {
     "1": "보상"
   },
   "TotalDROPS": {
-    "1": "총 드롭"
+    "1": "총 GRAINS"
   },
   "DROP": {
-    "1": "하락"
+    "1": "GRAIN"
   },
   "Stake": {
     "1": "말뚝"
@@ -428,8 +428,8 @@
   "CompoundedTotal": {
     "1": "복합 합계"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
-    "1": "The Shore는 튀김에 유동성을 추가하여 비인플레이션 수확량 농업의 이점을 원하는 플레이어를 위한 튀김 네트워크의 솔루션입니다."
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash": {
+    "1": "The Mojave는 TIME에 유동성을 추가하여 비인플레이션 수확량 농업의 이점을 원하는 플레이어를 위한 HOURGLASS Network의 솔루션입니다."
   },
   "COMPOUND": {
     "1": "화합물"
@@ -450,10 +450,10 @@
     "1": "철회하다"
   },
   "DropBalance": {
-    "1": "잔액 삭제"
+    "1": "GRAIN 잔액"
   },
-  "TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
-    "1": "The Shore는 튀김에 유동성을 추가하여 비인플레이션 수확량 농업의 이점을 원하는 플레이어를 위한 튀김 네트워크의 솔루션입니다. 다음은 숫자입니다."
+  "TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers": {
+    "1": "The Mojave는 TIME에 유동성을 추가하여 비인플레이션 수확량 농업의 이점을 원하는 플레이어를 위한 HOURGLASS Network의 솔루션입니다. 다음은 숫자입니다."
   },
   "UserCount": {
     "1": "사용자 수"

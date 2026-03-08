@@ -223,7 +223,7 @@ const Facuet = ({ oneTokenPrice }) => {
             toast.error("Incorrrect palyer's Address")
           }
         } else {
-          toast.error("Looks like you forgot to enter Splash Amount")
+          toast.error("Looks like you forgot to enter TIME Amount")
         }
       }
 
@@ -1126,7 +1126,7 @@ const Facuet = ({ oneTokenPrice }) => {
                             <input
                               ref={inputEl}
                               type="number"
-                              placeholder="Splash"
+                              placeholder="TIME"
                               className="form-control"
                               id="__BVID__213"
                             />
@@ -1202,11 +1202,11 @@ const Facuet = ({ oneTokenPrice }) => {
               </div>
             </div>
             <div className="row mb-4 mt-2">
+              {/* Wave section commented out during rebrand
               <div className="container col-12 col-xl-6 col-lg-6 col-md-6 mb-4">
                 <h2>{t("JoinTheWave.1")}</h2>
                 <div className="card text-white" style={{ backgroundColor: "#4e2e4b", color: "#dacc79", border: "2px solid #4e2e4b" }}>
                   <div className="card-body">
-                    {/* <p className="card-text"> */}
                     <p className=" fst-italic" style={{ fontSize: "18px" }}>
                       {t("CurrentWaveStarter.1")}
                     </p>
@@ -1220,32 +1220,6 @@ const Facuet = ({ oneTokenPrice }) => {
                     >
                       <b>{currentWaveStarter}</b>
                     </span>
-                    {/* <p className=" fst-italic" style={{ fontSize: "18px" }}>
-                      {t("Manager.1")}
-                    </p>
-                    <span
-                      className=" fst-italic"
-                      style={{
-                        color: "#b8b6b6",
-                        fontSize: "20px",
-                        lineHeight: "30%",
-                      }}
-                    >
-                      <b>{manager}</b>
-                    </span> */}
-                    {/* <p className=" fst-italic" style={{ fontSize: "18px" }}>
-                      {t("Beneficiary.1")}
-                    </p>
-                    <span
-                      className=" fst-italic"
-                      style={{
-                        color: "#b8b6b6",
-                        fontSize: "20px",
-                        lineHeight: "30%",
-                      }}
-                    >
-                      <b>{benificiary}</b> */}
-                    {/* </span> */}
                     <p className=" fst-italic" style={{ fontSize: "18px" }}>
                       {t("LastCheckin.1")}
                     </p>
@@ -1259,20 +1233,6 @@ const Facuet = ({ oneTokenPrice }) => {
                     >
                       <b>{lastCheckin}</b>
                     </span>
-                    {/* <p className=" fst-italic" style={{ fontSize: "18px" }}>
-                      {t("InactivityThreshold.1")}
-                    </p>
-                    <span
-                      className=" fst-italic"
-                      style={{
-                        color: "#b8b6b6",
-                        fontSize: "20px",
-                        lineHeight: "30%",
-                      }}
-                    >
-                      <b>{inActiveThreshols}</b>
-                    </span> */}
-                    {/* </p> */}
                     <form className>
                       <div id="buddy-input">
                         <fieldset className="form-group" id="__BVID__216">
@@ -1322,6 +1282,7 @@ const Facuet = ({ oneTokenPrice }) => {
                   </div>
                 </div>
               </div>
+              */}
               <div className="container col-12 col-xl-6 col-lg-6 col-md-6 mb-4">
                 <h2>{t("CheckoutWhoSplashed.1")}</h2>
                 <div className="card text-white" style={{ backgroundColor: "#4e2e4b", color: "#dacc79", border: "2px solid #4e2e4b" }}>
@@ -2060,7 +2021,7 @@ const Facuet = ({ oneTokenPrice }) => {
                                 >
                                   <input
                                     type="number"
-                                    placeholder="Splash"
+                                    placeholder="TIME"
                                     ref={airAmount}
                                     className="form-control"
                                     id="__BVID__213"
