@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 // Treat .js files containing JSX as JSX — needed for CRA-heritage files
 // that were never renamed to .jsx (e.g. the locked WarpBox component).
@@ -25,13 +24,6 @@ export default defineConfig({
   plugins: [
     react(),
     jsxInJs(),
-    nodePolyfills({
-      include: ['buffer', 'process', 'stream', 'crypto', 'http', 'https', 'os', 'url', 'assert'],
-      globals: {
-        Buffer: true,
-        process: true,
-      },
-    }),
   ],
   server: {
     port: 3000,
@@ -46,8 +38,5 @@ export default defineConfig({
         quietDeps: true,
       },
     },
-  },
-  define: {
-    global: 'globalThis',
   },
 })
