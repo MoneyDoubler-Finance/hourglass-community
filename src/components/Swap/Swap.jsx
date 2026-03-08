@@ -8,9 +8,9 @@ import van from "../../images/van.png";
 import contact from "../../images/contact (2).png";
 import transfer from "../../images/transfer.png";
 import { useTranslation } from "react-i18next";
-import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
 import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import BSPopover from "react-bootstrap/Popover";
 import Chart from "./Chart";
 import WarpBox from "../WarpBox/WarpBox";
 import axios from "axios";
@@ -645,31 +645,6 @@ const Swap = ({setOneTokenPrice}) => {
     setBoxOne(!boxOne);
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-
-  const [data, setdata] = React.useState(null);
-
-  const handleClickon = (event) => {
-    setdata(event.currentTarget);
-  };
-
-  const handleCloseon = () => {
-    setdata(null);
-  };
-
-  const opento = Boolean(data);
-  const idto = opento ? "simple-popover" : undefined;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -828,155 +803,150 @@ const Swap = ({setOneTokenPrice}) => {
                                 className="dropdown b-dropdown btn-group"
                                 id="__BVID__91"
                               >
-                                <Button
-                                  aria-describedby={id}
-                                  variant="info"
-                                  onClick={handleClickon}
-                                  style={{
-                                    backgroundColor: "#86ad74",
-                                    border: "1px solid #86ad74",
-                                  }}
-                                >
-                                  <svg
-                                    viewBox="0 0 16 16"
-                                    width="1em"
-                                    height="1em"
-                                    focusable="false"
-                                    role="img"
-                                    aria-label="gear fill"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor"
-                                    className="bi-gear-fill b-icon bi"
-                                    style={{ width: "16px", height: "16px" }}
-                                  >
-                                    <g>
-                                      <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"></path>
-                                    </g>
-                                  </svg>
-                                </Button>
-                                <Popover
-                                  className="popoverhere"
-                                  id={idto}
-                                  open={opento}
-                                  anchorEl={data}
-                                  onClose={handleCloseon}
-                                  anchorOrigin={{
-                                    vertical: "bottom",
-                                    horizontal: "left",
-                                  }}
-                                >
-                                  <Typography sx={{ p: 2 }}>
-                                    {" "}
-                                    <ul
-                                      role="menu"
-                                      tabIndex={1}
-                                      className="Ullist"
-                                    >
-                                      <li role="presentation">
-                                        <div
-                                          role="group"
-                                          className="form-group"
-                                          id="__BVID__101"
-                                          style={{ whiteSpace: "nowrap" }}
+                                <OverlayTrigger
+                                  trigger="click"
+                                  placement="bottom-start"
+                                  rootClose
+                                  overlay={
+                                    <BSPopover id="buy-slippage-popover" className="popoverhere">
+                                      <BSPopover.Body>
+                                        <ul
+                                          role="menu"
+                                          tabIndex={1}
+                                          className="Ullist"
                                         >
-                                          <label
-                                            htmlFor="dropdown-sell-slippage-config"
-                                            className="d-block"
-                                            id="__BVID__101__BV_label_"
-                                          >
-                                            {t("Slippagetolerance.1")}
-                                          </label>
-                                          <div>
-                                            <div
-                                              role="radiogroup"
-                                              tabIndex={-1}
-                                              className="pt-2 bv-no-focus-ring"
-                                              id="__BVID__102"
-                                              style={{
-                                                display: "flex",
-                                                flexDirection: "row",
-                                                justifyContent: "space-evenly",
-                                              }}
-                                            >
-                                              <div
-                                                className="radio-btn"
-                                                onClick={async () => {
-                                                  setTripType("1");
-                                                  await enterRadioAmount1();
-                                                }}
-                                              >
-                                                <input
-                                                  type="radio"
-                                                  value={tripType}
-                                                  name="tripType"
-                                                  checked={tripType === "1"}
-                                                />
-                                                1%
-                                              </div>
-
-                                              <div
-                                                className="radio-btn"
-                                                onClick={async () => {
-                                                  setTripType("3");
-                                                  await enterRadioAmount3();
-                                                }}
-                                              >
-                                                <input
-                                                  type="radio"
-                                                  value={tripType}
-                                                  name="tripType"
-                                                  checked={tripType === "3"}
-                                                />
-                                                3%
-                                              </div>
-
-                                              <div
-                                                className="radio-btn"
-                                                onClick={async () => {
-                                                  setTripType("5");
-                                                  await enterRadioAmount5();
-                                                }}
-                                              >
-                                                <input
-                                                  type="radio"
-                                                  value={tripType}
-                                                  name="tripType"
-                                                  checked={tripType === "5"}
-                                                />
-                                                5%
-                                              </div>
-                                            </div>
+                                          <li role="presentation">
                                             <div
                                               role="group"
-                                              className="input-group"
+                                              className="form-group"
+                                              id="__BVID__101"
+                                              style={{ whiteSpace: "nowrap" }}
                                             >
-                                              <input
-                                                // id="dropdown-sell-slippage-config"
-                                                type="number"
-                                                // value={tripType}
-
-                                                ref={mYentered}
-                                                className="form-control"
-                                                onChange={async () =>
-                                                  await myOnchangeInputBuySwap()
-                                                }
-
-                                              />
-                                              <div className="input-group-append">
-                                                <button
-                                                  type="button"
-                                                  className="btn btn-secondary btn-sm"
+                                              <label
+                                                htmlFor="dropdown-sell-slippage-config"
+                                                className="d-block"
+                                                id="__BVID__101__BV_label_"
+                                              >
+                                                {t("Slippagetolerance.1")}
+                                              </label>
+                                              <div>
+                                                <div
+                                                  role="radiogroup"
+                                                  tabIndex={-1}
+                                                  className="pt-2 bv-no-focus-ring"
+                                                  id="__BVID__102"
+                                                  style={{
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    justifyContent: "space-evenly",
+                                                  }}
                                                 >
-                                                  %
-                                                </button>
+                                                  <div
+                                                    className="radio-btn"
+                                                    onClick={async () => {
+                                                      setTripType("1");
+                                                      await enterRadioAmount1();
+                                                    }}
+                                                  >
+                                                    <input
+                                                      type="radio"
+                                                      value={tripType}
+                                                      name="tripType"
+                                                      checked={tripType === "1"}
+                                                    />
+                                                    1%
+                                                  </div>
+
+                                                  <div
+                                                    className="radio-btn"
+                                                    onClick={async () => {
+                                                      setTripType("3");
+                                                      await enterRadioAmount3();
+                                                    }}
+                                                  >
+                                                    <input
+                                                      type="radio"
+                                                      value={tripType}
+                                                      name="tripType"
+                                                      checked={tripType === "3"}
+                                                    />
+                                                    3%
+                                                  </div>
+
+                                                  <div
+                                                    className="radio-btn"
+                                                    onClick={async () => {
+                                                      setTripType("5");
+                                                      await enterRadioAmount5();
+                                                    }}
+                                                  >
+                                                    <input
+                                                      type="radio"
+                                                      value={tripType}
+                                                      name="tripType"
+                                                      checked={tripType === "5"}
+                                                    />
+                                                    5%
+                                                  </div>
+                                                </div>
+                                                <div
+                                                  role="group"
+                                                  className="input-group"
+                                                >
+                                                  <input
+                                                    // id="dropdown-sell-slippage-config"
+                                                    type="number"
+                                                    // value={tripType}
+
+                                                    ref={mYentered}
+                                                    className="form-control"
+                                                    onChange={async () =>
+                                                      await myOnchangeInputBuySwap()
+                                                    }
+
+                                                  />
+                                                  <div className="input-group-append">
+                                                    <button
+                                                      type="button"
+                                                      className="btn btn-secondary btn-sm"
+                                                    >
+                                                      %
+                                                    </button>
+                                                  </div>
+                                                </div>
                                               </div>
                                             </div>
-                                          </div>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </Typography>
-                                </Popover>
+                                          </li>
+                                        </ul>
+                                      </BSPopover.Body>
+                                    </BSPopover>
+                                  }
+                                >
+                                  <Button
+                                    variant="info"
+                                    style={{
+                                      backgroundColor: "#86ad74",
+                                      border: "1px solid #86ad74",
+                                    }}
+                                  >
+                                    <svg
+                                      viewBox="0 0 16 16"
+                                      width="1em"
+                                      height="1em"
+                                      focusable="false"
+                                      role="img"
+                                      aria-label="gear fill"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="currentColor"
+                                      className="bi-gear-fill b-icon bi"
+                                      style={{ width: "16px", height: "16px" }}
+                                    >
+                                      <g>
+                                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"></path>
+                                      </g>
+                                    </svg>
+                                  </Button>
+                                </OverlayTrigger>
                               </div>
                             </div>
                           </div>
@@ -1080,154 +1050,150 @@ const Swap = ({setOneTokenPrice}) => {
                                 className="dropdown b-dropdown btn-group"
                                 id="__BVID__100"
                               >
-                                <Button
-                                  aria-describedby={id}
-                                  variant="info"
-                                  onClick={handleClick}
-                                  style={{
-                                    backgroundColor: "#86ad74",
-                                    border: "1px solid #86ad74",
-                                  }}
-                                >
-                                  <svg
-                                    viewBox="0 0 16 16"
-                                    width="1em"
-                                    height="1em"
-                                    focusable="false"
-                                    role="img"
-                                    aria-label="gear fill"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor"
-                                    className="bi-gear-fill b-icon bi"
-                                    style={{ width: "16px", height: "16px" }}
-                                  >
-                                    <g>
-                                      <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"></path>
-                                    </g>
-                                  </svg>
-                                </Button>
-                                <Popover
-                                  className="popoverhere2"
-                                  id={id}
-                                  open={open}
-                                  anchorEl={anchorEl}
-                                  onClose={handleClose}
-                                  anchorOrigin={{
-                                    vertical: "bottom",
-                                    horizontal: "left",
-                                  }}
-                                >
-                                  <Typography sx={{ p: 2 }}>
-                                    <ul
-                                      role="menu"
-                                      tabIndex={1}
-                                      className="Ullist"
-                                    >
-                                      <li role="presentation">
-                                        <div
-                                          role="group"
-                                          className="form-group"
-                                          id="__BVID__101"
-                                          style={{ whiteSpace: "nowrap" }}
+                                <OverlayTrigger
+                                  trigger="click"
+                                  placement="bottom-start"
+                                  rootClose
+                                  overlay={
+                                    <BSPopover id="sell-slippage-popover" className="popoverhere2">
+                                      <BSPopover.Body>
+                                        <ul
+                                          role="menu"
+                                          tabIndex={1}
+                                          className="Ullist"
                                         >
-                                          <label
-                                            htmlFor="dropdown-sell-slippage-config"
-                                            className="d-block"
-                                            id="__BVID__101__BV_label_"
-                                          >
-                                            {t("Slippagetolerance.1")}
-                                          </label>
-                                          <div>
-                                            <div
-                                              role="radiogroup"
-                                              tabIndex={-1}
-                                              className="pt-2 bv-no-focus-ring"
-                                              id="__BVID__102"
-                                              style={{
-                                                display: "flex",
-                                                flexDirection: "row",
-                                                justifyContent: "space-evenly",
-                                              }}
-                                            >
-                                              <div
-                                                className="radio-btn"
-                                                onClick={async () => {
-                                                  await myRadioSellSplash1();
-                                                  setTripType1("1");
-                                                }}
-                                              >
-                                                <input
-                                                  type="radio"
-                                                  value={tripType1}
-                                                  name="tripType1"
-                                                  checked={tripType1 === "1"}
-                                                />
-                                                1%
-                                              </div>
-
-                                              <div
-                                                className="radio-btn"
-                                                onClick={async () => {
-                                                  await myRadioSellSplash3();
-                                                  setTripType1("3");
-                                                }}
-                                              >
-                                                <input
-                                                  type="radio"
-                                                  value={tripType1}
-                                                  name="tripType"
-                                                  checked={tripType1 === "3"}
-                                                />
-                                                3%
-                                              </div>
-
-                                              <div
-                                                className="radio-btn"
-                                                onClick={async () => {
-                                                  await myRadioSellSplash5();
-                                                  setTripType1("5");
-                                                }}
-                                              >
-                                                <input
-                                                  type="radio"
-                                                  value={tripType1}
-                                                  name="tripType"
-                                                  checked={tripType1 === "5"}
-                                                />
-                                                5%
-                                              </div>
-                                            </div>
+                                          <li role="presentation">
                                             <div
                                               role="group"
-                                              className="input-group"
+                                              className="form-group"
+                                              id="__BVID__101"
+                                              style={{ whiteSpace: "nowrap" }}
                                             >
-                                              <input
-                                                // id="dropdown-sell-slippage-config"
-                                                type="number"
-                                                ref={mYEnter1}
-                                                // value={tripType1}
-                                                max={50}
-                                                className="form-control"
-                                                onChange={async () =>
-                                                  await myOnchangeInputSellSplash()
-                                                }
-
-                                              />
-                                              <div className="input-group-append">
-                                                <button
-                                                  type="button"
-                                                  className="btn btn-secondary btn-sm"
+                                              <label
+                                                htmlFor="dropdown-sell-slippage-config"
+                                                className="d-block"
+                                                id="__BVID__101__BV_label_"
+                                              >
+                                                {t("Slippagetolerance.1")}
+                                              </label>
+                                              <div>
+                                                <div
+                                                  role="radiogroup"
+                                                  tabIndex={-1}
+                                                  className="pt-2 bv-no-focus-ring"
+                                                  id="__BVID__102"
+                                                  style={{
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    justifyContent: "space-evenly",
+                                                  }}
                                                 >
-                                                  %
-                                                </button>
+                                                  <div
+                                                    className="radio-btn"
+                                                    onClick={async () => {
+                                                      await myRadioSellSplash1();
+                                                      setTripType1("1");
+                                                    }}
+                                                  >
+                                                    <input
+                                                      type="radio"
+                                                      value={tripType1}
+                                                      name="tripType1"
+                                                      checked={tripType1 === "1"}
+                                                    />
+                                                    1%
+                                                  </div>
+
+                                                  <div
+                                                    className="radio-btn"
+                                                    onClick={async () => {
+                                                      await myRadioSellSplash3();
+                                                      setTripType1("3");
+                                                    }}
+                                                  >
+                                                    <input
+                                                      type="radio"
+                                                      value={tripType1}
+                                                      name="tripType"
+                                                      checked={tripType1 === "3"}
+                                                    />
+                                                    3%
+                                                  </div>
+
+                                                  <div
+                                                    className="radio-btn"
+                                                    onClick={async () => {
+                                                      await myRadioSellSplash5();
+                                                      setTripType1("5");
+                                                    }}
+                                                  >
+                                                    <input
+                                                      type="radio"
+                                                      value={tripType1}
+                                                      name="tripType"
+                                                      checked={tripType1 === "5"}
+                                                    />
+                                                    5%
+                                                  </div>
+                                                </div>
+                                                <div
+                                                  role="group"
+                                                  className="input-group"
+                                                >
+                                                  <input
+                                                    // id="dropdown-sell-slippage-config"
+                                                    type="number"
+                                                    ref={mYEnter1}
+                                                    // value={tripType1}
+                                                    max={50}
+                                                    className="form-control"
+                                                    onChange={async () =>
+                                                      await myOnchangeInputSellSplash()
+                                                    }
+
+                                                  />
+                                                  <div className="input-group-append">
+                                                    <button
+                                                      type="button"
+                                                      className="btn btn-secondary btn-sm"
+                                                    >
+                                                      %
+                                                    </button>
+                                                  </div>
+                                                </div>
                                               </div>
                                             </div>
-                                          </div>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </Typography>
-                                </Popover>
+                                          </li>
+                                        </ul>
+                                      </BSPopover.Body>
+                                    </BSPopover>
+                                  }
+                                >
+                                  <Button
+                                    variant="info"
+                                    style={{
+                                      backgroundColor: "#86ad74",
+                                      border: "1px solid #86ad74",
+                                    }}
+                                  >
+                                    <svg
+                                      viewBox="0 0 16 16"
+                                      width="1em"
+                                      height="1em"
+                                      focusable="false"
+                                      role="img"
+                                      aria-label="gear fill"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="currentColor"
+                                      className="bi-gear-fill b-icon bi"
+                                      style={{ width: "16px", height: "16px" }}
+                                    >
+                                      <g>
+                                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"></path>
+                                      </g>
+                                    </svg>
+                                  </Button>
+                                </OverlayTrigger>
                               </div>
                             </div>
                           </div>
