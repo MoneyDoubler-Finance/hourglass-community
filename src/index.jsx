@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { Suspense } from "react";
+import React, { Suspense } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App';
 import './i18next';
-ReactDOM.render(
-    <Suspense fallback={<div>Loading ...</div>}>
-    <App />
-  </Suspense>
-  ,
 
-  document.getElementById("root")
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Suspense fallback={<div>Loading ...</div>}>
+      <App />
+    </Suspense>
+  </React.StrictMode>
 );
