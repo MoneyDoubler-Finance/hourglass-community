@@ -69,7 +69,7 @@ const Facuet = ({ oneTokenPrice }) => {
   let [showTeamStatus, setShowTeamStatus] = useState([])
 
   const { address, isConnected } = useAccount();
-  const { writeContract } = useWriteContract();
+  const { writeContract, writeContractAsync } = useWriteContract();
 
   // ── Declarative contract reads (wagmi hooks) ──
 
@@ -239,30 +239,23 @@ const Facuet = ({ oneTokenPrice }) => {
             if (uplineAddress == "0x0000000000000000000000000000000000000000") {
               toast.error("No Refferral ")
             } else {
-              writeContract({
-                ...tokenConfig,
-                functionName: 'approve',
-                args: [faucetContractAddress, weiAmount],
-              }, {
-                onSuccess: () => {
-                  toast.success("Transaction confirmed")
-                  writeContract({
-                    ...faucetConfig,
-                    functionName: 'airdrop',
-                    args: [enteredAddrs, weiAmount],
-                  }, {
-                    onSuccess: () => {
-                      toast.success("Transaction confirmed")
-                    },
-                    onError: () => {
-                      toast.error("Transaction Failed")
-                    }
-                  })
-                },
-                onError: () => {
-                  toast.error("Transaction Failed")
-                }
-              })
+              try {
+                await writeContractAsync({
+                  ...tokenConfig,
+                  functionName: 'approve',
+                  args: [faucetContractAddress, weiAmount],
+                })
+                toast.success("Approval confirmed")
+
+                await writeContractAsync({
+                  ...faucetConfig,
+                  functionName: 'airdrop',
+                  args: [enteredAddrs, weiAmount],
+                })
+                toast.success("Airdrop confirmed")
+              } catch (e) {
+                toast.error("Transaction Failed")
+              }
             }
           } else {
             toast.error("Insufficient Balance Please Recharge!")

@@ -1,5 +1,5 @@
 import { http, createConfig } from 'wagmi'
-import { defineChain } from 'viem'
+import { defineChain, fallback } from 'viem'
 
 export const bscTestnet = defineChain({
   id: 97,
@@ -11,7 +11,11 @@ export const bscTestnet = defineChain({
   },
   rpcUrls: {
     default: {
-      http: [import.meta.env.VITE_NODE_1],
+      http: [
+        import.meta.env.VITE_NODE_1,
+        import.meta.env.VITE_NODE_2,
+        import.meta.env.VITE_NODE_3,
+      ],
     },
   },
   blockExplorers: {
@@ -23,6 +27,10 @@ export const bscTestnet = defineChain({
 export const config = createConfig({
   chains: [bscTestnet],
   transports: {
-    [bscTestnet.id]: http(import.meta.env.VITE_NODE_1),
+    [bscTestnet.id]: fallback([
+      http(import.meta.env.VITE_NODE_1),
+      http(import.meta.env.VITE_NODE_2),
+      http(import.meta.env.VITE_NODE_3),
+    ]),
   },
 })
