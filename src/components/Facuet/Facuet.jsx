@@ -11,7 +11,7 @@ import { buddySystemAddress, buddySystemAbi } from "../utils/BuddySystem"
 import "./Facuet.css";
 import { useTranslation } from "react-i18next";
 import { loadWeb3 } from "../api";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router";
 import axios from 'axios'
 import Web3 from "web3";
 import Table from 'react-bootstrap/Table'

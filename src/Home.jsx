@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 import Main from "./components/Main/Main";
 import Swap from "./components/Swap/Swap";
 import Facuet from "./components/Facuet/Facuet";

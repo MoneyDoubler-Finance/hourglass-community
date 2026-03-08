@@ -7,7 +7,7 @@ import curve from "../../images/curve.png";
 import van from "../../images/van.png";
 import transfer from "../../images/transfer.png";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import { dripTokenAddress, dripTokenAbi } from "../utils/DripToken";
 import { loadWeb3 } from "../api";

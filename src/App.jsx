@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Main from "./components/Main/Main";
 import Swap from "./components/Swap/Swap";
 import Facuet from "./components/Facuet/Facuet";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 import Reservoir from "./components/Reservoir/Reservoir";
 import bg1 from "./images/bg1.jpg";
 import Home from "./Home";
