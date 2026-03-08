@@ -1,5 +1,5 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
+import { Card } from "react-bootstrap";
 
 import {
   Chart,
@@ -9,7 +9,6 @@ import {
   Title,
   Legend,
 } from "@devexpress/dx-react-chart-material-ui";
-import { withStyles } from "@material-ui/core/styles";
 import { ArgumentScale, Animation } from "@devexpress/dx-react-chart";
 import { curveCatmullRom, area } from "d3-shape";
 import { scalePoint } from "d3-scale";
@@ -27,34 +26,22 @@ const data = [
   { month: "Nov", appStore: 120 },
   { month: "Dec", appStore: 160 },
 ];
-const legendStyles = () => ({
-  root: {
-    display: "flex",
-    margin: "auto",
-    flexDirection: "row",
-    backgroungColor: "red",
-  },
-});
-const legendRootBase = ({ classes, ...restProps }) => (
-  <Legend.Root {...restProps} className={classes.root} />
+
+const legendRootStyle = {
+  display: "flex",
+  margin: "auto",
+  flexDirection: "row",
+};
+const Root = (props) => (
+  <Legend.Root {...props} style={legendRootStyle} />
 );
-const Root = withStyles(legendStyles, { name: "LegendRoot" })(legendRootBase);
-const legendLabelStyles = () => ({
-  label: {
-    whiteSpace: "nowrap",
-  },
-});
-const legendLabelBase = ({ classes, ...restProps }) => (
-  <Legend.Label className={classes.label} {...restProps} />
+
+const legendLabelStyle = { whiteSpace: "nowrap" };
+const Label = (props) => (
+  <Legend.Label {...props} style={legendLabelStyle} />
 );
-const Label = withStyles(legendLabelStyles, { name: "LegendLabel" })(
-  legendLabelBase
-);
-const demoStyles = () => ({
-  chart: {
-    paddingRight: "20px",
-  },
-});
+
+const chartStyle = { paddingRight: "20px" };
 
 const Area = (props) => (
   <AreaSeries.Path
@@ -77,10 +64,9 @@ class ChartOne extends React.PureComponent {
 
   render() {
     const { data: chartData } = this.state;
-    const { classes } = this.props;
     return (
-      <Paper>
-        <Chart data={chartData} className={classes.chart}>
+      <Card>
+        <Chart data={chartData} style={chartStyle}>
           <ArgumentScale factory={scalePoint} />
           <ArgumentAxis />
           <ValueAxis />
@@ -104,12 +90,12 @@ class ChartOne extends React.PureComponent {
             labelComponent={Label}
           /> */}
         </Chart>
-      </Paper>
+      </Card>
     );
   }
 }
 
-export default withStyles(demoStyles, { name: "ChartOne" })(ChartOne);
+export default ChartOne;
 // import {
 //   Chart as ChartJS,
 //   CategoryScale,
