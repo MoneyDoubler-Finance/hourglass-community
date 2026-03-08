@@ -3,7 +3,7 @@ import money from "../../images/money.png";
 import astro from "../../images/astro.png";
 import dummy from "../../images/dummy.png";
 import shake from "../../images/shake.png";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import user from "../../images/user.png";
 import Form from "react-bootstrap/Form";
 import { faucetContractAddress, faucetContractAbi, faucetTokenAddress, faucetTokenAbi } from "../utils/Faucet";

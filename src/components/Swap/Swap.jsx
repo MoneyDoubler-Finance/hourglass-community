@@ -3,7 +3,7 @@ import coin from "../../images/coin.png";
 import balance from "../../images/iconWhite (1).png";
 import drops from "../../images/coinwhite.png";
 import sol from '../../images/sol.png'
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import van from "../../images/van.png";
 import contact from "../../images/contact (2).png";
 import transfer from "../../images/transfer.png";

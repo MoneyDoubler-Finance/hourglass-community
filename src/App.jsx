@@ -5,16 +5,15 @@ import jQuery from "jquery";
 window.jQuery = window.$ = jQuery;
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { render } from "react-dom";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Main from "./components/Main/Main";
 import Swap from "./components/Swap/Swap";
 import Facuet from "./components/Facuet/Facuet";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter } from "react-router/dom";
+import { Routes, Route } from "react-router";
 import Reservoir from "./components/Reservoir/Reservoir";
 import bg1 from "./images/bg1.jpg";
-import Home from "./Home";
 import { useTranslation } from "react-i18next";
 import { WagmiProvider } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -42,14 +41,14 @@ function App() {
           <BrowserRouter>
             <Navbar />
             <Routes>
-              <Route exact path="/" element={<Main />} />
-              <Route exact path="/swap" element={<Swap
+              <Route path="/" element={<Main />} />
+              <Route path="/swap" element={<Swap
               setOneTokenPrice={setOneTokenPrice}
               />} />
-              <Route exact path="/facuet" element={<Facuet
+              <Route path="/facuet" element={<Facuet
               oneTokenPrice={oneTokenPrice}
               />} />
-              <Route exact path="/reservoir" element={<Reservoir />} />
+              <Route path="/reservoir" element={<Reservoir />} />
             </Routes>
             <Footer />
           </BrowserRouter>
