@@ -1,17 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-import {
-  Chart,
-  ArgumentAxis,
-  ValueAxis,
-  AreaSeries,
-  Title,
-  Legend,
-} from "@devexpress/dx-react-chart-bootstrap4";
-import { ArgumentScale, Animation } from "@devexpress/dx-react-chart";
-import { curveCatmullRom, area } from "d3-shape";
-import { scalePoint } from "d3-scale";
 const data = [
   { month: "Jan", appStore: 101 },
   { month: "Feb", appStore: 89 },
@@ -27,130 +16,73 @@ const data = [
   { month: "Dec", appStore: 160 },
 ];
 
-const legendRootStyle = {
-  display: "flex",
-  margin: "auto",
-  flexDirection: "row",
-};
-const Root = (props) => (
-  <Legend.Root {...props} style={legendRootStyle} />
-);
+const WIDTH = 600;
+const HEIGHT = 300;
+const PADDING = { top: 20, right: 30, bottom: 40, left: 50 };
 
-const legendLabelStyle = { whiteSpace: "nowrap" };
-const Label = (props) => (
-  <Legend.Label {...props} style={legendLabelStyle} />
-);
+const chartW = WIDTH - PADDING.left - PADDING.right;
+const chartH = HEIGHT - PADDING.top - PADDING.bottom;
 
-const chartStyle = { paddingRight: "20px" };
+const maxVal = Math.max(...data.map((d) => d.appStore));
+const minVal = 0;
 
-const Area = (props) => (
-  <AreaSeries.Path
-    {...props}
-    path={area()
-      .x(({ arg }) => arg)
-      .y1(({ val }) => val)
-      .y0(({ startVal }) => startVal)
-      .curve(curveCatmullRom)}
-  />
-);
-class ChartOne extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const points = data.map((d, i) => ({
+  x: PADDING.left + (i / (data.length - 1)) * chartW,
+  y: PADDING.top + chartH - ((d.appStore - minVal) / (maxVal - minVal)) * chartH,
+}));
 
-    this.state = {
-      data,
-    };
-  }
+const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ");
+const areaPath = `${linePath} L${points[points.length - 1].x},${PADDING.top + chartH} L${points[0].x},${PADDING.top + chartH} Z`;
 
-  render() {
-    const { data: chartData } = this.state;
-    return (
-      <Card>
-        <Chart data={chartData} style={chartStyle}>
-          <ArgumentScale factory={scalePoint} />
-          <ArgumentAxis />
-          <ValueAxis />
+// Y-axis tick values
+const yTicks = [0, 40, 80, 120, 160];
 
-          <AreaSeries
-            // name="App Store"
-            valueField="appStore"
-            argumentField="month"
-            seriesComponent={Area}
-          />
-          <AreaSeries
-            // name="Google Play"
-            valueField="googlePlay"
-            argumentField="month"
-            seriesComponent={Area}
-          />
-          <Animation />
-          {/* <Legend
-            position="bottom"
-            rootComponent={Root}
-            labelComponent={Label}
-          /> */}
-        </Chart>
-      </Card>
-    );
-  }
+function ChartOne() {
+  return (
+    <Card>
+      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} style={{ width: "100%", height: "auto" }}>
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#ab9769" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#ab9769" stopOpacity="0.05" />
+          </linearGradient>
+        </defs>
+
+        {/* Y-axis grid lines and labels */}
+        {yTicks.map((tick) => {
+          const y = PADDING.top + chartH - ((tick - minVal) / (maxVal - minVal)) * chartH;
+          return (
+            <g key={tick}>
+              <line x1={PADDING.left} y1={y} x2={PADDING.left + chartW} y2={y} stroke="#3a3a3a" strokeWidth="0.5" />
+              <text x={PADDING.left - 8} y={y + 4} textAnchor="end" fill="#888" fontSize="11">
+                {tick}
+              </text>
+            </g>
+          );
+        })}
+
+        {/* Area fill */}
+        <path d={areaPath} fill="url(#areaGrad)" />
+
+        {/* Line */}
+        <path d={linePath} fill="none" stroke="#ab9769" strokeWidth="2" />
+
+        {/* X-axis labels */}
+        {data.map((d, i) => (
+          <text
+            key={d.month}
+            x={PADDING.left + (i / (data.length - 1)) * chartW}
+            y={HEIGHT - 8}
+            textAnchor="middle"
+            fill="#888"
+            fontSize="11"
+          >
+            {d.month}
+          </text>
+        ))}
+      </svg>
+    </Card>
+  );
 }
 
 export default ChartOne;
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// } from "chart.js";
-// import { Line } from "react-chartjs-2";
-// import faker from "faker";
-
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// );
-// export const options = {
-//   responsive: true,
-//   plugins: {
-//     legend: {
-
-//     },
-//     title: {
-//       display: true,
-//       text: "Chart.js Line Chart",
-//     },
-//   },
-// };
-
-// const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-// export const data = {
-//   labels,
-//   datasets: [
-//     {
-//       label: "Dataset 1",
-//       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-//       borderColor: "rgb(252, 252, 252)",
-//       backgroundColor: "rgba(255, 99, 132, 0.5)",
-//     },
-
-//   ],
-// };
-// function Chart() {
-//   return (
-//     <div className="container" style={{backgroundColor: "#45a8f7"}}>
-//       <Line options={options} data={data} />
-//     </div>
-//   );
-// }
-
-// export default Chart;

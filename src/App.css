@@ -6,6 +6,16 @@
   font-display: swap;
 }
 
+/* Page route fade-in transition */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.images {
+  animation: pageFadeIn 0.4s ease-out both;
+}
+
 .provider-errors {
   position: absolute;
   top: 48px;

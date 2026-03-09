@@ -36,34 +36,21 @@ const Navbarapp = () => {
       <div className="container">
         <Navbar collapseOnSelect expand="lg" className="" variant="dark">
           {/* <Container> */}
-            <Link to="/">
-              <Navbar.Brand
-                href=""
-                style={{ color: "white" }}
-                className="navbarlogo"
-              >
-                <img src={logo} width="220px"/>
-              </Navbar.Brand>
-            </Link>
+            <Navbar.Brand as={Link} to="/" style={{ color: "white" }} className="navbarlogo">
+              <img src={logo} width="220px"/>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto ">
-                <Link to="/swap" style={{ textDecoration: "none" }}>
-                  {" "}
-                  <Nav.Link href="#swap" className="ml-md-2 mx-1" id="navbartext">
+                <Nav.Link as={Link} to="/swap" className="ml-md-2 mx-1" id="navbartext">
                   {t('TheWell.1')}
-                  </Nav.Link>
-                </Link>
-                <Link to="/facuet" style={{ textDecoration: "none" }}>
-                  <Nav.Link href="#facuet" className=" mx-1" id="navbartext">
+                </Nav.Link>
+                <Nav.Link as={Link} to="/facuet" className=" mx-1" id="navbartext">
                   {t('THETAP.1')}
-                  </Nav.Link>
-                </Link>
-                <Link to="/reservoir" style={{ textDecoration: "none" }}>
-                  <Nav.Link href="#reservoir" className=" mx-1" id="navbartext">
+                </Nav.Link>
+                <Nav.Link as={Link} to="/reservoir" className=" mx-1" id="navbartext">
                   {t('THESHORE.1')}
-                  </Nav.Link>
-                </Link>
+                </Nav.Link>
               </Nav>
               <Nav className="me-3">
                 <Nav.Link href="#deets" id="navbartext">
