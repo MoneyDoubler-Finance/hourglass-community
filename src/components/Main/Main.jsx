@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Main.css";
 import WarpBox from "../WarpBox/WarpBox";
 import I from "../../images/logo4.png";
@@ -7,13 +7,15 @@ import curve from "../../images/curve.png";
 import van from "../../images/van.png";
 import transfer from "../../images/transfer.png";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router";
+import { useReadContract } from 'wagmi';
+import { formatEther } from 'viem';
 import { dripTokenAddress, dripTokenAbi } from "../utils/DripToken";
-import { loadWeb3 } from "../api";
-import Web3 from "web3";
 
-const webSupply = new Web3("https://api.sol-test.network/ext/bc/C/rpc");
+const contractConfig = {
+  address: dripTokenAddress,
+  abi: dripTokenAbi,
+};
 
 const Main = () => {
   const { t } = useTranslation();
@@ -21,59 +23,27 @@ const Main = () => {
   const stakeNavigate = useNavigate();
   const farmNavigate = useNavigate();
 
-  const [dripTransaction, setDriptransaction] = useState(0);
-  const [dripTotalSupply, setDripTotalSupply] = useState(0);
-  const [dripPlayers, setDripplayers] = useState(0);
-  const [eventDetail, setEventDetail] = useState([]);
+  const { data: dripTransaction } = useReadContract({
+    ...contractConfig,
+    functionName: 'totalTxs',
+    query: { refetchInterval: 10000 },
+  });
 
-  const getData = async () => {
-    const tokenContract = new webSupply.eth.Contract(
-      dripTokenAbi,
-      dripTokenAddress
-    );
-    try {
-      const drptrx = await tokenContract.methods.totalTxs().call();
-      const players = await tokenContract.methods.players().call();
-      let ttlSply = await tokenContract.methods.totalSupply().call();
-      ttlSply = webSupply.utils.fromWei(ttlSply);
-      ttlSply = parseFloat(ttlSply).toFixed(3);
+  const { data: dripPlayers } = useReadContract({
+    ...contractConfig,
+    functionName: 'players',
+    query: { refetchInterval: 10000 },
+  });
 
-      setDriptransaction(drptrx);
-      setDripTotalSupply(ttlSply);
-      setDripplayers(players);
-    } catch (e) {
-      console.log("Error while Fetching Data In Main", e);
-    }
-  };
+  const { data: rawTotalSupply } = useReadContract({
+    ...contractConfig,
+    functionName: 'totalSupply',
+    query: { refetchInterval: 10000 },
+  });
 
-  const getEventDetail = async () => {
-    try {
-      const acc = await loadWeb3();
-      if (acc === "No Wallet") {
-        setEventDetail([]);
-      } else {
-        const res = await axios.post(
-          "https://splash-test-app.herokuapp.com/api/users/getTransactionDetail",
-          { address: acc }
-        );
-        setEventDetail(res.data);
-      }
-    } catch (e) {
-      console.log("error while get events", e);
-    }
-  };
-
-  useEffect(() => {
-    const dataInterval = setInterval(getData, 1000);
-    const eventInterval = setInterval(getEventDetail, 10000);
-    getEventDetail();
-
-    return () => {
-      clearInterval(dataInterval);
-      clearInterval(eventInterval);
-      window.scrollTo(0, 0);
-    };
-  }, []);
+  const dripTotalSupply = rawTotalSupply
+    ? parseFloat(formatEther(rawTotalSupply)).toFixed(3)
+    : '0';
 
   return (
     <div className="images">
@@ -196,7 +166,7 @@ const Main = () => {
                     className="notranslate"
                     style={{ color: "#ab9769", fontSize: "20px" }}
                   >
-                    {dripPlayers}
+                    {dripPlayers != null ? dripPlayers.toString() : '0'}
                   </span>
                 </p>
                 <p className="text-small">{t("count.1")}</p>
@@ -262,7 +232,7 @@ const Main = () => {
                     className="notranslate"
                     style={{ color: "#ab9769", fontSize: "20px" }}
                   >
-                    {dripTransaction}
+                    {dripTransaction != null ? dripTransaction.toString() : '0'}
                   </span>
                 </p>
                 <p className="text-small">{t("count.1")}</p>

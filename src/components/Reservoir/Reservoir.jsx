@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import balance from "../../images/balance.png";
 import undo from "../../images/undo.png";
 import refresh from "../../images/refresh.png";
@@ -11,325 +11,348 @@ import dummy from "../../images/dollar.png";
 import transfer from "../../images/transfer.png";
 import { useTranslation } from "react-i18next";
 import { toast } from 'react-toastify';
-import axios from "axios";
-import { loadWeb3 } from "../api";
-import { faucetContractAddress, faucetContractAbi } from "../utils/Faucet";
+import { useAccount, useReadContract, useWriteContract, useBalance } from 'wagmi'
+import { readContract } from '@wagmi/core'
+import { formatEther, parseEther } from 'viem'
+import { config } from '../../config/wagmi'
 import { fountainContractAbi, fountainContractAddress } from '../utils/Fountain';
 import { dripTokenAbi, dripTokenAddress } from '../utils/DripToken';
 import { reservoirAbi, reservoirAddress } from '../utils/Reservoir';
 
 import './Reservuior.css'
-import Web3 from "web3";
-const webSupply = new Web3("https://api.sol-test.network/ext/bc/C/rpc");
+
+const reservoirConfig = {
+  address: reservoirAddress,
+  abi: reservoirAbi,
+};
+
+const fountainConfig = {
+  address: fountainContractAddress,
+  abi: fountainContractAbi,
+};
+
+const tokenConfig = {
+  address: dripTokenAddress,
+  abi: dripTokenAbi,
+};
 
 function Reservoir() {
   const { t, i18n } = useTranslation();
   let buyInput = useRef()
   let withdrawInput = useRef();
-  let [userBnbBalance, setUserBnbBalance] = useState(0);
-  let [userDropBalance, setUserDropBalance] = useState(0);
-  let [bnbDripPrice, setBnbDripPrice] = useState(0);
-  let [userReward, setUserReward] = useState(0)
-  let [totalDrops, setTotalDrops] = useState(0);
-  let [stake, setStake] = useState(0);
-  let [totalWithDraw, setTotalWithDraw] = useState(0);
-  let [compundTotal, setCompoundTotal] = useState(0);
-  let [compund, setCompound]=useState(0);
-  let [player, setPlayer] = useState(0);
-  let [loackedValue, setLoackedValue] = useState(0);
-  let [totalTxs, setTotalTxs] = useState(0)
-  let [reward, setReward] = useState(0);
-  let [dividendPool, setDividendPool] =useState(0);
-  let [contractBal, setContractBal]=useState(0)
-  const getDataWithMetaMask = async () => {
-    try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
-        setUserReward(0)
-      } else {
-        const web3 = window.web3;
-        let contractOf = new web3.eth.Contract(reservoirAbi, reservoirAddress);
-        let fountainContract = new web3.eth.Contract(fountainContractAbi, fountainContractAddress);
-        let bal = await fountainContract.methods.balanceOf(acc).call()
-        bal= web3.utils.fromWei(bal);
-        bal = parseFloat(bal).toFixed(5)
-        let userRew = await contractOf.methods.dividendsOf(acc).call();
-        userRew=  await contractOf.methods.calculateLiquidityToBnb(userRew).call()
-        let stat = await contractOf.methods.statsOf(acc).call();
-        userRew = web3.utils.fromWei(userRew);
-        userRew = parseFloat(userRew).toFixed(11);
-        let draw = web3.utils.fromWei(stat[1])
-         draw = parseFloat(draw).toFixed(7)
-         let totalCom = web3.utils.fromWei(stat[13])
-         totalCom = parseFloat(totalCom).toFixed(7)
-         let stk = web3.utils.fromWei(stat[0]);
-         stk = parseFloat(stk).toFixed(3)
-        setUserReward(userRew)
-        setCompound(stat[14])
-        setTotalWithDraw(draw);
-        setCompoundTotal(totalCom);
-        setStake(stk)
-        setTotalDrops(bal)
-      }
-    } catch (e) {
-      console.log("get data in ", e);
-    }
-  }
 
-  const getDataWithoutMetaMask = async () => {
-    try {
-      let contract = new webSupply.eth.Contract(reservoirAbi, reservoirAddress);
-      let players = await contract.methods.players().call();
-      let loackBalance = await contract.methods.lockedTokenBalance().call();
-      loackBalance =  webSupply.utils.fromWei(loackBalance);
-      loackBalance = parseFloat(loackBalance).toFixed(3);
-      let txs = await contract.methods.totalTxs().call();
-      let rew = await contract.methods.dividendBalance().call()
-      rew = webSupply.utils.fromWei(rew);
-      rew = parseFloat(rew).toFixed(3);
-      let divdPool = await contract.methods.collateralBalance().call();
-      divdPool = webSupply.utils.fromWei(divdPool);
-      divdPool = parseFloat(divdPool).toFixed(3);
-      let displayDividendPool = divdPool / loackBalance;
-      displayDividendPool = parseFloat(displayDividendPool).toFixed(5);
-      
-      let conBal =await window.web3.eth.getBalance(reservoirAddress)
-      conBal = window.web3.utils.fromWei(conBal);
-      conBal = parseFloat(conBal).toFixed(7)
+  const { address, isConnected } = useAccount();
+  const { writeContract } = useWriteContract();
 
-      setContractBal(conBal)
-      setPlayer(players);
-      setLoackedValue(loackBalance)
-      setTotalTxs(txs)
-      setReward(rew);
-      setDividendPool(displayDividendPool)
-    } catch (e) {
-      console.log("error while get without metamsk data", e);
-    }
+  // ── User BNB balance ──
+  const { data: userBnbBalanceData } = useBalance({
+    address: address,
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-  }
+  const userBnbBalance = userBnbBalanceData
+    ? parseFloat(formatEther(userBnbBalanceData.value)).toFixed(3)
+    : 0;
 
-  const bnbBalance = async () => {
-    try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
-        setUserBnbBalance(0)
-      } else {
-        const web3 = window.web3;
-        let userBnB = await web3.eth.getBalance(acc);
-        let convertUserBnB = await web3.utils.fromWei(userBnB);
-        convertUserBnB = parseFloat(convertUserBnB).toFixed(3)
-        setUserBnbBalance(convertUserBnB)
-      }
-    } catch (e) {
-      console.log("error while get bnb balance", e);
-    }
-  }
-  const dropBalance = async () => {
-    try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
-        setUserDropBalance(0);
-      } else {
-        const web3 = window.web3;
-        let fountainContract = new web3.eth.Contract(fountainContractAbi, fountainContractAddress);
-        let contract = new web3.eth.Contract(reservoirAbi, reservoirAddress);
-        let userDrop = await fountainContract.methods.balanceOf(acc).call();
-        let convertuserDrop = await web3.utils.fromWei(userDrop);
-        convertuserDrop = parseFloat(convertuserDrop).toFixed(3)
-        setUserDropBalance(convertuserDrop)
+  // ── User fountain (DROP) balance ──
+  const { data: rawFountainBalance } = useReadContract({
+    ...fountainConfig,
+    functionName: 'balanceOf',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-      }
-    } catch (e) {
-      console.log("error while get Drop balance", e);
-    }
-  }
+  const totalDrops = rawFountainBalance
+    ? parseFloat(formatEther(rawFountainBalance)).toFixed(5)
+    : 0;
 
-  const getPerBnbDripPrice = async () => {
-    try {
-      let acc = await loadWeb3()
-      if (acc == "No Wallet") {
-        setBnbDripPrice(0);
-      } else {
-        let web3 = window.web3;
-        let contract = new web3.eth.Contract(dripTokenAbi, dripTokenAddress);
-        let dropBal = await contract.methods.balanceOf(reservoirAddress).call();
-        dropBal = await web3.utils.fromWei(dropBal);
-        let reservireBnb = await web3.eth.getBalance(reservoirAddress);
-        reservireBnb = await web3.utils.fromWei(reservireBnb);
-        let price = reservireBnb / dropBal;
-        price = parseFloat(price).toFixed(3)
-        setBnbDripPrice(price);
+  // ── User reservoir balance (for withdraw validation) ──
+  const { data: rawUserDropBalance } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'balanceOf',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
 
-      }
+  const userDropBalance = rawUserDropBalance
+    ? parseFloat(formatEther(rawUserDropBalance)).toFixed(3)
+    : 0;
 
-    } catch (e) {
-      console.log("get Per Bnb Price", e);
-    }
-  }
+  // ── User dividends ──
+  const { data: rawDividends } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'dividendsOf',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
+
+  // ── Convert dividends to BNB equivalent ──
+  const { data: rawDividendsBnb } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'calculateLiquidityToBnb',
+    args: [rawDividends ?? BigInt(0)],
+    query: { enabled: !!address && rawDividends != null, refetchInterval: 10000 },
+  });
+
+  const userReward = rawDividendsBnb
+    ? parseFloat(formatEther(rawDividendsBnb)).toFixed(11)
+    : 0;
+
+  // ── statsOf — returns uint256[15] ──
+  const { data: stats } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'statsOf',
+    args: [address],
+    query: { enabled: !!address, refetchInterval: 10000 },
+  });
+
+  const stake = stats
+    ? parseFloat(formatEther(stats[0])).toFixed(3)
+    : 0;
+
+  const totalWithDraw = stats
+    ? parseFloat(formatEther(stats[1])).toFixed(7)
+    : 0;
+
+  const compundTotal = stats
+    ? parseFloat(formatEther(stats[13])).toFixed(7)
+    : 0;
+
+  const compund = stats
+    ? stats[14].toString()
+    : 0;
+
+  // ── Global stats (no wallet needed) ──
+
+  // Players
+  const { data: rawPlayers } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'players',
+    query: { refetchInterval: 10000 },
+  });
+
+  const player = rawPlayers ? rawPlayers.toString() : 0;
+
+  // Locked token balance
+  const { data: rawLockedBalance } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'lockedTokenBalance',
+    query: { refetchInterval: 10000 },
+  });
+
+  const loackedValue = rawLockedBalance
+    ? parseFloat(formatEther(rawLockedBalance)).toFixed(3)
+    : 0;
+
+  // Total transactions
+  const { data: rawTotalTxs } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'totalTxs',
+    query: { refetchInterval: 10000 },
+  });
+
+  const totalTxs = rawTotalTxs ? rawTotalTxs.toString() : 0;
+
+  // Dividend balance (rewards pool)
+  const { data: rawDividendBalance } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'dividendBalance',
+    query: { refetchInterval: 10000 },
+  });
+
+  const reward = rawDividendBalance
+    ? parseFloat(formatEther(rawDividendBalance)).toFixed(3)
+    : 0;
+
+  // Collateral balance
+  const { data: rawCollateralBalance } = useReadContract({
+    ...reservoirConfig,
+    functionName: 'collateralBalance',
+    query: { refetchInterval: 10000 },
+  });
+
+  // Dividend pool = collateral / locked
+  const dividendPool = (rawCollateralBalance && rawLockedBalance && rawLockedBalance > BigInt(0))
+    ? parseFloat(
+        parseFloat(formatEther(rawCollateralBalance)) / parseFloat(formatEther(rawLockedBalance))
+      ).toFixed(5)
+    : 0;
+
+  // Contract BNB balance
+  const { data: rawContractBnb } = useBalance({
+    address: reservoirAddress,
+    query: { refetchInterval: 10000 },
+  });
+
+  const contractBal = rawContractBnb
+    ? parseFloat(formatEther(rawContractBnb.value)).toFixed(7)
+    : 0;
+
+  // ── BNB/DRIP price ──
+  const { data: rawTokenBalOfReservoir } = useReadContract({
+    ...tokenConfig,
+    functionName: 'balanceOf',
+    args: [reservoirAddress],
+    query: { refetchInterval: 10000 },
+  });
+
+  const bnbDripPrice = (rawTokenBalOfReservoir && rawContractBnb && rawTokenBalOfReservoir > BigInt(0))
+    ? parseFloat(
+        parseFloat(formatEther(rawContractBnb.value)) / parseFloat(formatEther(rawTokenBalOfReservoir))
+      ).toFixed(3)
+    : 0;
+
+  // ── Write handlers ──
 
   const buy = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
-      } else {
-        const web3 = window.web3;
-        let bal = await web3.eth.getBalance(acc);
-        let convertbal = web3.utils.fromWei(bal)
-        convertbal = parseFloat(convertbal)
-        let userValue = buyInput.current.value;
-if(buyInput.current.value != "" && buyInput.current.value != undefined){
-  if(buyInput.current.value > 0.01){
-    if(userValue <= convertbal){
-      let trHash = ""
-      let contract = new web3.eth.Contract(reservoirAbi, reservoirAddress);
-      await contract.methods.buy().send({
-        from: acc,
-        value: web3.utils.toWei(buyInput.current.value)
-      })
-      .on("transactionHash", async(hash)=>{
-        let data = {
-          hash:hash,
-          toAddress :reservoirAddress,
-            fromAddress : acc,
-            id:acc,
-            amount:buyInput.current.value
-        }
-        await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents",data);
-      })
-    
-      toast.success("Transaction confirmed")
-    }else{
-      toast.error("Insufficient balance");
-    }
-  }else{
-    toast.error("Amount cannot be less than 0.01")
-    
-  }
-}else{
-  toast.error("Looks like you forgot to enter amount")
-}
+        return;
+      }
+      const userValue = buyInput.current.value;
+      if (userValue === "" || userValue === undefined) {
+        toast.error("Looks like you forgot to enter amount")
+        return;
+      }
+      if (parseFloat(userValue) <= 0.01) {
+        toast.error("Amount cannot be less than 0.01")
+        return;
+      }
+      if (parseFloat(userValue) > parseFloat(userBnbBalance)) {
+        toast.error("Insufficient balance")
+        return;
       }
 
+      writeContract({
+        ...reservoirConfig,
+        functionName: 'buy',
+        value: parseEther(userValue),
+      }, {
+        onSuccess: () => {
+          toast.success("Transaction confirmed")
+        },
+        onError: () => {
+          toast.error("Transaction Failed")
+        },
+      })
     } catch (e) {
       console.log("error while buy function", e);
       toast.error("Transaction Failed")
     }
-
   }
+
   const compound = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
+        return;
+      }
+
+      const divs = await readContract(config, {
+        ...reservoirConfig,
+        functionName: 'dividendsOf',
+        args: [address],
+      });
+
+      if (divs > BigInt(0)) {
+        writeContract({
+          ...reservoirConfig,
+          functionName: 'reinvest',
+        }, {
+          onSuccess: () => {
+            toast.success("Transaction confirmed")
+          },
+        })
       } else {
-        const web3 = window.web3;
-        let contract = new web3.eth.Contract(reservoirAbi, reservoirAddress);
-        let val = await contract.methods.dividendsOf(acc).call()
-        if (val > 0) {
-
-          let comp =await contract.methods.reinvest().send({
-            from: acc
-          });
-
-          toast.success("Transaction confirmed")
-
-        } else {
-          toast.error("Insufficient dividend balance")
-        }
+        toast.error("Insufficient dividend balance")
       }
     } catch (e) {
       console.log("error while compound", e);
     }
   }
+
   const claim = async () => {
     try {
-      let acc = await loadWeb3();
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
-      } else {
-        const web3 = window.web3;
-        let reserContract = new web3.eth.Contract(reservoirAbi, reservoirAddress);
-        let dividendsOf = await reserContract.methods.dividendsOf(acc).call();
-        dividendsOf = web3.utils.fromWei(dividendsOf)
-        
-        if (dividendsOf <= 0) {
-          toast.error("Dividends cannot be zero")
-        } else {
-     
-          await reserContract.methods.withdraw().send(
-            { from: acc })
-            
-          toast.success("Transaction confirmed")}
-        
+        return;
       }
 
+      const divs = await readContract(config, {
+        ...reservoirConfig,
+        functionName: 'dividendsOf',
+        args: [address],
+      });
+
+      const divsEth = parseFloat(formatEther(divs));
+      if (divsEth <= 0) {
+        toast.error("Dividends cannot be zero")
+      } else {
+        writeContract({
+          ...reservoirConfig,
+          functionName: 'withdraw',
+        }, {
+          onSuccess: () => {
+            toast.success("Transaction confirmed")
+          },
+          onError: () => {
+            toast.error("Transaction failed")
+          },
+        })
+      }
     } catch (e) {
       toast.error("Transaction failed")
       console.log("error while claim", e);
     }
   }
+
   const withdraw = async () => {
     try {
-      let acc = await loadWeb3();
-
-      if (acc == "No Wallet") {
+      if (!isConnected) {
         toast.error("No Wallet Connected")
-      } else {
-        const web3 = window.web3;
-       
-        let reserContract = new web3.eth.Contract(reservoirAbi, reservoirAddress)
-        let balance = await reserContract.methods.balanceOf(acc).call();
-        balance = web3.utils.fromWei(balance);
-        if (withdrawInput.current.value == "") {
-          toast.error("Withdrawal amount field cannot be empty");
-        }
-        else if (withdrawInput.current.value <= 0) {
-          toast.error("Withdrawal amount must be greater than 0")
-        } else if (balance <= 0) {
-          toast.error("Insufficient Balance")
-        } else if (withdrawInput.current.value <= balance) {
-          let trHash = ""
-          let val = web3.utils.toWei(withdrawInput.current.value);
-          await reserContract.methods.sell(val).send(
-            { from: acc }
-            )
-            .on("transactionHash",async(hash)=>{
-              let data = {
-                hash:hash,
-                toAddress :reservoirAddress,
-              fromAddress : acc,
-              id:acc,
-              amount:withdrawInput.current.value
-            }
-            await axios.post("https://splash-test-app.herokuapp.com/api/users/postEvents",data);
-          })
-            
-          toast.success("Withdraw confirmed")
-        } else {
-          toast.error("Insufficient balance")
-        }
-
-
+        return;
       }
 
+      const bal = await readContract(config, {
+        ...reservoirConfig,
+        functionName: 'balanceOf',
+        args: [address],
+      });
+
+      const balEth = parseFloat(formatEther(bal));
+
+      if (withdrawInput.current.value === "") {
+        toast.error("Withdrawal amount field cannot be empty");
+      } else if (parseFloat(withdrawInput.current.value) <= 0) {
+        toast.error("Withdrawal amount must be greater than 0")
+      } else if (balEth <= 0) {
+        toast.error("Insufficient Balance")
+      } else if (parseFloat(withdrawInput.current.value) <= balEth) {
+        const val = parseEther(withdrawInput.current.value);
+        writeContract({
+          ...reservoirConfig,
+          functionName: 'sell',
+          args: [val],
+        }, {
+          onSuccess: () => {
+            toast.success("Withdraw confirmed")
+          },
+          onError: () => {
+            toast.error("Transaction Failed")
+          },
+        })
+      } else {
+        toast.error("Insufficient balance")
+      }
     } catch (e) {
       toast.error("Transaction Failed")
       console.log("error while withdraw", e);
     }
   }
 
-  
   useEffect(() => {
     window.scrollTo(0, 0);
-    setInterval(() => {
-      getPerBnbDripPrice();
-      bnbBalance();
-      dropBalance()
-      getDataWithMetaMask();
-      getDataWithoutMetaMask();
-    }, 1000);
   }, []);
 
   return (
@@ -428,7 +451,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                 </div>
                 <p className="col-12 white mb-3 text-justify fst-italic text-white" style={{ fontSize: "20px" }}>
                   {" "}
-                  {t("TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash.1")}
+                  {t("TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnon-inflationaryyieldfarmingthroughaddingliquiditytoSplash.1")}
                 </p>
                 <p className="col-12 white mb-3"></p>
                 <div>
@@ -493,13 +516,13 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                                 ≈
                                 {bnbDripPrice}
                               </p>
-                              
+
                           </div>
                         </div>
                         <div role="group" className="input-group">
                           <input
                             type="number"
-                            placeholder="SOL"
+                            placeholder="BNB"
                             className="form-control"
                             id="__BVID__213"
                             ref={buyInput}
@@ -549,7 +572,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                                 <p className="user-balance text-white fst-italic">
                                   {userDropBalance}
                                 </p>
-                              
+
                             </div>
                           </div>
                           <div role="group" className="input-group">
@@ -586,7 +609,7 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
               <div className="container col-10 text-center">
                 <h1>{t("Stats.1")}</h1>
                 <p className="text-white mb-4" style={{ fontSize: "20px" }}>
-                  {t("TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers.1")}...
+                  {t("TheShoreisTheSplashNetwork'ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers.1")}...
                 </p>
               </div>
               <div className="container col-6 col-xl-4 col-lg-4 col-md-4 text-center">
